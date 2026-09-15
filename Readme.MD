@@ -1,27 +1,40 @@
-## En Webplats om svensk politik – riksdagen, regeringen och blocken. 
+# 🇸🇪 Svensk Politik – Riksdagen, Regeringen & Blocken
 
-Gjort av Tim Stare och Daniel Wiborg från EE25c
+En webbplats som förklarar hur Sverige styrs:  
+**Riksdagens 349 mandat**, hur en regering bildas och hur partierna grupperar sig i block.
 
-## Om Själva Webbplatsen och Varför vi gjorde den tillsammas
-Webbplatsen förklarar hur Sverige styrs: riksdagens 349 mandat, regeringsbildningen
-och hur partierna grupperar sig i blocken i Själva riksdagen.
+**Skapad av:** Tim Stare & Daniel Wiborg (EE25c)
 
-Som kommer visa både nackdelar och fördelar mellan Tidöpartierna och Vänsterblocket. 
+---
 
-Som Exempel på Nackdelar
+## Om vårat projektet
 
-**Vänsterpartiet's Anti-Semitism och Terrorhyllningar.** 
+Webbplatsen ger en tydlig och balanserad översikt över det svenska politiska systemet med fokus på:
 
-**Sverigedemokraterna's Ledare var föredetta i Parti med Höger-Extremist ideologier.**
+- Hur riksdagen och regeringen fungerar
+- Partiblocken (Tidöpartierna vs Vänsterblocket)
+- Fördelar och nackdelar med de olika blocken
+- De fyra största partierna utanför riksdagen
 
-Men också om 4 parti utanför riksdagen som kommer visas och är störst utanför regeringen + riksdagen.
+### Exempel på innehåll
 
-**Alternativ för Sverige**
+**Nackdelar som lyfts fram (för att ge en ärlig bild):**
+- Vänsterpartiets historik med antisemitism och terrorhyllningar
+- Sverigedemokraternas ledare som tidigare varit medlem i ett parti med högerextrema ideologier
 
-**Örebropartiet**
+**Partier utanför riksdagen som behandlas:**
+- Alternativ för Sverige - AFS
+- Örebropartiet - ÖP
+- Medborgerlig Samling 
+- Partiet Nyans
 
-**Medborgerlig Samling**
+---
 
-**Partiet Nyans??**
+## Syfte
 
-![image_alt](https://media.arto.se/app/uploads/sites/10/2022/08/partier-klenell.jpg?auto=format&crop=faces&facepad=10&fit=crop&q=50&w=1600&h=900)
+Vi gjorde den här sidan tillsammans för att:
+- Göra svensk politik mer begriplig och enklare att förstå
+- Visa både styrkor och svagheter hos de olika blocken som SVT gör inte
+- Ge en översikt även över partier som inte sitter i riksdagen som har chans att komma in
+
+---
