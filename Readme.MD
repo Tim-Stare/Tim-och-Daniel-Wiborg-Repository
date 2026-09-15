@@ -4,7 +4,13 @@ En Hemsida om svensk politik – riksdagen, regeringen och blocken. **Gjort av T
 Webbplatsen förklarar hur Sverige styrs: riksdagens 349 mandat, regeringsbildningen
 och hur partierna grupperar sig i blocken i Själva riksdagen.
 
-Som kommer visa både nackdelar och fördelar mellan Tidöpartierna och Vänsterblocket. Som exempel Vänsterpartiet med Judehat men också Sverigedemokraterna's Ledare var föredetta i Parti med Höger-Extremist ideologier. 
+Som kommer visa både nackdelar och fördelar mellan Tidöpartierna och Vänsterblocket. 
+
+#Som Exempel på Nackdelar
+
+**Vänsterpartiet Anti-Semitism och Terrorhyllningar.** 
+
+**Sverigedemokraterna's Ledare var föredetta i Parti med Höger-Extremist ideologier + också Nazist.**
 
 Men också om 4 parti utanför riksdagen som kommer visas och är störst utanför regeringen + riksdagen.
 
