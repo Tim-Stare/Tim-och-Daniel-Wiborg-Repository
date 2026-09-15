@@ -10,10 +10,15 @@ Som kommer visa både nackdelar och fördelar mellan Tidöpartierna och Vänster
 
 Som Exempel på Nackdelar
 
-**Vänsterpartiet Anti-Semitism och Terrorhyllningar.** 
+**Vänsterpartiet's Anti-Semitism och Terrorhyllningar.** 
 
 **Sverigedemokraterna's Ledare var föredetta i Parti med Höger-Extremist ideologier.**
 
 Men också om 4 parti utanför riksdagen som kommer visas och är störst utanför regeringen + riksdagen.
+
+**Alternativ för Sverige**
+**Örebropartiet**
+**Medborgerlig Samling**
+**Partiet Nyans??**
 
 ![image_alt](https://media.arto.se/app/uploads/sites/10/2022/08/partier-klenell.jpg?auto=format&crop=faces&facepad=10&fit=crop&q=50&w=1600&h=900)
