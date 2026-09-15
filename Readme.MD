@@ -6,7 +6,7 @@ och hur partierna grupperar sig i blocken i Själva riksdagen.
 
 Som kommer visa både nackdelar och fördelar mellan Tidöpartierna och Vänsterblocket. 
 
-##Som Exempel på Nackdelar
+# Som Exempel på Nackdelar
 
 **Vänsterpartiet Anti-Semitism och Terrorhyllningar.** 
 
