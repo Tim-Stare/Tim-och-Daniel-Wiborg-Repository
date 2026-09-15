@@ -1,4 +1,5 @@
-#Information#
-Detta är Min och Daniel Wiborg's hemsida. 
-Detta handlar om själva Sverige's Regering/Riksdagen 
-Om Sveriges Block som exempelvis Tidöpartierna och Vänsterblocket
+En sida av **Daniel Wiborg** och mig om svensk politik – riksdagen, regeringen och blocken.
+
+## Om projektet
+Webbplatsen förklarar hur Sverige styrs: riksdagens 349 mandat, regeringsbildningen
+och hur partierna grupperar sig i block.
