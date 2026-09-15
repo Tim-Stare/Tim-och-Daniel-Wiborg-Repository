@@ -1,4 +1,4 @@
-# 🇸🇪 Svensk Politik – Riksdagen, Regeringen & Blocken
+# Sveriges Riksdagen, Regeringen & Blocken
 
 En webbplats som förklarar hur Sverige styrs:  
 **Riksdagens 349 mandat**, hur en regering bildas och hur partierna grupperar sig i block.
@@ -7,7 +7,7 @@ En webbplats som förklarar hur Sverige styrs:
 
 ---
 
-## Om vårat projektet
+## Om vårat projektet och varför vi gör detta
 
 Webbplatsen ger en tydlig och balanserad översikt över det svenska politiska systemet med fokus på:
 
