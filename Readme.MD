@@ -17,8 +17,11 @@ Som Exempel på Nackdelar
 Men också om 4 parti utanför riksdagen som kommer visas och är störst utanför regeringen + riksdagen.
 
 **Alternativ för Sverige**
+
 **Örebropartiet**
+
 **Medborgerlig Samling**
+
 **Partiet Nyans??**
 
 ![image_alt](https://media.arto.se/app/uploads/sites/10/2022/08/partier-klenell.jpg?auto=format&crop=faces&facepad=10&fit=crop&q=50&w=1600&h=900)
