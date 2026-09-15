@@ -1,4 +1,6 @@
-## En Webplats om svensk politik – riksdagen, regeringen och blocken. Gjort av Tim Stare och Daniel Wiborg från EE25c
+## En Webplats om svensk politik – riksdagen, regeringen och blocken. 
+
+Gjort av Tim Stare och Daniel Wiborg från EE25c
 
 ## Om Själva Webbplatsen och Varför vi gjorde den tillsammas
 Webbplatsen förklarar hur Sverige styrs: riksdagens 349 mandat, regeringsbildningen
