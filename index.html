@@ -14,9 +14,14 @@
     --ink: #1A1A1A;
     --ink-soft: #5B6270;
     --line: #E4E6EC;
+    --focus-ring: 0 0 0 3px rgba(185, 151, 77, 0.55);
   }
 
   * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
 
   html, body {
     margin: 0;
@@ -46,17 +51,17 @@
   .topbar-inner {
     max-width: 1180px;
     margin: 0 auto;
-    padding: 22px 28px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 24px;
+    padding: 18px 28px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 20px;
   }
 
-  /* Language switcher, left corner */
+  /* Language switcher – left */
   .lang-area {
     position: relative;
-    flex-shrink: 0;
+    justify-self: start;
   }
 
   .lang-trigger {
@@ -76,9 +81,16 @@
   }
 
   .lang-trigger:hover,
+  .lang-trigger:focus-visible,
   .lang-trigger[aria-expanded="true"] {
     color: #FFFFFF;
     border-bottom-color: var(--gold);
+    outline: none;
+  }
+
+  .lang-trigger:focus-visible {
+    box-shadow: var(--focus-ring);
+    border-radius: 2px;
   }
 
   .lang-trigger svg {
@@ -149,15 +161,7 @@
     border-top: 1px solid var(--line);
   }
 
-  /* Right-hand stack: search on top, Utforska trigger below it */
-  .corner-stack {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-
+  /* Logo – centre */
   .site-logo {
     display: inline-flex;
     align-items: center;
@@ -168,6 +172,7 @@
     font-weight: 600;
     line-height: 1;
     text-decoration: none;
+    justify-self: center;
   }
 
   .site-logo img,
@@ -202,6 +207,20 @@
     background: #D6B86A;
   }
 
+  .site-logo:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: 4px;
+  }
+
+  /* Right side: search + Utforska */
+  .corner-stack {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-self: end;
+  }
+
   .nav-area {
     flex-shrink: 0;
   }
@@ -223,9 +242,16 @@
   }
 
   .nav-trigger:hover,
+  .nav-trigger:focus-visible,
   .nav-trigger[aria-expanded="true"] {
     color: #FFFFFF;
     border-bottom-color: var(--gold);
+    outline: none;
+  }
+
+  .nav-trigger:focus-visible {
+    box-shadow: var(--focus-ring);
+    border-radius: 2px;
   }
 
   .nav-trigger svg {
@@ -237,7 +263,7 @@
     transform: rotate(180deg);
   }
 
-  /* Full-width panel that drops below the navy border */
+  /* Full-width panel */
   .mega-dropdown {
     position: absolute;
     top: 100%;
@@ -301,7 +327,8 @@
     border: 1px solid rgba(255,255,255,0.28);
     border-radius: 3px;
     padding: 2px 4px 2px 14px;
-    min-width: 220px;
+    min-width: 200px;
+    max-width: 260px;
     transition: background 0.15s ease, border-color 0.15s ease;
   }
 
@@ -338,9 +365,11 @@
     transition: color 0.15s ease, background 0.15s ease;
   }
 
-  .search-btn:hover {
+  .search-btn:hover,
+  .search-btn:focus-visible {
     color: #FFFFFF;
     background: rgba(255,255,255,0.12);
+    outline: none;
   }
 
   /* ---------- PAGE BODY ---------- */
@@ -355,7 +384,7 @@
     display: block;
     background: #FBF4E9;
     border-left: 3px solid var(--gold);
-    color: #6B4E1C;
+    color: #5C4218;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -378,7 +407,12 @@
     margin: 0 0 40px;
   }
 
-  .about h2 {
+  section {
+    scroll-margin-top: 24px;
+  }
+
+  .about h2,
+  section h2 {
     font-family: 'Source Serif 4', serif;
     font-weight: 600;
     font-size: 20px;
@@ -386,23 +420,33 @@
     margin: 36px 0 12px;
   }
 
-  .about p {
+  .about p,
+  section p {
     font-size: 15px;
     line-height: 1.7;
     color: var(--ink);
     margin: 0 0 10px;
   }
 
-  .about ul {
+  .about ul,
+  section ul {
     margin: 0 0 10px;
     padding-left: 20px;
   }
 
-  .about li {
+  .about li,
+  section li {
     font-size: 15px;
     line-height: 1.7;
     color: var(--ink);
     margin-bottom: 4px;
+  }
+
+  .placeholder-note {
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 8px;
   }
 
   /* ---------- FOOTER ---------- */
@@ -425,15 +469,51 @@
   }
 
   /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 720px) {
+  @media (max-width: 820px) {
     .topbar-inner {
-      padding: 16px 20px;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      padding: 14px 20px;
+      gap: 12px 16px;
     }
-    .search-form { min-width: 0; width: 200px; }
-    .mega-dropdown ul { flex-direction: column; }
+
+    .lang-area {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .site-logo {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+    }
+
+    .corner-stack {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      justify-self: stretch;
+      justify-content: space-between;
+    }
+
+    .search-form {
+      flex: 1;
+      max-width: none;
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .mega-dropdown ul {
+      flex-direction: column;
+    }
+
+    .mega-dropdown li a {
+      padding: 14px 16px;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
     * { transition: none !important; }
   }
 </style>
@@ -446,11 +526,11 @@
       <div class="lang-area">
         <button class="lang-trigger" id="langTrigger" aria-expanded="false" aria-haspopup="true" aria-controls="langMenu">
           <span id="langLabel">Svenska</span>
-          <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </button>
-        <div class="lang-menu" id="langMenu" role="menu">
+        <div class="lang-menu" id="langMenu" role="menu" hidden>
           <ul>
             <li role="none" aria-current="true"><button role="menuitem" type="button" data-lang="Svenska">Svenska</button></li>
             <li role="none"><button role="menuitem" type="button" data-lang="English">English</button></li>
@@ -459,18 +539,17 @@
         </div>
       </div>
 
+      <a class="site-logo" href="#top" aria-label="Riksdagen – startsida">
+        <img src="Riksdags.png" alt="" onerror="this.hidden = true; this.nextElementSibling.hidden = false;">
+        <span class="site-logo-fallback" hidden>R</span>
+        <span>Riksdagen</span>
+      </a>
+
       <div class="corner-stack">
-
-        <a class="site-logo" href="#top" aria-label="Riksdagen">
-          <img src="Riksdags.png" alt="Riksdagen" onerror="this.hidden = true; this.nextElementSibling.hidden = false;">
-          <span class="site-logo-fallback" hidden aria-hidden="true">R</span>
-          <span>Riksdagen</span>
-        </a>
-
-        <form class="search-form" role="search" onsubmit="return false;">
-          <input type="search" name="q" placeholder="Sökfält" aria-label="Sökfält">
+        <form class="search-form" role="search" action="#" method="get" onsubmit="return false;">
+          <input type="search" name="q" placeholder="Sök…" aria-label="Sök på sidan" autocomplete="off">
           <button class="search-btn" type="submit" aria-label="Sök">
-            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="7.2" cy="7.2" r="5.7" stroke="currentColor" stroke-width="1.6"/>
               <line x1="11.4" y1="11.6" x2="15.5" y2="15.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             </svg>
@@ -480,26 +559,25 @@
         <div class="nav-area">
           <button class="nav-trigger" id="navTrigger" aria-expanded="false" aria-haspopup="true" aria-controls="navDropdown">
             <span>Utforska</span>
-            <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
         </div>
-
       </div>
     </div>
 
-    <div class="mega-dropdown" id="navDropdown" role="menu">
+    <nav class="mega-dropdown" id="navDropdown" aria-label="Huvudmeny" hidden>
       <div class="mega-dropdown-inner">
         <ul>
-          <li role="none"><a role="menuitem" href="#partier">Partier</a></li>
-          <li role="none"><a role="menuitem" href="#historia">Historia</a></li>
-          <li role="none"><a role="menuitem" href="#mandat">Mandat</a></li>
-          <li role="none"><a role="menuitem" href="#riksdagslinjen">Riksdagslinjen</a></li>
-          <li role="none"><a role="menuitem" href="#utanfor">Utanför Riksdag (4 Partier)</a></li>
+          <li><a href="#partier">Partier</a></li>
+          <li><a href="#historia">Historia</a></li>
+          <li><a href="#mandat">Mandat</a></li>
+          <li><a href="#riksdagslinjen">Riksdagslinjen</a></li>
+          <li><a href="#utanfor">Utanför Riksdagen (4 partier)</a></li>
         </ul>
       </div>
-    </div>
+    </nav>
   </div>
 
   <main id="top">
@@ -516,7 +594,6 @@
     <p class="credit">Skapad av Tim Stare &amp; Daniel Wiborg (EE25c), Tyresö Gymnasium</p>
 
     <div class="about">
-
       <h2>Om projektet</h2>
       <p>
         Sidan ger en balanserad översikt av svensk politik med fokus på fyra ämnen:
@@ -546,8 +623,45 @@
         <li>visa både styrkor och svagheter hos blocken, mer öppet än vad stora medier ofta gör</li>
         <li>ge en bild av partier utanför riksdagen som kan ta sig in framöver</li>
       </ul>
-
     </div>
+
+    <!-- Placeholder sections so the menu links work -->
+    <section id="partier">
+      <h2>Partier</h2>
+      <p>Här beskrivs de partier som sitter i riksdagen och hur de förhåller sig till varandra.</p>
+      <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
+    </section>
+
+    <section id="historia">
+      <h2>Historia</h2>
+      <p>En kort översikt över hur det svenska parlamentariska systemet har utvecklats.</p>
+      <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
+    </section>
+
+    <section id="mandat">
+      <h2>Mandat</h2>
+      <p>Riksdagen har 349 mandat. Här förklaras hur de fördelas och vad det betyder för regeringsbildning.</p>
+      <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
+    </section>
+
+    <section id="riksdagslinjen">
+      <h2>Riksdagslinjen</h2>
+      <p>Hur röster i kammaren avgör lagstiftning och hur blocken påverkar utfallen.</p>
+      <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
+    </section>
+
+    <section id="utanfor">
+      <h2>Utanför Riksdagen (4 partier)</h2>
+      <p>De fyra partier som för närvarande står utanför riksdagen men som kan ta sig in de kommande valen:</p>
+      <ul>
+        <li>Alternativ för Sverige (AfS)</li>
+        <li>Örebropartiet (ÖP)</li>
+        <li>Medborgerlig Samling</li>
+        <li>Partiet Nyans</li>
+      </ul>
+      <p class="placeholder-note">Mer detaljerad information läggs till senare.</p>
+    </section>
+
   </main>
 
   <footer>
@@ -557,72 +671,112 @@
   </footer>
 
 <script>
-  // Utforska mega-dropdown
-  const navTrigger = document.getElementById('navTrigger');
-  const navDropdown = document.getElementById('navDropdown');
+  (function () {
+    const navTrigger = document.getElementById('navTrigger');
+    const navDropdown = document.getElementById('navDropdown');
+    const langTrigger = document.getElementById('langTrigger');
+    const langMenu = document.getElementById('langMenu');
+    const langLabel = document.getElementById('langLabel');
 
-  function closeNav() {
-    navDropdown.classList.remove('open');
-    navTrigger.setAttribute('aria-expanded', 'false');
-  }
+    function closeNav() {
+      navDropdown.classList.remove('open');
+      navDropdown.hidden = true;
+      navTrigger.setAttribute('aria-expanded', 'false');
+    }
 
-  function toggleNav() {
-    const isOpen = navDropdown.classList.toggle('open');
-    navTrigger.setAttribute('aria-expanded', String(isOpen));
-  }
+    function openNav() {
+      navDropdown.hidden = false;
+      // Force reflow so the transition runs
+      navDropdown.offsetHeight;
+      navDropdown.classList.add('open');
+      navTrigger.setAttribute('aria-expanded', 'true');
+    }
 
-  navTrigger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    closeLang();
-    toggleNav();
-  });
+    function toggleNav() {
+      if (navDropdown.classList.contains('open')) {
+        closeNav();
+      } else {
+        closeLang();
+        openNav();
+      }
+    }
 
-  // Language switcher
-  const langTrigger = document.getElementById('langTrigger');
-  const langMenu = document.getElementById('langMenu');
-  const langLabel = document.getElementById('langLabel');
+    function closeLang() {
+      langMenu.classList.remove('open');
+      langMenu.hidden = true;
+      langTrigger.setAttribute('aria-expanded', 'false');
+    }
 
-  function closeLang() {
-    langMenu.classList.remove('open');
-    langTrigger.setAttribute('aria-expanded', 'false');
-  }
+    function openLang() {
+      langMenu.hidden = false;
+      langMenu.offsetHeight;
+      langMenu.classList.add('open');
+      langTrigger.setAttribute('aria-expanded', 'true');
+    }
 
-  function toggleLang() {
-    const isOpen = langMenu.classList.toggle('open');
-    langTrigger.setAttribute('aria-expanded', String(isOpen));
-  }
+    function toggleLang() {
+      if (langMenu.classList.contains('open')) {
+        closeLang();
+      } else {
+        closeNav();
+        openLang();
+      }
+    }
 
-  langTrigger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    closeNav();
-    toggleLang();
-  });
-
-  langMenu.querySelectorAll('button[data-lang]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      langLabel.textContent = btn.dataset.lang;
-      langMenu.querySelectorAll('li').forEach((li) => li.removeAttribute('aria-current'));
-      btn.closest('li').setAttribute('aria-current', 'true');
-      closeLang();
+    navTrigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleNav();
     });
-  });
 
-  // Shared: click outside / escape closes both
-  document.addEventListener('click', (e) => {
-    if (!navDropdown.contains(e.target) && e.target !== navTrigger && !navTrigger.contains(e.target)) {
-      closeNav();
-    }
-    if (!langMenu.contains(e.target) && e.target !== langTrigger && !langTrigger.contains(e.target)) {
-      closeLang();
-    }
-  });
+    langTrigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleLang();
+    });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeNav();
-      closeLang();
-    }
-  });
+    // Language selection
+    langMenu.querySelectorAll('button[data-lang]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        langLabel.textContent = btn.dataset.lang;
+        langMenu.querySelectorAll('li').forEach(function (li) {
+          li.removeAttribute('aria-current');
+        });
+        btn.closest('li').setAttribute('aria-current', 'true');
+        closeLang();
+        langTrigger.focus();
+      });
+    });
+
+    // Close menus when clicking a nav link
+    navDropdown.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        closeNav();
+      });
+    });
+
+    // Click outside
+    document.addEventListener('click', function (e) {
+      if (!navDropdown.contains(e.target) && !navTrigger.contains(e.target)) {
+        closeNav();
+      }
+      if (!langMenu.contains(e.target) && !langTrigger.contains(e.target)) {
+        closeLang();
+      }
+    });
+
+    // Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (navDropdown.classList.contains('open')) {
+          closeNav();
+          navTrigger.focus();
+        }
+        if (langMenu.classList.contains('open')) {
+          closeLang();
+          langTrigger.focus();
+        }
+      }
+    });
+  })();
 </script>
 
 </body>
