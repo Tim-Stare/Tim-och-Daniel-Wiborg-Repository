@@ -1,5 +1,6 @@
 # Sveriges Riksdagen, Regeringen & Blocken
 **WARNING. DENNA HEMSIDA KOMMER BÅDE PRATA NEGATIVT OM BÅDE TIDÖ OCH VÄNSTERBLOCKET. INGEN KOMMER VARA REN.**
+
 En webbplats som förklarar hur Sverige styrs:  
 **Riksdagens 349 mandat**, hur en regering bildas och hur partierna grupperar sig i block.
 
