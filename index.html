@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Riksdagen</title>
+<link rel="icon" type="image/png" href="Riksdags.png">
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -156,6 +157,50 @@
     align-items: flex-end;
     gap: 10px;
     flex-shrink: 0;
+  }
+
+  .site-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #FFFFFF;
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .site-logo img,
+  .site-logo-fallback {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+  }
+
+  .site-logo img {
+    display: block;
+    object-fit: contain;
+    background: #FFFFFF;
+  }
+
+  .site-logo-fallback {
+    display: grid;
+    place-items: center;
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-family: 'Source Serif 4', serif;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .site-logo-fallback[hidden] {
+    display: none;
+  }
+
+  .site-logo:hover .site-logo-fallback,
+  .site-logo:focus-visible .site-logo-fallback {
+    background: #D6B86A;
   }
 
   .nav-area {
@@ -417,6 +462,12 @@
 
       <div class="corner-stack">
 
+        <a class="site-logo" href="#top" aria-label="Riksdagen">
+          <img src="Riksdags.png" alt="Riksdagen" onerror="this.hidden = true; this.nextElementSibling.hidden = false;">
+          <span class="site-logo-fallback" hidden aria-hidden="true">R</span>
+          <span>Riksdagen</span>
+        </a>
+
         <form class="search-form" role="search" onsubmit="return false;">
           <input type="search" name="q" placeholder="Sökfält" aria-label="Sökfält">
           <button class="search-btn" type="submit" aria-label="Sök">
@@ -452,7 +503,7 @@
     </div>
   </div>
 
-  <main>
+  <main id="top">
 
     <p class="warning">
       Varning: den här sidan tar upp kritik mot både Tidöpartierna och Vänsterblocket.
