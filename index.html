@@ -604,7 +604,6 @@
     const navTrigger = document.getElementById('navTrigger');
     const navDropdown = document.getElementById('navDropdown');
     const homeBtn = document.getElementById('homeBtn');
-    const pages = document.querySelectorAll('.page');
     const menuLinks = document.querySelectorAll('[data-page]');
 
     let currentPage = 'home';
@@ -684,7 +683,7 @@
 
         // Scroll to top of content
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 320); // matches CSS transition time
+      }, 320);
     }
 
     // Menu clicks
@@ -700,7 +699,6 @@
     // Logo → back to home
     homeBtn.addEventListener('click', function () {
       showPage('home');
-      // Clear active menu highlight
       menuLinks.forEach(function (link) {
         link.classList.remove('active');
       });
