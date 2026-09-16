@@ -1,1 +1,579 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riksdagen</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #14213D;
+    --navy-deep: #0D1730;
+    --gold: #B9974D;
+    --paper: #FFFFFF;
+    --ink: #1A1A1A;
+    --ink-soft: #5B6270;
+    --line: #E4E6EC;
+  }
 
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100%;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar {
+    width: 100%;
+    background: var(--navy);
+    border-bottom: 3px solid var(--navy-deep);
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.06);
+    position: relative;
+    z-index: 30;
+  }
+
+  .topbar-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 22px 28px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  /* Language switcher, left corner */
+  .lang-area {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .lang-trigger {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.88);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .lang-trigger:hover,
+  .lang-trigger[aria-expanded="true"] {
+    color: #FFFFFF;
+    border-bottom-color: var(--gold);
+  }
+
+  .lang-trigger svg {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .lang-trigger[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  .lang-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--navy);
+    min-width: 150px;
+    box-shadow: 0 12px 28px rgba(13, 23, 48, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
+    z-index: 40;
+  }
+
+  .lang-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .lang-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+  }
+
+  .lang-menu li button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 10px 18px;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: background 0.12s ease, border-color 0.12s ease;
+  }
+
+  .lang-menu li button:hover,
+  .lang-menu li button:focus-visible {
+    background: #F4F5F8;
+    border-left-color: var(--navy);
+    outline: none;
+  }
+
+  .lang-menu li[aria-current="true"] button {
+    font-weight: 600;
+    color: var(--navy-deep);
+  }
+
+  .lang-menu li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  /* Right-hand stack: search on top, Utforska trigger below it */
+  .corner-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .nav-area {
+    flex-shrink: 0;
+  }
+
+  .nav-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.88);
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .nav-trigger:hover,
+  .nav-trigger[aria-expanded="true"] {
+    color: #FFFFFF;
+    border-bottom-color: var(--gold);
+  }
+
+  .nav-trigger svg {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .nav-trigger[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  /* Full-width panel that drops below the navy border */
+  .mega-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 16px 30px rgba(13, 23, 48, 0.16);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    z-index: 20;
+  }
+
+  .mega-dropdown.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mega-dropdown-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 8px 28px;
+  }
+
+  .mega-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .mega-dropdown li {
+    border-top: 3px solid transparent;
+  }
+
+  .mega-dropdown li a {
+    display: block;
+    padding: 16px 22px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14.5px;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+
+  .mega-dropdown li a:hover,
+  .mega-dropdown li a:focus-visible {
+    background: #F4F5F8;
+    color: var(--navy-deep);
+    outline: none;
+  }
+
+  /* Search */
+  .search-form {
+    display: flex;
+    align-items: center;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 3px;
+    padding: 2px 4px 2px 14px;
+    min-width: 220px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .search-form:focus-within {
+    background: rgba(255,255,255,0.16);
+    border-color: var(--gold);
+  }
+
+  .search-form input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    padding: 9px 6px;
+    width: 100%;
+  }
+
+  .search-form input::placeholder {
+    color: rgba(255,255,255,0.55);
+  }
+
+  .search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 7px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.75);
+    border-radius: 2px;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .search-btn:hover {
+    color: #FFFFFF;
+    background: rgba(255,255,255,0.12);
+  }
+
+  /* ---------- PAGE BODY ---------- */
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 56px 28px 72px;
+    flex: 1;
+  }
+
+  .warning {
+    display: block;
+    background: #FBF4E9;
+    border-left: 3px solid var(--gold);
+    color: #6B4E1C;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+    padding: 14px 18px;
+    margin: 0 0 32px;
+  }
+
+  .intro {
+    font-family: 'Source Serif 4', serif;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--navy-deep);
+    margin: 0 0 8px;
+  }
+
+  .credit {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 0 0 40px;
+  }
+
+  .about h2 {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--navy-deep);
+    margin: 36px 0 12px;
+  }
+
+  .about p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+
+  .about ul {
+    margin: 0 0 10px;
+    padding-left: 20px;
+  }
+
+  .about li {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    width: 100%;
+    background: var(--navy-deep);
+  }
+
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 28px;
+    text-align: center;
+  }
+
+  .footer-inner p {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 720px) {
+    .topbar-inner {
+      padding: 16px 20px;
+    }
+    .search-form { min-width: 0; width: 200px; }
+    .mega-dropdown ul { flex-direction: column; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+
+      <div class="lang-area">
+        <button class="lang-trigger" id="langTrigger" aria-expanded="false" aria-haspopup="true" aria-controls="langMenu">
+          <span id="langLabel">Svenska</span>
+          <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="lang-menu" id="langMenu" role="menu">
+          <ul>
+            <li role="none" aria-current="true"><button role="menuitem" type="button" data-lang="Svenska">Svenska</button></li>
+            <li role="none"><button role="menuitem" type="button" data-lang="English">English</button></li>
+            <li role="none"><button role="menuitem" type="button" data-lang="Norsk">Norsk</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="corner-stack">
+
+        <form class="search-form" role="search" onsubmit="return false;">
+          <input type="search" name="q" placeholder="Sökfält" aria-label="Sökfält">
+          <button class="search-btn" type="submit" aria-label="Sök">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="7.2" cy="7.2" r="5.7" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="11.4" y1="11.6" x2="15.5" y2="15.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </form>
+
+        <div class="nav-area">
+          <button class="nav-trigger" id="navTrigger" aria-expanded="false" aria-haspopup="true" aria-controls="navDropdown">
+            <span>Utforska</span>
+            <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="mega-dropdown" id="navDropdown" role="menu">
+      <div class="mega-dropdown-inner">
+        <ul>
+          <li role="none"><a role="menuitem" href="#partier">Partier</a></li>
+          <li role="none"><a role="menuitem" href="#historia">Historia</a></li>
+          <li role="none"><a role="menuitem" href="#mandat">Mandat</a></li>
+          <li role="none"><a role="menuitem" href="#riksdagslinjen">Riksdagslinjen</a></li>
+          <li role="none"><a role="menuitem" href="#utanfor">Utanför Riksdag (4 Partier)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <p class="warning">
+      Varning: den här sidan tar upp kritik mot både Tidöpartierna och Vänsterblocket.
+      Ingen sida framställs som felfri.
+    </p>
+
+    <p class="intro">
+      En webbplats som förklarar hur Sverige styrs: riksdagens 349 mandat, hur en
+      regering bildas och hur partierna grupperar sig i block.
+    </p>
+    <p class="credit">Skapad av Tim Stare &amp; Daniel Wiborg (EE25c), Tyresö Gymnasium</p>
+
+    <div class="about">
+
+      <h2>Om projektet</h2>
+      <p>
+        Sidan ger en balanserad översikt av svensk politik med fokus på fyra ämnen:
+        hur riksdag och regering fungerar, blocken, deras för- och nackdelar, och
+        de fyra största partierna utanför riksdagen.
+      </p>
+
+      <h2>Exempel på innehåll</h2>
+      <p>Nackdelar som lyfts fram, för en ärlig bild:</p>
+      <ul>
+        <li>Vänsterpartiets historiska kopplingar till kommunism och omdiskuterade uttalanden</li>
+        <li>SD-ledarens tidigare koppling till en högerextrem rörelse</li>
+      </ul>
+
+      <p>Partier utanför riksdagen som kan ta sig in inom 4–8 år:</p>
+      <ul>
+        <li>Alternativ för Sverige (AfS)</li>
+        <li>Örebropartiet (ÖP)</li>
+        <li>Medborgerlig Samling</li>
+        <li>Partiet Nyans</li>
+      </ul>
+
+      <h2>Syfte</h2>
+      <p>Vi byggde sidan för att:</p>
+      <ul>
+        <li>göra svensk politik enklare att förstå</li>
+        <li>visa både styrkor och svagheter hos blocken, mer öppet än vad stora medier ofta gör</li>
+        <li>ge en bild av partier utanför riksdagen som kan ta sig in framöver</li>
+      </ul>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 Tim Stare &amp; Daniel Wiborg — Tyresö Gymnasium</p>
+    </div>
+  </footer>
+
+<script>
+  // Utforska mega-dropdown
+  const navTrigger = document.getElementById('navTrigger');
+  const navDropdown = document.getElementById('navDropdown');
+
+  function closeNav() {
+    navDropdown.classList.remove('open');
+    navTrigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleNav() {
+    const isOpen = navDropdown.classList.toggle('open');
+    navTrigger.setAttribute('aria-expanded', String(isOpen));
+  }
+
+  navTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeLang();
+    toggleNav();
+  });
+
+  // Language switcher
+  const langTrigger = document.getElementById('langTrigger');
+  const langMenu = document.getElementById('langMenu');
+  const langLabel = document.getElementById('langLabel');
+
+  function closeLang() {
+    langMenu.classList.remove('open');
+    langTrigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleLang() {
+    const isOpen = langMenu.classList.toggle('open');
+    langTrigger.setAttribute('aria-expanded', String(isOpen));
+  }
+
+  langTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeNav();
+    toggleLang();
+  });
+
+  langMenu.querySelectorAll('button[data-lang]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      langLabel.textContent = btn.dataset.lang;
+      langMenu.querySelectorAll('li').forEach((li) => li.removeAttribute('aria-current'));
+      btn.closest('li').setAttribute('aria-current', 'true');
+      closeLang();
+    });
+  });
+
+  // Shared: click outside / escape closes both
+  document.addEventListener('click', (e) => {
+    if (!navDropdown.contains(e.target) && e.target !== navTrigger && !navTrigger.contains(e.target)) {
+      closeNav();
+    }
+    if (!langMenu.contains(e.target) && e.target !== langTrigger && !langTrigger.contains(e.target)) {
+      closeLang();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeNav();
+      closeLang();
+    }
+  });
+</script>
+
+</body>
+</html>
