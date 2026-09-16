@@ -120,6 +120,7 @@
 
   .nav-area {
     flex-shrink: 0;
+    position: relative;
   }
 
   .nav-trigger {
@@ -127,28 +128,35 @@
     align-items: center;
     gap: 8px;
     background: none;
-    border: none;
-    color: rgba(255,255,255,0.88);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.92);
     font-family: 'Inter', sans-serif;
     font-size: 14.5px;
     font-weight: 500;
     cursor: pointer;
-    padding: 10px 4px;
-    border-bottom: 2px solid transparent;
-    transition: color 0.15s ease, border-color 0.15s ease;
+    padding: 8px 14px;
+    border-radius: 4px;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
   }
 
   .nav-trigger:hover,
-  .nav-trigger:focus-visible,
-  .nav-trigger[aria-expanded="true"] {
+  .nav-trigger:focus-visible {
     color: #FFFFFF;
-    border-bottom-color: var(--gold);
+    border-color: #FFFFFF;
+    background: rgba(255,255,255,0.08);
     outline: none;
   }
 
   .nav-trigger:focus-visible {
     box-shadow: var(--focus-ring);
-    border-radius: 2px;
+  }
+
+  /* Dark blue outline when open */
+  .nav-trigger[aria-expanded="true"] {
+    color: #FFFFFF;
+    border-color: #0A1428;
+    background: rgba(10, 20, 40, 0.55);
+    box-shadow: 0 0 0 2px #0A1428;
   }
 
   .nav-trigger svg {
@@ -160,20 +168,23 @@
     transform: rotate(180deg);
   }
 
-  /* Full-width panel */
+  /* Smaller white dropdown panel */
   .mega-dropdown {
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+    top: calc(100% + 10px);
+    right: 0;
+    width: auto;
+    min-width: 220px;
     background: var(--paper);
-    border-bottom: 1px solid var(--line);
-    box-shadow: 0 16px 30px rgba(13, 23, 48, 0.16);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--navy-deep);
+    box-shadow: 0 12px 28px rgba(13, 23, 48, 0.22);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
-    z-index: 20;
+    z-index: 40;
+    border-radius: 0 0 6px 6px;
   }
 
   .mega-dropdown.open {
@@ -183,9 +194,7 @@
   }
 
   .mega-dropdown-inner {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 8px 28px;
+    padding: 6px 0;
   }
 
   .mega-dropdown ul {
@@ -193,34 +202,53 @@
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 
   .mega-dropdown li {
-    border-top: 3px solid transparent;
+    border-top: none;
   }
 
   .mega-dropdown li a {
     display: block;
-    padding: 16px 22px;
+    padding: 11px 20px;
     color: var(--ink);
     text-decoration: none;
     font-size: 14.5px;
     transition: background 0.12s ease, color 0.12s ease;
     cursor: pointer;
+    border-left: 3px solid transparent;
   }
 
   .mega-dropdown li a:hover,
   .mega-dropdown li a:focus-visible {
-    background: #F4F5F8;
+    background: #F0F2F6;
     color: var(--navy-deep);
+    border-left-color: var(--navy);
     outline: none;
   }
 
   .mega-dropdown li a.active {
     font-weight: 600;
     color: var(--navy-deep);
-    border-top-color: var(--gold);
+    background: #EEF0F5;
+    border-left-color: var(--gold);
+  }
+
+  /* Darker overlay under the open menu */
+  .menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 20, 40, 0.28);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s;
+    z-index: 25;
+  }
+
+  .menu-backdrop.open {
+    opacity: 1;
+    visibility: visible;
   }
 
   /* Search */
@@ -286,7 +314,6 @@
     position: relative;
   }
 
-  /* Content panels – only one visible at a time */
   .page {
     display: none;
     opacity: 0;
@@ -368,7 +395,6 @@
     margin-top: 8px;
   }
 
-  /* Image in Mandat section */
   .mandat-img {
     display: block;
     width: 100%;
@@ -436,12 +462,10 @@
       max-width: 160px;
     }
 
-    .mega-dropdown ul {
-      flex-direction: column;
-    }
-
-    .mega-dropdown li a {
-      padding: 14px 16px;
+    .mega-dropdown {
+      right: 0;
+      left: auto;
+      min-width: 200px;
     }
   }
 
@@ -455,10 +479,12 @@
 </head>
 <body>
 
+  <!-- Darker backdrop when menu is open -->
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+
   <div class="topbar">
     <div class="topbar-inner">
 
-      <!-- Logo left – goes back to start page -->
       <button class="site-logo" id="homeBtn" type="button" aria-label="Riksdagen – startsida">
         <img src="Riksdags.png" alt="" onerror="this.hidden = true; this.nextElementSibling.hidden = false;">
         <span class="site-logo-fallback" hidden>R</span>
@@ -483,26 +509,26 @@
               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
+
+          <!-- Smaller dropdown attached to the button -->
+          <nav class="mega-dropdown" id="navDropdown" aria-label="Huvudmeny" hidden>
+            <div class="mega-dropdown-inner">
+              <ul>
+                <li><a href="#" data-page="partier">Partier</a></li>
+                <li><a href="#" data-page="historia">Historia</a></li>
+                <li><a href="#" data-page="mandat">Mandat</a></li>
+                <li><a href="#" data-page="riksdagslinjen">Riksdagslinjen</a></li>
+                <li><a href="#" data-page="utanfor">Utanför Riksdagen (4 partier)</a></li>
+              </ul>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
-
-    <nav class="mega-dropdown" id="navDropdown" aria-label="Huvudmeny" hidden>
-      <div class="mega-dropdown-inner">
-        <ul>
-          <li><a href="#" data-page="partier">Partier</a></li>
-          <li><a href="#" data-page="historia">Historia</a></li>
-          <li><a href="#" data-page="mandat">Mandat</a></li>
-          <li><a href="#" data-page="riksdagslinjen">Riksdagslinjen</a></li>
-          <li><a href="#" data-page="utanfor">Utanför Riksdagen (4 partier)</a></li>
-        </ul>
-      </div>
-    </nav>
   </div>
 
   <main id="mainContent">
 
-    <!-- ========== START PAGE ========== -->
     <div class="page active visible" id="page-home" data-page="home">
       <p class="warning">
         Varning: den här sidan tar upp kritik mot både Tidöpartierna och Vänsterblocket.
@@ -546,21 +572,18 @@
       </ul>
     </div>
 
-    <!-- ========== PARTIER ========== -->
     <div class="page" id="page-partier" data-page="partier">
       <h2>Partier</h2>
       <p>Här beskrivs de partier som sitter i riksdagen och hur de förhåller sig till varandra.</p>
       <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
     </div>
 
-    <!-- ========== HISTORIA ========== -->
     <div class="page" id="page-historia" data-page="historia">
       <h2>Historia</h2>
       <p>En kort översikt över hur det svenska parlamentariska systemet har utvecklats.</p>
       <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
     </div>
 
-    <!-- ========== MANDAT ========== -->
     <div class="page" id="page-mandat" data-page="mandat">
       <h2>Mandat</h2>
       <p>Riksdagen har 349 mandat. Här förklaras hur de fördelas och vad det betyder för regeringsbildning.</p>
@@ -571,14 +594,12 @@
       <p class="placeholder-note">Mer detaljerad information läggs till senare.</p>
     </div>
 
-    <!-- ========== RIKSDAGSLINJEN ========== -->
     <div class="page" id="page-riksdagslinjen" data-page="riksdagslinjen">
       <h2>Riksdagslinjen</h2>
       <p>Hur röster i kammaren avgör lagstiftning och hur blocken påverkar utfallen.</p>
       <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
     </div>
 
-    <!-- ========== UTANFÖR ========== -->
     <div class="page" id="page-utanfor" data-page="utanfor">
       <h2>Utanför Riksdagen (4 partier)</h2>
       <p>De fyra partier som för närvarande står utanför riksdagen men som kan ta sig in de kommande valen:</p>
@@ -603,17 +624,18 @@
   (function () {
     const navTrigger = document.getElementById('navTrigger');
     const navDropdown = document.getElementById('navDropdown');
+    const menuBackdrop = document.getElementById('menuBackdrop');
     const homeBtn = document.getElementById('homeBtn');
     const menuLinks = document.querySelectorAll('[data-page]');
 
     let currentPage = 'home';
     let isAnimating = false;
 
-    // ----- Mega menu open/close -----
     function closeNav() {
       navDropdown.classList.remove('open');
       navDropdown.hidden = true;
       navTrigger.setAttribute('aria-expanded', 'false');
+      menuBackdrop.classList.remove('open');
     }
 
     function openNav() {
@@ -621,6 +643,7 @@
       navDropdown.offsetHeight;
       navDropdown.classList.add('open');
       navTrigger.setAttribute('aria-expanded', 'true');
+      menuBackdrop.classList.add('open');
     }
 
     function toggleNav() {
@@ -636,6 +659,8 @@
       toggleNav();
     });
 
+    menuBackdrop.addEventListener('click', closeNav);
+
     document.addEventListener('click', function (e) {
       if (!navDropdown.contains(e.target) && !navTrigger.contains(e.target)) {
         closeNav();
@@ -649,7 +674,6 @@
       }
     });
 
-    // ----- Smooth page switching -----
     function showPage(pageId) {
       if (pageId === currentPage || isAnimating) return;
 
@@ -662,31 +686,25 @@
         return;
       }
 
-      // Fade out current page
       outgoing.classList.remove('visible');
 
       setTimeout(function () {
         outgoing.classList.remove('active');
         incoming.classList.add('active');
-
-        // Force reflow then fade in
         incoming.offsetHeight;
         incoming.classList.add('visible');
 
         currentPage = pageId;
         isAnimating = false;
 
-        // Update active state in menu
         menuLinks.forEach(function (link) {
           link.classList.toggle('active', link.dataset.page === pageId);
         });
 
-        // Scroll to top of content
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 320);
     }
 
-    // Menu clicks
     menuLinks.forEach(function (link) {
       link.addEventListener('click', function (e) {
         e.preventDefault();
@@ -696,7 +714,6 @@
       });
     });
 
-    // Logo → back to home
     homeBtn.addEventListener('click', function () {
       showPage('home');
       menuLinks.forEach(function (link) {
