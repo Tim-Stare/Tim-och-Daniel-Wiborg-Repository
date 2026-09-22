@@ -14,7 +14,7 @@
     --ink: #1A1A1A;
     --ink-soft: #5B6270;
     --line: #E4E6EC;
-    --focus-ring: 0 0 0 3px rgba(185, 151, 77, 0.55);
+    --hover-bg: #E9EAEF;
   }
 
   * { box-sizing: border-box; }
@@ -47,80 +47,22 @@
   .topbar-inner {
     max-width: 1180px;
     margin: 0 auto;
-    padding: 16px 28px;
+    padding: 22px 28px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+    justify-content: flex-end;
   }
 
-  /* Logo – left corner, bigger */
-  .site-logo {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    color: #FFFFFF;
-    font-family: 'Source Serif 4', serif;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1;
-    text-decoration: none;
-    flex-shrink: 0;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-  }
-
-  .site-logo img,
-  .site-logo-fallback {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-  }
-
-  .site-logo img {
-    display: block;
-    object-fit: contain;
-    background: #FFFFFF;
-  }
-
-  .site-logo-fallback {
-    display: grid;
-    place-items: center;
-    background: var(--gold);
-    color: var(--navy-deep);
-    font-family: 'Source Serif 4', serif;
-    font-size: 28px;
-    font-weight: 600;
-  }
-
-  .site-logo-fallback[hidden] {
-    display: none;
-  }
-
-  .site-logo:hover .site-logo-fallback,
-  .site-logo:focus-visible .site-logo-fallback {
-    background: #D6B86A;
-  }
-
-  .site-logo:focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
-    border-radius: 4px;
-  }
-
-  /* Right side: search + Utforska */
+  /* Right-hand stack: search on top, Utforska trigger below it */
   .corner-stack {
     display: flex;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
     flex-shrink: 0;
   }
 
   .nav-area {
     flex-shrink: 0;
-    position: relative;
   }
 
   .nav-trigger {
@@ -128,35 +70,21 @@
     align-items: center;
     gap: 8px;
     background: none;
-    border: 1.5px solid rgba(255,255,255,0.35);
-    color: rgba(255,255,255,0.92);
+    border: none;
+    color: rgba(255,255,255,0.88);
     font-family: 'Inter', sans-serif;
     font-size: 14.5px;
     font-weight: 500;
     cursor: pointer;
-    padding: 8px 14px;
-    border-radius: 4px;
-    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    padding: 10px 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
 
   .nav-trigger:hover,
-  .nav-trigger:focus-visible {
-    color: #FFFFFF;
-    border-color: #FFFFFF;
-    background: rgba(255,255,255,0.08);
-    outline: none;
-  }
-
-  .nav-trigger:focus-visible {
-    box-shadow: var(--focus-ring);
-  }
-
-  /* Dark blue outline when open */
   .nav-trigger[aria-expanded="true"] {
     color: #FFFFFF;
-    border-color: #0A1428;
-    background: rgba(10, 20, 40, 0.55);
-    box-shadow: 0 0 0 2px #0A1428;
+    border-bottom-color: var(--gold);
   }
 
   .nav-trigger svg {
@@ -168,23 +96,20 @@
     transform: rotate(180deg);
   }
 
-  /* Smaller white dropdown panel */
+  /* Full-width panel that drops below the navy border */
   .mega-dropdown {
     position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    width: auto;
-    min-width: 220px;
+    top: 100%;
+    left: 0;
+    width: 100%;
     background: var(--paper);
-    border: 1px solid var(--line);
-    border-top: 3px solid var(--navy-deep);
-    box-shadow: 0 12px 28px rgba(13, 23, 48, 0.22);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 16px 30px rgba(13, 23, 48, 0.16);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-6px);
+    transform: translateY(-8px);
     transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
-    z-index: 40;
-    border-radius: 0 0 6px 6px;
+    z-index: 20;
   }
 
   .mega-dropdown.open {
@@ -194,7 +119,9 @@
   }
 
   .mega-dropdown-inner {
-    padding: 6px 0;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 8px 28px;
   }
 
   .mega-dropdown ul {
@@ -202,56 +129,49 @@
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
   }
 
+  /* gold marker sits UNDER the item, only shown once it's the active one */
   .mega-dropdown li {
-    border-top: none;
+    border-bottom: 3px solid transparent;
   }
 
-  .mega-dropdown li a {
+  .mega-dropdown li.active {
+    border-bottom-color: var(--gold);
+  }
+
+  .mega-dropdown li button {
     display: block;
-    padding: 11px 20px;
+    padding: 16px 22px;
     color: var(--ink);
+    background: none;
+    border: none;
     text-decoration: none;
+    font-family: 'Inter', sans-serif;
     font-size: 14.5px;
-    transition: background 0.12s ease, color 0.12s ease;
     cursor: pointer;
-    border-left: 3px solid transparent;
+    transition: background 0.12s ease, color 0.12s ease;
   }
 
-  .mega-dropdown li a:hover,
-  .mega-dropdown li a:focus-visible {
-    background: #F0F2F6;
+  .mega-dropdown li.active button {
     color: var(--navy-deep);
-    border-left-color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* darken on hover, rather than lighten */
+  .mega-dropdown li button:hover,
+  .mega-dropdown li button:focus-visible {
+    background: var(--hover-bg);
+    color: var(--navy-deep);
     outline: none;
   }
 
-  .mega-dropdown li a.active {
-    font-weight: 600;
-    color: var(--navy-deep);
-    background: #EEF0F5;
-    border-left-color: var(--gold);
-  }
-
-  /* Darker overlay under the open menu */
-  .menu-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(10, 20, 40, 0.28);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s;
-    z-index: 25;
-  }
-
-  .menu-backdrop.open {
-    opacity: 1;
-    visibility: visible;
-  }
-
   /* Search */
+  .search-area {
+    position: relative;
+  }
+
   .search-form {
     display: flex;
     align-items: center;
@@ -259,8 +179,7 @@
     border: 1px solid rgba(255,255,255,0.28);
     border-radius: 3px;
     padding: 2px 4px 2px 14px;
-    min-width: 200px;
-    max-width: 260px;
+    min-width: 220px;
     transition: background 0.15s ease, border-color 0.15s ease;
   }
 
@@ -297,11 +216,149 @@
     transition: color 0.15s ease, background 0.15s ease;
   }
 
-  .search-btn:hover,
-  .search-btn:focus-visible {
+  .search-btn:hover {
     color: #FFFFFF;
     background: rgba(255,255,255,0.12);
+  }
+
+  /* Search results dropdown */
+  .search-results {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 320px;
+    max-width: 80vw;
+    max-height: 360px;
+    overflow-y: auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--gold);
+    box-shadow: 0 14px 28px rgba(13, 23, 48, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    z-index: 35;
+  }
+
+  .search-results.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .search-results ul {
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+  }
+
+  .search-results li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  .search-results li button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.12s ease;
+  }
+
+  .search-results li button:hover,
+  .search-results li button:focus-visible,
+  .search-results li button.is-highlighted {
+    background: var(--hover-bg);
     outline: none;
+  }
+
+  .result-title {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy-deep);
+    margin-bottom: 2px;
+  }
+
+  .result-snippet {
+    display: block;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+
+  .result-snippet mark {
+    background: #F5E6C8;
+    color: var(--ink);
+    padding: 0 1px;
+  }
+
+  .search-results .no-results {
+    padding: 14px 16px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+
+  /* Party results table (Mandat page) */
+  .table-scroll {
+    overflow-x: auto;
+    margin: 0 0 28px;
+  }
+
+  .party-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .party-table th {
+    text-align: left;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 0 12px 10px;
+    border-bottom: 2px solid var(--navy);
+    white-space: nowrap;
+  }
+
+  .party-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+
+  .party-table td:first-child {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 600;
+    color: var(--navy-deep);
+    white-space: normal;
+  }
+
+  .party-table td:nth-child(3),
+  .party-table td:nth-child(4) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .party-table td:last-child {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .party-table .swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
   }
 
   /* ---------- PAGE BODY ---------- */
@@ -311,30 +368,24 @@
     padding: 56px 28px 72px;
     flex: 1;
     width: 100%;
-    position: relative;
   }
 
-  .page {
-    display: none;
-    opacity: 0;
-    transform: translateY(12px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-  }
-
-  .page.active {
-    display: block;
-  }
-
-  .page.visible {
+  #pageContent {
     opacity: 1;
     transform: translateY(0);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+
+  #pageContent.swap-out {
+    opacity: 0;
+    transform: translateY(8px);
   }
 
   .warning {
     display: block;
     background: #FBF4E9;
     border-left: 3px solid var(--gold);
-    color: #5C4218;
+    color: #6B4E1C;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.01em;
@@ -357,6 +408,23 @@
     margin: 0 0 40px;
   }
 
+  .page-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+
+  .page-title {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--navy-deep);
+    margin: 0 0 22px;
+  }
+
   h2 {
     font-family: 'Source Serif 4', serif;
     font-weight: 600;
@@ -365,9 +433,7 @@
     margin: 36px 0 12px;
   }
 
-  h2:first-child {
-    margin-top: 0;
-  }
+  h2:first-child { margin-top: 0; }
 
   p {
     font-size: 15px;
@@ -388,28 +454,202 @@
     margin-bottom: 4px;
   }
 
-  .placeholder-note {
-    font-size: 14px;
+  /* ---------- MANDATE CHART IMAGE ---------- */
+  .mandate-year {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     color: var(--ink-soft);
-    font-style: italic;
-    margin-top: 8px;
+    text-transform: uppercase;
+    margin: 0 0 4px;
   }
 
-  .mandat-img {
+  .mandate-note {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin: 0 0 20px;
+  }
+
+  .numbers-png-wrap {
+    margin: 0 0 28px;
+  }
+
+  .numbers-png {
     display: block;
     width: 100%;
-    max-width: 100%;
     height: auto;
-    margin: 20px 0 12px;
     border: 1px solid var(--line);
-    border-radius: 4px;
   }
 
-  .img-caption {
-    font-size: 13px;
-    color: var(--ink-soft);
+  .numbers-png-fallback {
+    display: none;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin: 0 0 16px;
+    min-height: 180px;
+    border: 1px dashed var(--line);
+    background: #FAFAFB;
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    padding: 20px;
+    margin: 0;
+  }
+
+  .numbers-png-wrap.missing .numbers-png {
+    display: none;
+  }
+
+  .numbers-png-wrap.missing .numbers-png-fallback {
+    display: flex;
+  }
+
+  /* ---------- LEADER CARDS (Partier / Utanför Riksdag) ---------- */
+  .leader-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+    margin: 20px 0 28px;
+  }
+
+  .leader-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  .leader-photo-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .leader-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .leader-photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .leader-photo-wrap.missing .leader-photo-img {
+    display: none;
+  }
+
+  .leader-photo-wrap.missing .leader-photo-fallback {
+    display: flex;
+  }
+
+  .leader-silhouette {
+    width: 58%;
+    height: 58%;
+    fill: rgba(255,255,255,0.55);
+  }
+
+  .leader-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    padding: 10px 10px 9px;
+    background: linear-gradient(to top, rgba(13,23,48,0.92), rgba(13,23,48,0.0));
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  .leader-card:hover .leader-caption,
+  .leader-card:focus-within .leader-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .leader-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.3;
+  }
+
+  .leader-party {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.3;
+  }
+
+  .bloc-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 0 0 28px;
+  }
+
+  .bloc-card {
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--navy);
+    padding: 16px 18px;
+  }
+
+  .bloc-card h3 {
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 16.5px;
+    color: var(--navy-deep);
+    margin: 0 0 12px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .bloc-card .bloc-total {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  .party-chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .party-chips li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 14px;
+    padding: 5px 0;
+  }
+
+  .party-chips .swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: inline-block;
+  }
+
+  .party-chips .party-seats {
+    margin-left: auto;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  @media (max-width: 560px) {
+    .bloc-summary { grid-template-columns: 1fr; }
   }
 
   /* ---------- FOOTER ---------- */
@@ -432,186 +672,72 @@
   }
 
   /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
     .topbar-inner {
-      padding: 14px 20px;
-      gap: 12px;
+      padding: 16px 20px;
     }
-
-    .site-logo {
-      font-size: 18px;
-      gap: 10px;
-    }
-
-    .site-logo img,
-    .site-logo-fallback {
-      width: 48px;
-      height: 48px;
-    }
-
-    .site-logo-fallback {
-      font-size: 24px;
-    }
-
-    .corner-stack {
-      gap: 10px;
-    }
-
-    .search-form {
-      min-width: 0;
-      max-width: 160px;
-    }
-
-    .mega-dropdown {
-      right: 0;
-      left: auto;
-      min-width: 200px;
-    }
+    .search-form { min-width: 0; width: 200px; }
+    .search-results { width: 100%; right: 0; }
+    .mega-dropdown ul { flex-direction: column; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .page {
-      transition: none !important;
-    }
     * { transition: none !important; }
   }
 </style>
 </head>
 <body>
 
-  <!-- Darker backdrop when menu is open -->
-  <div class="menu-backdrop" id="menuBackdrop"></div>
-
   <div class="topbar">
     <div class="topbar-inner">
 
-      <button class="site-logo" id="homeBtn" type="button" aria-label="Riksdagen – startsida">
-        <img src="Riksdags.png" alt="" onerror="this.hidden = true; this.nextElementSibling.hidden = false;">
-        <span class="site-logo-fallback" hidden>R</span>
-        <span>Riksdagen</span>
-      </button>
-
       <div class="corner-stack">
-        <form class="search-form" role="search" action="#" method="get" onsubmit="return false;">
-          <input type="search" name="q" placeholder="Sök…" aria-label="Sök på sidan" autocomplete="off">
-          <button class="search-btn" type="submit" aria-label="Sök">
-            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <circle cx="7.2" cy="7.2" r="5.7" stroke="currentColor" stroke-width="1.6"/>
-              <line x1="11.4" y1="11.6" x2="15.5" y2="15.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </form>
+
+        <div class="search-area">
+          <form class="search-form" role="search" id="searchForm">
+            <input
+              type="search"
+              name="q"
+              id="searchInput"
+              placeholder="Sökfält"
+              aria-label="Sökfält"
+              autocomplete="off"
+              role="combobox"
+              aria-expanded="false"
+              aria-controls="searchResults"
+              aria-autocomplete="list"
+            >
+            <button class="search-btn" type="submit" aria-label="Sök">
+              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="7.2" cy="7.2" r="5.7" stroke="currentColor" stroke-width="1.6"/>
+                <line x1="11.4" y1="11.6" x2="15.5" y2="15.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </form>
+          <div class="search-results" id="searchResults" role="listbox"></div>
+        </div>
 
         <div class="nav-area">
           <button class="nav-trigger" id="navTrigger" aria-expanded="false" aria-haspopup="true" aria-controls="navDropdown">
             <span>Utforska</span>
-            <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-
-          <!-- Smaller dropdown attached to the button -->
-          <nav class="mega-dropdown" id="navDropdown" aria-label="Huvudmeny" hidden>
-            <div class="mega-dropdown-inner">
-              <ul>
-                <li><a href="#" data-page="partier">Partier</a></li>
-                <li><a href="#" data-page="historia">Historia</a></li>
-                <li><a href="#" data-page="mandat">Mandat</a></li>
-                <li><a href="#" data-page="riksdagslinjen">Riksdagslinjen</a></li>
-                <li><a href="#" data-page="utanfor">Utanför Riksdagen (4 partier)</a></li>
-              </ul>
-            </div>
-          </nav>
         </div>
+
+      </div>
+    </div>
+
+    <div class="mega-dropdown" id="navDropdown" role="menu">
+      <div class="mega-dropdown-inner">
+        <ul id="navList"></ul>
       </div>
     </div>
   </div>
 
-  <main id="mainContent">
-
-    <div class="page active visible" id="page-home" data-page="home">
-      <p class="warning">
-        Varning: den här sidan tar upp kritik mot både Tidöpartierna och Vänsterblocket.
-        Ingen sida framställs som felfri.
-      </p>
-
-      <p class="intro">
-        En webbplats som förklarar hur Sverige styrs: riksdagens 349 mandat, hur en
-        regering bildas och hur partierna grupperar sig i block.
-      </p>
-      <p class="credit">Skapad av Tim Stare &amp; Daniel Wiborg (EE25c), Tyresö Gymnasium</p>
-
-      <h2>Om projektet</h2>
-      <p>
-        Sidan ger en balanserad översikt av svensk politik med fokus på fyra ämnen:
-        hur riksdag och regering fungerar, blocken, deras för- och nackdelar, och
-        de fyra största partierna utanför riksdagen.
-      </p>
-
-      <h2>Exempel på innehåll</h2>
-      <p>Nackdelar som lyfts fram, för en ärlig bild:</p>
-      <ul>
-        <li>Vänsterpartiets historiska kopplingar till kommunism och omdiskuterade uttalanden</li>
-        <li>SD-ledarens tidigare koppling till en högerextrem rörelse</li>
-      </ul>
-
-      <p>Partier utanför riksdagen som kan ta sig in inom 4–8 år:</p>
-      <ul>
-        <li>Alternativ för Sverige (AfS)</li>
-        <li>Örebropartiet (ÖP)</li>
-        <li>Medborgerlig Samling</li>
-        <li>Partiet Nyans</li>
-      </ul>
-
-      <h2>Syfte</h2>
-      <p>Vi byggde sidan för att:</p>
-      <ul>
-        <li>göra svensk politik enklare att förstå</li>
-        <li>visa både styrkor och svagheter hos blocken, mer öppet än vad stora medier ofta gör</li>
-        <li>ge en bild av partier utanför riksdagen som kan ta sig in framöver</li>
-      </ul>
-    </div>
-
-    <div class="page" id="page-partier" data-page="partier">
-      <h2>Partier</h2>
-      <p>Här beskrivs de partier som sitter i riksdagen och hur de förhåller sig till varandra.</p>
-      <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
-    </div>
-
-    <div class="page" id="page-historia" data-page="historia">
-      <h2>Historia</h2>
-      <p>En kort översikt över hur det svenska parlamentariska systemet har utvecklats.</p>
-      <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
-    </div>
-
-    <div class="page" id="page-mandat" data-page="mandat">
-      <h2>Mandat</h2>
-      <p>Riksdagen har 349 mandat. Här förklaras hur de fördelas och vad det betyder för regeringsbildning.</p>
-
-      <img class="page" src="Numbers.png" alt="Översikt över riksdagens 349 mandat">
-      <p class="img-caption">Riksdagens 349 mandat</p>
-
-      <p class="placeholder-note">Mer detaljerad information läggs till senare.</p>
-    </div>
-
-    <div class="page" id="page-riksdagslinjen" data-page="riksdagslinjen">
-      <h2>Riksdagslinjen</h2>
-      <p>Hur röster i kammaren avgör lagstiftning och hur blocken påverkar utfallen.</p>
-      <p class="placeholder-note">Innehåll kommer att fyllas i under projektets gång.</p>
-    </div>
-
-    <div class="page" id="page-utanfor" data-page="utanfor">
-      <h2>Utanför Riksdagen (4 partier)</h2>
-      <p>De fyra partier som för närvarande står utanför riksdagen men som kan ta sig in de kommande valen:</p>
-      <ul>
-        <li>Alternativ för Sverige (AfS)</li>
-        <li>Örebropartiet (ÖP)</li>
-        <li>Medborgerlig Samling</li>
-        <li>Partiet Nyans</li>
-      </ul>
-      <p class="placeholder-note">Mer detaljerad information läggs till senare.</p>
-    </div>
-
+  <main>
+    <div id="pageContent"></div>
   </main>
 
   <footer>
@@ -621,107 +747,452 @@
   </footer>
 
 <script>
-  (function () {
-    const navTrigger = document.getElementById('navTrigger');
-    const navDropdown = document.getElementById('navDropdown');
-    const menuBackdrop = document.getElementById('menuBackdrop');
-    const homeBtn = document.getElementById('homeBtn');
-    const menuLinks = document.querySelectorAll('[data-page]');
+/* ---------------------------------------------------------
+   CONTENT: nav labels and page bodies (Swedish)
+--------------------------------------------------------- */
+const NAV = {
+  hem: "Hem",
+  partier: "Partier",
+  historia: "Historia",
+  mandat: "Mandat",
+  riksdagslinjen: "4 Procentsspärren",
+  utanfor: "Utanför Riksdag (4 Partier)"
+};
 
-    let currentPage = 'home';
-    let isAnimating = false;
+const NAV_ORDER = ["hem", "partier", "historia", "mandat", "riksdagslinjen", "utanfor"];
 
-    function closeNav() {
-      navDropdown.classList.remove('open');
-      navDropdown.hidden = true;
-      navTrigger.setAttribute('aria-expanded', 'false');
-      menuBackdrop.classList.remove('open');
-    }
+const PAGES = {
+  hem: `
+    <p class="warning">Varning: den här sidan tar upp kritik mot både Tidöpartierna och Vänsterblocket. Ingen sida framställs som felfri.</p>
+    <p class="intro">En webbplats som förklarar hur Sverige styrs: riksdagens 349 mandat, hur en regering bildas och hur partierna grupperar sig i block.</p>
+    <p class="credit">Skapad av Tim Stare &amp; Daniel Wiborg (EE25c), Tyresö Gymnasium</p>
+    <h2>Om projektet</h2>
+    <p>Sidan ger en balanserad översikt av svensk politik med fokus på fyra ämnen: hur riksdag och regering fungerar, blocken, deras för- och nackdelar, och de fyra största partierna utanför riksdagen.</p>
+    <h2>Exempel på innehåll</h2>
+    <p>Nackdelar som lyfts fram, för en ärlig bild:</p>
+    <ul>
+      <li>Vänsterpartiets historiska kopplingar till kommunism och omdiskuterade uttalanden</li>
+      <li>SD-ledarens tidigare koppling till en högerextrem rörelse</li>
+    </ul>
+    <p>Partier utanför riksdagen som kan ta sig in inom 4–8 år:</p>
+    <ul>
+      <li>Alternativ för Sverige (AfS)</li>
+      <li>Örebropartiet (ÖP)</li>
+      <li>Kristna Värdepartiet</li>
+      <li>Ambition Sverige</li>
+    </ul>
+    <h2>Syfte</h2>
+    <p>Vi byggde sidan för att:</p>
+    <ul>
+      <li>göra svensk politik enklare att förstå</li>
+      <li>visa både styrkor och svagheter hos blocken, mer öppet än vad stora medier ofta gör</li>
+      <li>ge en bild av partier utanför riksdagen som kan ta sig in framöver</li>
+    </ul>
+  `,
+  partier: `
+    <p class="page-eyebrow">Utforska</p>
+    <h1 class="page-title">Partier</h1>
+    <p>Här kommer en genomgång av riksdagspartierna och de två blocken: Tidöpartierna och Vänsterblocket. Innehållet fylls i här efter hand.</p>
 
-    function openNav() {
-      navDropdown.hidden = false;
-      navDropdown.offsetHeight;
-      navDropdown.classList.add('open');
-      navTrigger.setAttribute('aria-expanded', 'true');
-      menuBackdrop.classList.add('open');
-    }
+    <h2>Partiledarna</h2>
+    <div class="leader-grid" id="leaderGridPartier"></div>
+  `,
+  historia: `
+    <p class="page-eyebrow">Utforska</p>
+    <h1 class="page-title">Historia</h1>
+    <p>En kort genomgång av riksdagens nästan 600 år långa historia — från medeltida möten till dagens system med 349 mandat.</p>
 
-    function toggleNav() {
-      if (navDropdown.classList.contains('open')) {
-        closeNav();
-      } else {
-        openNav();
-      }
-    }
+    <h2>Ståndsriksdagen (1435–1866)</h2>
+    <p>Riksdagens rötter går tillbaka till mötet i Arboga 1435, som brukar räknas som Sveriges första riksdag. Vid Gustav Vasas riksmöten i Västerås 1527 och 1544 fick riksdagen sin klassiska form med fyra stånd: adel, präster, borgare och bönder. Varje stånd röstade för sig, och det var bara en minoritet av befolkningen som hade rösträtt.</p>
 
-    navTrigger.addEventListener('click', function (e) {
-      e.stopPropagation();
-      toggleNav();
+    <h2>Tvåkammarriksdagen (1866–1970)</h2>
+    <p>1809 fick Sverige en ny regeringsform som delade makten mellan kung och riksdag. 1866 avskaffades ståndsriksdagen helt och ersattes med en tvåkammarriksdag — en första och en andra kammare. Rösträtten var fortfarande begränsad, ofta kopplad till inkomst och kön.</p>
+
+    <h2>Demokratins genombrott (1918–1921)</h2>
+    <p>1918 infördes allmän och lika rösträtt för män, och 1921 även för kvinnor. Valet 1921 var det första där både kvinnor och män röstade på lika villkor, och räknas som startpunkten för Sverige som en fullvärdig demokrati.</p>
+
+    <h2>Enkammarriksdagen (1971–idag)</h2>
+    <p>1971 avskaffades tvåkammarsystemet och ersattes med dagens enkammarriksdag, till en början med 350 mandat. Valet 1973 slutade exakt lika, 175 mot 175, vilket ledde till att flera beslut fick avgöras genom lottning — kallat "lotteririksdagen". För att undvika att det skulle hända igen minskades antalet mandat till 349 från och med 1976, ett udda tal som alltid ger en majoritet.</p>
+  `,
+  mandat: `
+    <p class="page-eyebrow">Utforska</p>
+    <h1 class="page-title">Mandat</h1>
+    <p>Riksdagen har 349 mandat totalt. Efter valet grupperar sig partierna i två block: Vänsterblocket (Oppositionen) och Tidöpartierna. Varje prick nedan är ett mandat, färgat efter parti.</p>
+
+    <p class="mandate-year">2026</p>
+    <p class="mandate-note">Resultat efter valet 13 september 2026, samtliga 6 626 valdistrikt räknade. Enligt Valmyndigheten kvarstår resultatet som preliminärt tills det är formellt fastställt.</p>
+
+    <div class="numbers-png-wrap">
+      <img src="Numbers.png" alt="Mandatfördelning 2026" class="numbers-png" onerror="this.closest('.numbers-png-wrap').classList.add('missing')">
+      <p class="numbers-png-fallback">Numbers.png saknas ännu — ladda upp bilden så lägger jag in den här.</p>
+    </div>
+
+    <h2>Partierna</h2>
+    <div class="table-scroll">
+      <table class="party-table">
+        <thead>
+          <tr>
+            <th>Parti</th>
+            <th>Ledare</th>
+            <th>Röster 2026</th>
+            <th>Mandat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="swatch" style="background:#E8112D"></span>Socialdemokraterna (S)</td><td>Magdalena Andersson</td><td>1 886 535</td><td>99</td></tr>
+          <tr><td><span class="swatch" style="background:#52BDEC"></span>Moderaterna (M)</td><td>Ulf Kristersson</td><td>1 336 802</td><td>70</td></tr>
+          <tr><td><span class="swatch" style="background:#DDDD00"></span>Sverigedemokraterna (SD)</td><td>Jimmie Åkesson</td><td>1 176 834</td><td>62</td></tr>
+          <tr><td><span class="swatch" style="background:#AF1E2D"></span>Vänsterpartiet (V)</td><td>Mehrnoosh Dadgostar</td><td>565 599</td><td>30</td></tr>
+          <tr><td><span class="swatch" style="background:#009933"></span>Centerpartiet (C)</td><td>Elisabeth Thand Ringqvist</td><td>474 541</td><td>25</td></tr>
+          <tr><td><span class="swatch" style="background:#000077"></span>Kristdemokraterna (KD)</td><td>Ebba Busch</td><td>415 867</td><td>22</td></tr>
+          <tr><td><span class="swatch" style="background:#83CF39"></span>Miljöpartiet (MP)</td><td>Amanda Lind (språkrör)</td><td>413 091</td><td>22</td></tr>
+          <tr><td><span class="swatch" style="background:#006AB3"></span>Liberalerna (L)</td><td>Simona Mohamsson</td><td>359 850</td><td>19</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Blocken</h2>
+    <div class="bloc-summary">
+      <div class="bloc-card">
+        <h3>Vänsterblocket <span class="bloc-total">176 mandat</span></h3>
+        <ul class="party-chips">
+          <li><span class="swatch" style="background:#E8112D"></span> Socialdemokraterna (S) <span class="party-seats">99</span></li>
+          <li><span class="swatch" style="background:#AF1E2D"></span> Vänsterpartiet (V) <span class="party-seats">30</span></li>
+          <li><span class="swatch" style="background:#83CF39"></span> Miljöpartiet (MP) <span class="party-seats">22</span></li>
+          <li><span class="swatch" style="background:#009933"></span> Centerpartiet (C) <span class="party-seats">25</span></li>
+        </ul>
+      </div>
+      <div class="bloc-card">
+        <h3>Tidöpartierna <span class="bloc-total">173 mandat</span></h3>
+        <ul class="party-chips">
+          <li><span class="swatch" style="background:#52BDEC"></span> Moderaterna (M) <span class="party-seats">70</span></li>
+          <li><span class="swatch" style="background:#DDDD00"></span> Sverigedemokraterna (SD) <span class="party-seats">62</span></li>
+          <li><span class="swatch" style="background:#000077"></span> Kristdemokraterna (KD) <span class="party-seats">22</span></li>
+          <li><span class="swatch" style="background:#006AB3"></span> Liberalerna (L) <span class="party-seats">19</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p>Majoritet i riksdagen kräver 175 mandat. Vänsterblocket leder med tre mandat, 176 mot 173.</p>
+  `,
+  riksdagslinjen: `
+    <p class="page-eyebrow">Utforska</p>
+    <h1 class="page-title">4 Procentsspärren</h1>
+    <p>Här kommer en genomgång av fyraprocentsspärren — regeln som säger att ett parti måste få minst 4 % av rösterna i hela landet, eller minst 12 % i en enskild valkrets, för att komma in i riksdagen. Innehållet fylls i här efter hand.</p>
+  `,
+  utanfor: `
+    <p class="page-eyebrow">Utforska</p>
+    <h1 class="page-title">Utanför Riksdag (4 Partier)</h1>
+    <p>Här kommer en genomgång av de fyra största partierna utanför riksdagen:</p>
+    <ul>
+      <li>Alternativ för Sverige (AfS)</li>
+      <li>Örebropartiet (ÖP)</li>
+      <li>Kristna Värdepartiet</li>
+      <li>Ambition Sverige</li>
+    </ul>
+
+    <h2>Partiledarna</h2>
+    <div class="leader-grid" id="leaderGridUtanfor"></div>
+  `
+};
+
+let currentPage = "hem";
+
+const pageContentEl = document.getElementById('pageContent');
+const navListEl = document.getElementById('navList');
+
+/* ---------------------------------------------------------
+   LEADER CARDS: one rectangle per party leader. A photo slot
+   (leader-photo) plus a caption that slides in from the
+   bottom on hover, showing the leader's name and party.
+   Photos aren't embedded yet — supply image files and I can
+   drop them into leader-photo as data URIs.
+--------------------------------------------------------- */
+const RIKSDAG_LEADERS = [
+  { code: "S",  name: "Magdalena Andersson",       party: "Socialdemokraterna (S)",   color: "#E8112D" },
+  { code: "M",  name: "Ulf Kristersson",           party: "Moderaterna (M)",          color: "#52BDEC" },
+  { code: "SD", name: "Jimmie Åkesson",            party: "Sverigedemokraterna (SD)", color: "#B5A400" },
+  { code: "V",  name: "Mehrnoosh Dadgostar",       party: "Vänsterpartiet (V)",       color: "#AF1E2D" },
+  { code: "C",  name: "Elisabeth Thand Ringqvist", party: "Centerpartiet (C)",        color: "#009933" },
+  { code: "KD", name: "Ebba Busch",                party: "Kristdemokraterna (KD)",   color: "#000077" },
+  { code: "MP", name: "Amanda Lind",               party: "Miljöpartiet (MP)",        color: "#5FA82E" },
+  { code: "L",  name: "Simona Mohamsson",          party: "Liberalerna (L)",          color: "#006AB3" }
+];
+
+const OUTSIDE_LEADERS = [
+  { code: "AFS", name: "Gustav Kasselstrand", party: "Alternativ för Sverige (AfS)", color: "#4B2E2E" },
+  { code: "OP",  name: "Markus Allard",       party: "Örebropartiet (ÖP)",          color: "#5B4B8A" },
+  { code: "KV",  name: "Per Kronlid",         party: "Kristna Värdepartiet",        color: "#7A1F2B" },
+  { code: "AS",  name: "Elsa Widding",        party: "Ambition Sverige",            color: "#2E7D6B" }
+];
+
+function renderLeaderGrid(containerId, leaders) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = leaders.map((l) => `
+    <div class="leader-card">
+      <div class="leader-photo-wrap">
+        <img
+          class="leader-photo-img"
+          src="${l.code}.png"
+          alt="${escapeHtml(l.name)}"
+          onerror="this.closest('.leader-photo-wrap').classList.add('missing')"
+        >
+        <div class="leader-photo-fallback" style="background:${l.color}">
+          <svg class="leader-silhouette" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="36" r="18"/>
+            <path d="M15 96c0-24.85 15.67-39 35-39s35 14.15 35 39"/>
+          </svg>
+        </div>
+      </div>
+      <div class="leader-caption">
+        <span class="leader-name">${escapeHtml(l.name)}</span>
+        <span class="leader-party">${escapeHtml(l.party)}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderNav() {
+  navListEl.innerHTML = "";
+  NAV_ORDER.forEach((key) => {
+    const li = document.createElement('li');
+    li.setAttribute('role', 'none');
+    if (key === currentPage) li.classList.add('active');
+    const btn = document.createElement('button');
+    btn.setAttribute('role', 'menuitem');
+    btn.type = 'button';
+    btn.textContent = NAV[key];
+    btn.addEventListener('click', () => {
+      goToPage(key);
+      closeNav();
     });
+    li.appendChild(btn);
+    navListEl.appendChild(li);
+  });
+}
 
-    menuBackdrop.addEventListener('click', closeNav);
+function renderPage() {
+  pageContentEl.innerHTML = PAGES[currentPage];
+  if (currentPage === 'partier') renderLeaderGrid('leaderGridPartier', RIKSDAG_LEADERS);
+  if (currentPage === 'utanfor') renderLeaderGrid('leaderGridUtanfor', OUTSIDE_LEADERS);
+}
 
-    document.addEventListener('click', function (e) {
-      if (!navDropdown.contains(e.target) && !navTrigger.contains(e.target)) {
-        closeNav();
-      }
+function goToPage(key) {
+  if (key === currentPage) return;
+  pageContentEl.classList.add('swap-out');
+  window.setTimeout(() => {
+    currentPage = key;
+    renderPage();
+    Array.from(navListEl.children).forEach((li, i) => {
+      li.classList.toggle('active', NAV_ORDER[i] === currentPage);
     });
+    pageContentEl.classList.remove('swap-out');
+  }, 200);
+}
 
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && navDropdown.classList.contains('open')) {
-        closeNav();
-        navTrigger.focus();
-      }
-    });
+renderNav();
+renderPage();
 
-    function showPage(pageId) {
-      if (pageId === currentPage || isAnimating) return;
+/* ---------------------------------------------------------
+   SEARCH: indexes every page's title and plain-text content,
+   shows live matching suggestions as you type, and jumps to
+   the matching page using the same smooth swap as Utforska.
+--------------------------------------------------------- */
+const SEARCH_TITLES = Object.assign({ hem: "Hem" }, NAV);
 
-      isAnimating = true;
-      const outgoing = document.querySelector('.page.active');
-      const incoming = document.getElementById('page-' + pageId);
+function stripHtml(html) {
+  return html
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
 
-      if (!incoming) {
-        isAnimating = false;
-        return;
-      }
+const SEARCH_INDEX = Object.keys(PAGES).map((key) => ({
+  key: key,
+  title: SEARCH_TITLES[key] || key,
+  content: stripHtml(PAGES[key])
+}));
 
-      outgoing.classList.remove('visible');
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
 
-      setTimeout(function () {
-        outgoing.classList.remove('active');
-        incoming.classList.add('active');
-        incoming.offsetHeight;
-        incoming.classList.add('visible');
+function buildSnippet(content, query) {
+  const lower = content.toLowerCase();
+  const idx = lower.indexOf(query);
+  if (idx === -1) {
+    const short = content.slice(0, 90);
+    return escapeHtml(short) + (content.length > 90 ? '…' : '');
+  }
+  const start = Math.max(0, idx - 40);
+  const end = Math.min(content.length, idx + query.length + 50);
+  const snippet = content.slice(start, end);
+  const relIdx = idx - start;
+  const before = escapeHtml(snippet.slice(0, relIdx));
+  const match = escapeHtml(snippet.slice(relIdx, relIdx + query.length));
+  const after = escapeHtml(snippet.slice(relIdx + query.length));
+  return (start > 0 ? '…' : '') + before + '<mark>' + match + '</mark>' + after + (end < content.length ? '…' : '');
+}
 
-        currentPage = pageId;
-        isAnimating = false;
+function runSearch(rawQuery) {
+  const query = rawQuery.trim().toLowerCase();
+  if (!query) return [];
+  return SEARCH_INDEX
+    .filter((item) => item.title.toLowerCase().includes(query) || item.content.toLowerCase().includes(query))
+    .sort((a, b) => {
+      const aTitleHit = a.title.toLowerCase().includes(query) ? 0 : 1;
+      const bTitleHit = b.title.toLowerCase().includes(query) ? 0 : 1;
+      return aTitleHit - bTitleHit;
+    })
+    .map((item) => ({
+      key: item.key,
+      title: item.title,
+      snippet: buildSnippet(item.content, query)
+    }));
+}
 
-        menuLinks.forEach(function (link) {
-          link.classList.toggle('active', link.dataset.page === pageId);
-        });
+const searchInputEl = document.getElementById('searchInput');
+const searchFormEl = document.getElementById('searchForm');
+const searchResultsEl = document.getElementById('searchResults');
 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 320);
-    }
+let currentResults = [];
+let highlightedIndex = -1;
 
-    menuLinks.forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const pageId = link.dataset.page;
-        closeNav();
-        showPage(pageId);
-      });
-    });
+function closeSearch() {
+  searchResultsEl.classList.remove('open');
+  searchInputEl.setAttribute('aria-expanded', 'false');
+  highlightedIndex = -1;
+}
 
-    homeBtn.addEventListener('click', function () {
-      showPage('home');
-      menuLinks.forEach(function (link) {
-        link.classList.remove('active');
-      });
-    });
-  })();
+function openSearch() {
+  searchResultsEl.classList.add('open');
+  searchInputEl.setAttribute('aria-expanded', 'true');
+}
+
+function selectResult(key) {
+  closeNav();
+  goToPage(key);
+  closeSearch();
+}
+
+function renderSearchResults(results, query) {
+  currentResults = results;
+  highlightedIndex = -1;
+
+  if (!query.trim()) {
+    searchResultsEl.innerHTML = '';
+    closeSearch();
+    return;
+  }
+
+  if (results.length === 0) {
+    searchResultsEl.innerHTML = `<p class="no-results">Inga resultat för "${escapeHtml(query)}"</p>`;
+    openSearch();
+    return;
+  }
+
+  const ul = document.createElement('ul');
+  results.forEach((r) => {
+    const li = document.createElement('li');
+    li.setAttribute('role', 'none');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('role', 'option');
+    btn.innerHTML = `<span class="result-title">${escapeHtml(r.title)}</span><span class="result-snippet">${r.snippet}</span>`;
+    btn.addEventListener('click', () => selectResult(r.key));
+    li.appendChild(btn);
+    ul.appendChild(li);
+  });
+  searchResultsEl.innerHTML = '';
+  searchResultsEl.appendChild(ul);
+  openSearch();
+}
+
+function updateHighlight() {
+  const buttons = searchResultsEl.querySelectorAll('li button');
+  buttons.forEach((btn, i) => {
+    btn.classList.toggle('is-highlighted', i === highlightedIndex);
+    if (i === highlightedIndex) btn.scrollIntoView({ block: 'nearest' });
+  });
+}
+
+let searchDebounce;
+searchInputEl.addEventListener('input', () => {
+  window.clearTimeout(searchDebounce);
+  const value = searchInputEl.value;
+  searchDebounce = window.setTimeout(() => {
+    renderSearchResults(runSearch(value), value);
+  }, 120);
+});
+
+searchInputEl.addEventListener('focus', () => {
+  if (searchInputEl.value.trim() && currentResults.length) openSearch();
+});
+
+searchFormEl.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (highlightedIndex >= 0 && currentResults[highlightedIndex]) {
+    selectResult(currentResults[highlightedIndex].key);
+  } else if (currentResults.length > 0) {
+    selectResult(currentResults[0].key);
+  }
+});
+
+searchInputEl.addEventListener('keydown', (e) => {
+  if (!currentResults.length) return;
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    highlightedIndex = Math.min(highlightedIndex + 1, currentResults.length - 1);
+    updateHighlight();
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    highlightedIndex = Math.max(highlightedIndex - 1, -1);
+    updateHighlight();
+  } else if (e.key === 'Escape') {
+    closeSearch();
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if (!searchResultsEl.contains(e.target) && e.target !== searchInputEl && !searchFormEl.contains(e.target)) {
+    closeSearch();
+  }
+});
+
+/* ---------------------------------------------------------
+   Dropdown open/close behaviour
+--------------------------------------------------------- */
+const navTrigger = document.getElementById('navTrigger');
+const navDropdown = document.getElementById('navDropdown');
+
+function closeNav() {
+  navDropdown.classList.remove('open');
+  navTrigger.setAttribute('aria-expanded', 'false');
+}
+function toggleNav() {
+  const isOpen = navDropdown.classList.toggle('open');
+  navTrigger.setAttribute('aria-expanded', String(isOpen));
+}
+navTrigger.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toggleNav();
+});
+
+document.addEventListener('click', (e) => {
+  if (!navDropdown.contains(e.target) && e.target !== navTrigger && !navTrigger.contains(e.target)) {
+    closeNav();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeNav();
+  }
+});
 </script>
 
 </body>
 </html>
+
