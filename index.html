@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Riksdagen</title>
+<<<<<<< HEAD
+=======
   <img src="Riksdags.png" alt="Riksdagen">
+>>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
 <style>
 :root {
   --navy: #14213D;
@@ -83,6 +86,28 @@ body {
   font-family: 'Source Serif 4', serif;
   font-size: 21px;
   font-weight: 600;
+<<<<<<< HEAD
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.riksdagen-mark-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.riksdagen-mark-fallback {
+  display: none;
+}
+
+.riksdagen-mark.missing .riksdagen-mark-img {
+  display: none;
+}
+
+.riksdagen-mark.missing .riksdagen-mark-fallback {
+  display: block;
 }
 
 .riksdagen-brand-text {
@@ -98,6 +123,23 @@ body {
   line-height: 1.1;
 }
 
+=======
+}
+
+.riksdagen-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.riksdagen-brand-text strong {
+  font-family: 'Source Serif 4', serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+>>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
 .riksdagen-brand-text span {
   font-size: 11.5px;
   color: rgba(255,255,255,0.62);
@@ -789,6 +831,67 @@ li {
 }
 
 /* =========================================================
+<<<<<<< HEAD
+   FÖRDELAR / NACKDELAR
+========================================================= */
+
+.party-proscons {
+  margin: 0 0 32px;
+}
+
+.party-proscons h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.party-proscons h2 .swatch {
+  width: 13px;
+  height: 13px;
+}
+
+.proscons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.proscons-col {
+  border: 1px solid var(--line);
+  padding: 14px 16px;
+}
+
+.proscons-col.pros {
+  border-top: 4px solid #2E7D32;
+}
+
+.proscons-col.cons {
+  border-top: 4px solid #B3261E;
+}
+
+.proscons-col h4 {
+  font-family: 'Source Serif 4', serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+
+.proscons-col p {
+  margin: 0;
+  font-size: 14px;
+}
+
+@media (max-width: 560px) {
+  .proscons-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
    BLOCKS
 ========================================================= */
 
@@ -839,6 +942,58 @@ li {
   padding: 5px 0;
 }
 
+=======
+   BLOCKS
+========================================================= */
+
+.bloc-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 0 0 28px;
+}
+
+.bloc-card {
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--navy);
+  padding: 16px 18px;
+}
+
+.bloc-card h3 {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 600;
+  font-size: 16.5px;
+  color: var(--navy-deep);
+  margin: 0 0 12px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bloc-card .bloc-total {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.party-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.party-chips li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+>>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
 .party-chips .swatch {
   width: 11px;
   height: 11px;
@@ -953,7 +1108,17 @@ footer {
     <div class="riksdagen-brand">
 
       <div class="riksdagen-mark">
+<<<<<<< HEAD
+        <img
+          src="Riksdags.png"
+          alt="Riksdagen"
+          class="riksdagen-mark-img"
+          onerror="this.closest('.riksdagen-mark').classList.add('missing')"
+        >
+        <span class="riksdagen-mark-fallback">R</span>
+=======
         <span>R</span>
+>>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
       </div>
 
       <div class="riksdagen-brand-text">
@@ -1127,6 +1292,11 @@ const NAV = {
 
   partier: "Partier",
 
+<<<<<<< HEAD
+  fordelar: "Fördelar och Nackdelar med Partierna",
+
+=======
+>>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
   historia: "Historia",
 
   mandat: "Mandat",
@@ -1140,6 +1310,10 @@ const NAV = {
 const NAV_ORDER = [
   "hem",
   "partier",
+<<<<<<< HEAD
+  "fordelar",
+=======
+>>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
   "historia",
   "mandat",
   "riksdagslinjen",
@@ -1276,6 +1450,200 @@ const PAGES = {
     ></div>
 
   `,
+<<<<<<< HEAD
+
+
+  /* -------------------------------------------------------
+     FÖRDELAR OCH NACKDELAR
+  ------------------------------------------------------- */
+
+  fordelar: `
+
+    <p class="page-eyebrow">
+      Utforska
+    </p>
+
+    <h1 class="page-title">
+      Fördelar och Nackdelar med Partierna
+    </h1>
+
+    <p>
+      En kort sammanställning av vad som ofta lyfts fram som
+      styrkor och svagheter hos vart och ett av de åtta
+      riksdagspartierna. Innehållet fylls i här efter hand.
+    </p>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#E8112D"></span>Socialdemokraterna (S)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#52BDEC"></span>Moderaterna (M)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#DDDD00"></span>Sverigedemokraterna (SD)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#AF1E2D"></span>Vänsterpartiet (V)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#009933"></span>Centerpartiet (C)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#000077"></span>Kristdemokraterna (KD)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#5FA82E"></span>Miljöpartiet (MP)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#006AB3"></span>Liberalerna (L)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:44px;">Utanför Riksdag</h2>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#4B2E2E"></span>Alternativ för Sverige (AfS)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#5B4B8A"></span>Örebropartiet (ÖP)</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#7A1F2B"></span>Kristna Värdepartiet</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="party-proscons">
+      <h2><span class="swatch" style="background:#2E7D6B"></span>Ambition Sverige</h2>
+      <div class="proscons-grid">
+        <div class="proscons-col pros">
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+        <div class="proscons-col cons">
+          <h4>Nackdelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
+        </div>
+      </div>
+    </div>
+
+  `,
 
 
   /* -------------------------------------------------------
@@ -1400,6 +1768,132 @@ const PAGES = {
 
     </div>
 
+=======
+
+
+  /* -------------------------------------------------------
+     HISTORY
+  ------------------------------------------------------- */
+
+  historia: `
+
+    <p class="page-eyebrow">
+      Utforska
+    </p>
+
+    <h1 class="page-title">
+      Historia
+    </h1>
+
+    <p>
+      En kort genomgång av riksdagens nästan 600 år långa
+      historia — från medeltida möten till dagens system
+      med 349 mandat.
+    </p>
+
+    <h2>
+      Ståndsriksdagen (1435–1866)
+    </h2>
+
+    <p>
+      Riksdagens rötter går tillbaka till mötet i Arboga 1435,
+      som brukar räknas som Sveriges första riksdag. Vid Gustav
+      Vasas riksmöten i Västerås 1527 och 1544 fick riksdagen
+      sin klassiska form med fyra stånd: adel, präster, borgare
+      och bönder. Varje stånd röstade för sig, och det var bara
+      en minoritet av befolkningen som hade rösträtt.
+    </p>
+
+    <h2>
+      Tvåkammarriksdagen (1866–1970)
+    </h2>
+
+    <p>
+      1809 fick Sverige en ny regeringsform som delade makten
+      mellan kung och riksdag. 1866 avskaffades ståndsriksdagen
+      helt och ersattes med en tvåkammarriksdag — en första och
+      en andra kammare. Rösträtten var fortfarande begränsad,
+      ofta kopplad till inkomst och kön.
+    </p>
+
+    <h2>
+      Demokratins genombrott (1918–1921)
+    </h2>
+
+    <p>
+      1918 infördes allmän och lika rösträtt för män, och 1921
+      även för kvinnor. Valet 1921 var det första där både
+      kvinnor och män röstade på lika villkor, och räknas som
+      startpunkten för Sverige som en fullvärdig demokrati.
+    </p>
+
+    <h2>
+      Enkammarriksdagen (1971–idag)
+    </h2>
+
+    <p>
+      1971 avskaffades tvåkammarsystemet och ersattes med
+      dagens enkammarriksdag, till en början med 350 mandat.
+      Valet 1973 slutade exakt lika, 175 mot 175, vilket ledde
+      till att flera beslut fick avgöras genom lottning —
+      kallat "lotteririksdagen". För att undvika att det skulle
+      hända igen minskades antalet mandat till 349 från och
+      med 1976.
+    </p>
+
+  `,
+
+
+  /* -------------------------------------------------------
+     MANDATE
+  ------------------------------------------------------- */
+
+  mandat: `
+
+    <p class="page-eyebrow">
+      Utforska
+    </p>
+
+    <h1 class="page-title">
+      Mandat
+    </h1>
+
+    <p>
+      Riksdagen har 349 mandat totalt. Efter valet grupperar
+      sig partierna i två block: Vänsterblocket (Oppositionen)
+      och Tidöpartierna. Varje prick nedan är ett mandat,
+      färgat efter parti.
+    </p>
+
+    <p class="mandate-year">
+      2026
+    </p>
+
+    <p class="mandate-note">
+      Resultat efter valet 13 september 2026, samtliga
+      6 626 valdistrikt räknade.
+    </p>
+
+    <div class="numbers-png-wrap">
+
+      <img
+        src="Numbers.png"
+        alt="Mandatfördelning 2026"
+        class="numbers-png"
+        onerror="
+          this.closest('.numbers-png-wrap')
+          .classList.add('missing')
+        "
+      >
+
+      <p class="numbers-png-fallback">
+        Numbers.png saknas ännu — ladda upp bilden så lägger
+        jag in den här.
+      </p>
+
+    </div>
+
+>>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
     <h2>
       Partierna
     </h2>
@@ -1927,7 +2421,11 @@ const OUTSIDE_LEADERS = [
     code: "AFS",
     name: "Gustav Kasselstrand",
     party: "Alternativ för Sverige (AfS)",
+<<<<<<< HEAD
+    color: "#00165a",
+=======
     color: "#4B2E2E",
+>>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
     birth: "27 juni 1987",
     birthISO: "1987-06-27",
     gender: "Man",
@@ -1938,7 +2436,11 @@ const OUTSIDE_LEADERS = [
     code: "OP",
     name: "Markus Allard",
     party: "Örebropartiet (ÖP)",
+<<<<<<< HEAD
+    color: "##660000",
+=======
     color: "#5B4B8A",
+>>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
     birth: "3 januari 1990",
     birthISO: "1990-01-03",
     gender: "Man",
