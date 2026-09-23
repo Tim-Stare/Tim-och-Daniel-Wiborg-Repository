@@ -5,10 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Riksdagen</title>
-<<<<<<< HEAD
-=======
-  <img src="Riksdags.png" alt="Riksdagen">
->>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
 <style>
 :root {
   --navy: #14213D;
@@ -70,44 +66,18 @@ body {
 .riksdagen-brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   color: #FFFFFF;
-}
-
-.riksdagen-mark {
-  width: 42px;
-  height: 42px;
-  border: 2px solid var(--gold);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--gold);
-  font-family: 'Source Serif 4', serif;
-  font-size: 21px;
-  font-weight: 600;
-<<<<<<< HEAD
-  overflow: hidden;
   flex-shrink: 0;
 }
 
-.riksdagen-mark-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.riksdagen-logo {
+  height: 48px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
   display: block;
-}
-
-.riksdagen-mark-fallback {
-  display: none;
-}
-
-.riksdagen-mark.missing .riksdagen-mark-img {
-  display: none;
-}
-
-.riksdagen-mark.missing .riksdagen-mark-fallback {
-  display: block;
+  flex-shrink: 0;
 }
 
 .riksdagen-brand-text {
@@ -123,23 +93,6 @@ body {
   line-height: 1.1;
 }
 
-=======
-}
-
-.riksdagen-brand-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.riksdagen-brand-text strong {
-  font-family: 'Source Serif 4', serif;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.1;
-}
-
->>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
 .riksdagen-brand-text span {
   font-size: 11.5px;
   color: rgba(255,255,255,0.62);
@@ -152,10 +105,11 @@ body {
 
 .corner-stack {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .nav-area {
@@ -831,7 +785,6 @@ li {
 }
 
 /* =========================================================
-<<<<<<< HEAD
    FÖRDELAR / NACKDELAR
 ========================================================= */
 
@@ -942,58 +895,6 @@ li {
   padding: 5px 0;
 }
 
-=======
-   BLOCKS
-========================================================= */
-
-.bloc-summary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 0 0 28px;
-}
-
-.bloc-card {
-  border: 1px solid var(--line);
-  border-top: 4px solid var(--navy);
-  padding: 16px 18px;
-}
-
-.bloc-card h3 {
-  font-family: 'Source Serif 4', serif;
-  font-weight: 600;
-  font-size: 16.5px;
-  color: var(--navy-deep);
-  margin: 0 0 12px;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.bloc-card .bloc-total {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--ink-soft);
-  white-space: nowrap;
-}
-
-.party-chips {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.party-chips li {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 14px;
-  padding: 5px 0;
-}
-
->>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
 .party-chips .swatch {
   width: 11px;
   height: 11px;
@@ -1073,14 +974,22 @@ footer {
     display: none;
   }
 
-  .riksdagen-mark {
-    width: 36px;
+  .riksdagen-logo {
     height: 36px;
-    font-size: 18px;
+    max-width: 100px;
   }
 
   .riksdagen-brand-text strong {
     font-size: 17px;
+  }
+
+  .corner-stack {
+    gap: 12px;
+  }
+
+  .search-form {
+    min-width: 0;
+    width: 140px;
   }
 }
 
@@ -1107,19 +1016,11 @@ footer {
 
     <div class="riksdagen-brand">
 
-      <div class="riksdagen-mark">
-<<<<<<< HEAD
-        <img
-          src="Riksdags.png"
-          alt="Riksdagen"
-          class="riksdagen-mark-img"
-          onerror="this.closest('.riksdagen-mark').classList.add('missing')"
-        >
-        <span class="riksdagen-mark-fallback">R</span>
-=======
-        <span>R</span>
->>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
-      </div>
+      <img
+        src="Riksdags.png"
+        alt="Riksdagen"
+        class="riksdagen-logo"
+      >
 
       <div class="riksdagen-brand-text">
         <strong>Riksdagen</strong>
@@ -1292,11 +1193,8 @@ const NAV = {
 
   partier: "Partier",
 
-<<<<<<< HEAD
   fordelar: "Fördelar och Nackdelar med Partierna",
 
-=======
->>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
   historia: "Historia",
 
   mandat: "Mandat",
@@ -1310,10 +1208,7 @@ const NAV = {
 const NAV_ORDER = [
   "hem",
   "partier",
-<<<<<<< HEAD
   "fordelar",
-=======
->>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
   "historia",
   "mandat",
   "riksdagslinjen",
@@ -1450,7 +1345,6 @@ const PAGES = {
     ></div>
 
   `,
-<<<<<<< HEAD
 
 
   /* -------------------------------------------------------
@@ -1588,7 +1482,7 @@ const PAGES = {
     <h2 style="margin-top:44px;">Utanför Riksdag</h2>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#4B2E2E"></span>Alternativ för Sverige (AfS)</h2>
+      <h2><span class="swatch" style="background:#00165a"></span>Alternativ för Sverige (AfS)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1602,7 +1496,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#5B4B8A"></span>Örebropartiet (ÖP)</h2>
+      <h2><span class="swatch" style="background:#8B0000"></span>Örebropartiet (ÖP)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1616,7 +1510,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#7A1F2B"></span>Kristna Värdepartiet</h2>
+      <h2><span class="swatch" style="background:#6B3FA0"></span>Kristna Värdepartiet</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1768,132 +1662,6 @@ const PAGES = {
 
     </div>
 
-=======
-
-
-  /* -------------------------------------------------------
-     HISTORY
-  ------------------------------------------------------- */
-
-  historia: `
-
-    <p class="page-eyebrow">
-      Utforska
-    </p>
-
-    <h1 class="page-title">
-      Historia
-    </h1>
-
-    <p>
-      En kort genomgång av riksdagens nästan 600 år långa
-      historia — från medeltida möten till dagens system
-      med 349 mandat.
-    </p>
-
-    <h2>
-      Ståndsriksdagen (1435–1866)
-    </h2>
-
-    <p>
-      Riksdagens rötter går tillbaka till mötet i Arboga 1435,
-      som brukar räknas som Sveriges första riksdag. Vid Gustav
-      Vasas riksmöten i Västerås 1527 och 1544 fick riksdagen
-      sin klassiska form med fyra stånd: adel, präster, borgare
-      och bönder. Varje stånd röstade för sig, och det var bara
-      en minoritet av befolkningen som hade rösträtt.
-    </p>
-
-    <h2>
-      Tvåkammarriksdagen (1866–1970)
-    </h2>
-
-    <p>
-      1809 fick Sverige en ny regeringsform som delade makten
-      mellan kung och riksdag. 1866 avskaffades ståndsriksdagen
-      helt och ersattes med en tvåkammarriksdag — en första och
-      en andra kammare. Rösträtten var fortfarande begränsad,
-      ofta kopplad till inkomst och kön.
-    </p>
-
-    <h2>
-      Demokratins genombrott (1918–1921)
-    </h2>
-
-    <p>
-      1918 infördes allmän och lika rösträtt för män, och 1921
-      även för kvinnor. Valet 1921 var det första där både
-      kvinnor och män röstade på lika villkor, och räknas som
-      startpunkten för Sverige som en fullvärdig demokrati.
-    </p>
-
-    <h2>
-      Enkammarriksdagen (1971–idag)
-    </h2>
-
-    <p>
-      1971 avskaffades tvåkammarsystemet och ersattes med
-      dagens enkammarriksdag, till en början med 350 mandat.
-      Valet 1973 slutade exakt lika, 175 mot 175, vilket ledde
-      till att flera beslut fick avgöras genom lottning —
-      kallat "lotteririksdagen". För att undvika att det skulle
-      hända igen minskades antalet mandat till 349 från och
-      med 1976.
-    </p>
-
-  `,
-
-
-  /* -------------------------------------------------------
-     MANDATE
-  ------------------------------------------------------- */
-
-  mandat: `
-
-    <p class="page-eyebrow">
-      Utforska
-    </p>
-
-    <h1 class="page-title">
-      Mandat
-    </h1>
-
-    <p>
-      Riksdagen har 349 mandat totalt. Efter valet grupperar
-      sig partierna i två block: Vänsterblocket (Oppositionen)
-      och Tidöpartierna. Varje prick nedan är ett mandat,
-      färgat efter parti.
-    </p>
-
-    <p class="mandate-year">
-      2026
-    </p>
-
-    <p class="mandate-note">
-      Resultat efter valet 13 september 2026, samtliga
-      6 626 valdistrikt räknade.
-    </p>
-
-    <div class="numbers-png-wrap">
-
-      <img
-        src="Numbers.png"
-        alt="Mandatfördelning 2026"
-        class="numbers-png"
-        onerror="
-          this.closest('.numbers-png-wrap')
-          .classList.add('missing')
-        "
-      >
-
-      <p class="numbers-png-fallback">
-        Numbers.png saknas ännu — ladda upp bilden så lägger
-        jag in den här.
-      </p>
-
-    </div>
-
->>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
     <h2>
       Partierna
     </h2>
@@ -2329,6 +2097,7 @@ const RIKSDAG_LEADERS = [
     name: "Magdalena Andersson",
     party: "Socialdemokraterna (S)",
     color: "#E8112D",
+    photo: "Magde.jpg",
     birth: "23 januari 1967",
     birthISO: "1967-01-23",
     gender: "Kvinna",
@@ -2340,6 +2109,7 @@ const RIKSDAG_LEADERS = [
     name: "Ulf Kristersson",
     party: "Moderaterna (M)",
     color: "#52BDEC",
+    photo: null,
     birth: "29 december 1963",
     birthISO: "1963-12-29",
     gender: "Man",
@@ -2351,6 +2121,7 @@ const RIKSDAG_LEADERS = [
     name: "Jimmie Åkesson",
     party: "Sverigedemokraterna (SD)",
     color: "#B5A400",
+    photo: "Jimmie.jpg",
     birth: "17 maj 1979",
     birthISO: "1979-05-17",
     gender: "Man",
@@ -2362,6 +2133,7 @@ const RIKSDAG_LEADERS = [
     name: "Nooshi Dadgostar",
     party: "Vänsterpartiet (V)",
     color: "#AF1E2D",
+    photo: "Nooshi.jpg",
     birth: "20 juni 1985",
     birthISO: "1985-06-20",
     gender: "Kvinna",
@@ -2373,6 +2145,7 @@ const RIKSDAG_LEADERS = [
     name: "Elisabeth Thand Ringqvist",
     party: "Centerpartiet (C)",
     color: "#009933",
+    photo: "Elisa.jpg",
     birth: "21 september 1972",
     birthISO: "1972-09-21",
     gender: "Kvinna",
@@ -2384,6 +2157,7 @@ const RIKSDAG_LEADERS = [
     name: "Ebba Busch",
     party: "Kristdemokraterna (KD)",
     color: "#000077",
+    photo: "Busch.jpg",
     birth: "11 februari 1987",
     birthISO: "1987-02-11",
     gender: "Kvinna",
@@ -2395,6 +2169,7 @@ const RIKSDAG_LEADERS = [
     name: "Amanda Lind",
     party: "Miljöpartiet (MP)",
     color: "#5FA82E",
+    photo: "Amanda.jpg",
     birth: "2 augusti 1980",
     birthISO: "1980-08-02",
     gender: "Kvinna",
@@ -2406,6 +2181,7 @@ const RIKSDAG_LEADERS = [
     name: "Simona Mohamsson",
     party: "Liberalerna (L)",
     color: "#006AB3",
+    photo: null,
     birth: "23 september 1994",
     birthISO: "1994-09-23",
     gender: "Kvinna",
@@ -2421,11 +2197,8 @@ const OUTSIDE_LEADERS = [
     code: "AFS",
     name: "Gustav Kasselstrand",
     party: "Alternativ för Sverige (AfS)",
-<<<<<<< HEAD
     color: "#00165a",
-=======
-    color: "#4B2E2E",
->>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
+    photo: "Gustav.jpg",
     birth: "27 juni 1987",
     birthISO: "1987-06-27",
     gender: "Man",
@@ -2436,11 +2209,8 @@ const OUTSIDE_LEADERS = [
     code: "OP",
     name: "Markus Allard",
     party: "Örebropartiet (ÖP)",
-<<<<<<< HEAD
-    color: "##660000",
-=======
-    color: "#5B4B8A",
->>>>>>> 099adfa8084a8bae66fc5379bb5a5fb0f4048e68
+    color: "#8B0000",
+    photo: "Markus.jpg",
     birth: "3 januari 1990",
     birthISO: "1990-01-03",
     gender: "Man",
@@ -2451,7 +2221,8 @@ const OUTSIDE_LEADERS = [
     code: "KV",
     name: "Mats Selander",
     party: "Kristna Värdepartiet",
-    color: "#7A1F2B",
+    color: "#6B3FA0",
+    photo: null,
     birth: "Ej offentligt angivet",
     birthISO: null,
     gender: "Man",
@@ -2463,6 +2234,7 @@ const OUTSIDE_LEADERS = [
     name: "Elsa Widding",
     party: "Ambition Sverige",
     color: "#2E7D6B",
+    photo: "Elsa.jpg",
     birth: "1968",
     birthISO: "1968-01-01",
     gender: "Kvinna",
@@ -2597,17 +2369,21 @@ function renderLeaderGrid(
         aria-label="Visa information om ${escapeHtml(l.name)}"
       >
 
-        <div class="leader-photo-wrap">
+        <div class="leader-photo-wrap${l.photo ? "" : " missing"}">
 
+          ${l.photo ? `
           <img
             class="leader-photo-img"
-            src="${l.code}.png"
+            src="${escapeHtml(l.photo)}"
             alt="${escapeHtml(l.name)}"
             onerror="
               this.closest('.leader-photo-wrap')
               .classList.add('missing')
             "
           >
+          ` : `
+          <img class="leader-photo-img" src="" alt="" style="display:none">
+          `}
 
           <div
             class="leader-photo-fallback"
