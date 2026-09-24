@@ -899,6 +899,56 @@ li {
   border: 1px solid var(--line);
 }
 
+.party-facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.party-fact-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+.party-fact-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.party-fact-head .party-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.party-fact-head h2 {
+  margin: 0;
+  font-size: 17px;
+  color: var(--navy-deep);
+}
+
+.party-fact-meta {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.party-fact-card > p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
 .proscons-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1299,6 +1349,8 @@ const NAV = {
 
   mandat: "Mandat",
 
+  fakta: "Fakta om partierna",
+
   riksdagslinjen: "4 Procentsspärren",
 
   utanfor: "Utanför Riksdag (4 Partier)"
@@ -1311,6 +1363,7 @@ const NAV_ORDER = [
   "fordelar",
   "historia",
   "mandat",
+  "fakta",
   "riksdagslinjen",
   "utanfor"
 ];
@@ -1792,11 +1845,11 @@ const PAGES = {
             <td class="bar-cell">
               <div class="vote-bar-wrap">
                 <div class="vote-bar-track">
-                  <div class="vote-bar-fill" style="width:28.5%;background:#E8112D"></div>
+                  <div class="vote-bar-fill" style="width:28.02%;background:#E8112D"></div>
                 </div>
                 <div class="vote-bar-meta">
-                  <span>1 886 535 röster</span>
-                  <strong>28,5 %</strong>
+                  <span>1 895 989 röster</span>
+                  <strong>28,02 %</strong>
                 </div>
               </div>
             </td>
@@ -1814,11 +1867,11 @@ const PAGES = {
             <td class="bar-cell">
               <div class="vote-bar-wrap">
                 <div class="vote-bar-track">
-                  <div class="vote-bar-fill" style="width:20.2%;background:#52BDEC"></div>
+                  <div class="vote-bar-fill" style="width:19.85%;background:#52BDEC"></div>
                 </div>
                 <div class="vote-bar-meta">
-                  <span>1 336 802 röster</span>
-                  <strong>20,2 %</strong>
+                  <span>1 343 448 röster</span>
+                  <strong>19,85 %</strong>
                 </div>
               </div>
             </td>
@@ -1836,11 +1889,11 @@ const PAGES = {
             <td class="bar-cell">
               <div class="vote-bar-wrap">
                 <div class="vote-bar-track">
-                  <div class="vote-bar-fill" style="width:17.8%;background:#DDDD00"></div>
+                  <div class="vote-bar-fill" style="width:17.48%;background:#DDDD00"></div>
                 </div>
                 <div class="vote-bar-meta">
-                  <span>1 176 834 röster</span>
-                  <strong>17,8 %</strong>
+                  <span>1 183 248 röster</span>
+                  <strong>17,48 %</strong>
                 </div>
               </div>
             </td>
@@ -1858,11 +1911,11 @@ const PAGES = {
             <td class="bar-cell">
               <div class="vote-bar-wrap">
                 <div class="vote-bar-track">
-                  <div class="vote-bar-fill" style="width:8.5%;background:#AF1E2D"></div>
+                  <div class="vote-bar-fill" style="width:8.40%;background:#AF1E2D"></div>
                 </div>
                 <div class="vote-bar-meta">
-                  <span>565 599 röster</span>
-                  <strong>8,5 %</strong>
+                  <span>568 781 röster</span>
+                  <strong>8,40 %</strong>
                 </div>
               </div>
             </td>
@@ -1880,11 +1933,11 @@ const PAGES = {
             <td class="bar-cell">
               <div class="vote-bar-wrap">
                 <div class="vote-bar-track">
-                  <div class="vote-bar-fill" style="width:7.2%;background:#009933"></div>
+                  <div class="vote-bar-fill" style="width:7.03%;background:#009933"></div>
                 </div>
                 <div class="vote-bar-meta">
-                  <span>474 541 röster</span>
-                  <strong>7,2 %</strong>
+                  <span>475 780 röster</span>
+                  <strong>7,03 %</strong>
                 </div>
               </div>
             </td>
@@ -1902,11 +1955,11 @@ const PAGES = {
             <td class="bar-cell">
               <div class="vote-bar-wrap">
                 <div class="vote-bar-track">
-                  <div class="vote-bar-fill" style="width:6.3%;background:#000077"></div>
+                  <div class="vote-bar-fill" style="width:6.17%;background:#000077"></div>
                 </div>
                 <div class="vote-bar-meta">
-                  <span>415 867 röster</span>
-                  <strong>6,3 %</strong>
+                  <span>417 490 röster</span>
+                  <strong>6,17 %</strong>
                 </div>
               </div>
             </td>
@@ -1924,11 +1977,11 @@ const PAGES = {
             <td class="bar-cell">
               <div class="vote-bar-wrap">
                 <div class="vote-bar-track">
-                  <div class="vote-bar-fill" style="width:6.2%;background:#83CF39"></div>
+                  <div class="vote-bar-fill" style="width:6.12%;background:#83CF39"></div>
                 </div>
                 <div class="vote-bar-meta">
-                  <span>413 091 röster</span>
-                  <strong>6,2 %</strong>
+                  <span>414 307 röster</span>
+                  <strong>6,12 %</strong>
                 </div>
               </div>
             </td>
@@ -1946,11 +1999,11 @@ const PAGES = {
             <td class="bar-cell">
               <div class="vote-bar-wrap">
                 <div class="vote-bar-track">
-                  <div class="vote-bar-fill" style="width:5.4%;background:#006AB3"></div>
+                  <div class="vote-bar-fill" style="width:5.34%;background:#006AB3"></div>
                 </div>
                 <div class="vote-bar-meta">
-                  <span>359 850 röster</span>
-                  <strong>5,4 %</strong>
+                  <span>361 187 röster</span>
+                  <strong>5,34 %</strong>
                 </div>
               </div>
             </td>
@@ -2083,6 +2136,167 @@ const PAGES = {
 
 
   /* -------------------------------------------------------
+     FAKTA OM PARTIERNA
+  ------------------------------------------------------- */
+
+  fakta: `
+
+    <p class="page-eyebrow">
+      Utforska
+    </p>
+
+    <h1 class="page-title">
+      Fakta om partierna
+    </h1>
+
+    <p>
+      Korta fakta om partierna i storleksordning efter
+      valet 2026. Logotyperna laddas från dina
+      PNG-/WEBP-filer.
+    </p>
+
+    <div class="party-facts-list">
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="S.png" alt="S">
+          <div>
+            <h2>Socialdemokraterna (S)</h2>
+            <p class="party-fact-meta">28,02 % · 1 895 989 röster · 99 mandat</p>
+          </div>
+        </div>
+        <p>Sveriges största parti. Socialdemokratiskt, arbetarrörelsen. Ledare: Magdalena Andersson.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="M.webp" alt="M">
+          <div>
+            <h2>Moderaterna (M)</h2>
+            <p class="party-fact-meta">19,85 % · 1 343 448 röster · 70 mandat</p>
+          </div>
+        </div>
+        <p>Liberalkonservativt parti. Ledare: Ulf Kristersson.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="SD.png" alt="SD">
+          <div>
+            <h2>Sverigedemokraterna (SD)</h2>
+            <p class="party-fact-meta">17,48 % · 1 183 248 röster · 62 mandat</p>
+          </div>
+        </div>
+        <p>Socialkonservativt parti med fokus på migration och lag och ordning. Ledare: Jimmie Åkesson.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="V.webp" alt="V">
+          <div>
+            <h2>Vänsterpartiet (V)</h2>
+            <p class="party-fact-meta">8,40 % · 568 781 röster · 30 mandat</p>
+          </div>
+        </div>
+        <p>Socialistiskt parti till vänster. Ledare: Nooshi Dadgostar.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="C.webp" alt="C">
+          <div>
+            <h2>Centerpartiet (C)</h2>
+            <p class="party-fact-meta">7,03 % · 475 780 röster · 25 mandat</p>
+          </div>
+        </div>
+        <p>Liberalt centerparti med rötter i landsbygden. Ledare: Elisabeth Thand Ringqvist.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="KD.webp" alt="KD">
+          <div>
+            <h2>Kristdemokraterna (KD)</h2>
+            <p class="party-fact-meta">6,17 % · 417 490 röster · 22 mandat</p>
+          </div>
+        </div>
+        <p>Kristdemokratiskt parti med fokus på familj, vård och äldreomsorg. Ledare: Ebba Busch.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="MP.png" alt="MP">
+          <div>
+            <h2>Miljöpartiet (MP)</h2>
+            <p class="party-fact-meta">6,12 % · 414 307 röster · 22 mandat</p>
+          </div>
+        </div>
+        <p>Grönt parti med miljö och klimat i centrum. Språkrör: Amanda Lind.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="L.png" alt="L">
+          <div>
+            <h2>Liberalerna (L)</h2>
+            <p class="party-fact-meta">5,34 % · 361 187 röster · 19 mandat</p>
+          </div>
+        </div>
+        <p>Liberalt parti med fokus på skola, integration och individens frihet. Ledare: Simona Mohamsson.</p>
+      </article>
+
+      <h2 style="margin-top:36px;">Utanför riksdagen</h2>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="AfS.png" alt="AfS">
+          <div>
+            <h2>Alternativ för Sverige (AfS)</h2>
+            <p class="party-fact-meta">Utanför riksdagen</p>
+          </div>
+        </div>
+        <p>Nationalistiskt parti. Ledare: Gustav Kasselstrand.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="OP.png" alt="ÖP">
+          <div>
+            <h2>Örebropartiet (ÖP)</h2>
+            <p class="party-fact-meta">Utanför riksdagen</p>
+          </div>
+        </div>
+        <p>Lokalt parti med rötter i Örebro. Ledare: Markus Allard.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="KVP.webp" alt="KVP">
+          <div>
+            <h2>Kristna Värdepartiet (KVP)</h2>
+            <p class="party-fact-meta">Utanför riksdagen</p>
+          </div>
+        </div>
+        <p>Kristet värdekonservativt parti. Ledare: Mats Selander.</p>
+      </article>
+
+      <article class="party-fact-card">
+        <div class="party-fact-head">
+          <img class="party-logo" src="AS.webp" alt="AS">
+          <div>
+            <h2>Ambition Sverige (AS)</h2>
+            <p class="party-fact-meta">Utanför riksdagen</p>
+          </div>
+        </div>
+        <p>Nytt parti. Ledare: Elsa Widding.</p>
+      </article>
+
+    </div>
+
+  `,
+
+
+  /* -------------------------------------------------------
      4 PERCENT
   ------------------------------------------------------- */
 
@@ -2192,7 +2406,11 @@ const RIKSDAG_LEADERS = [
     birth: "23 januari 1967",
     birthISO: "1967-01-23",
     gender: "Kvinna",
-    joined: "1992"
+    joined: "1992",
+    bornPlace: "Uppsala",
+    university: "Handelshögskolan i Stockholm (civilekonom); studier vid Harvard och i Wien",
+    married: "Ja",
+    family: "Ja (2 barn)"
   },
 
   {
@@ -2204,7 +2422,11 @@ const RIKSDAG_LEADERS = [
     birth: "29 december 1963",
     birthISO: "1963-12-29",
     gender: "Man",
-    joined: "1980"
+    joined: "1980",
+    bornPlace: "Lund",
+    university: "Uppsala universitet (civilekonom)",
+    married: "Ja",
+    family: "Ja (3 adoptivdöttrar)"
   },
 
   {
@@ -2216,7 +2438,11 @@ const RIKSDAG_LEADERS = [
     birth: "17 maj 1979",
     birthISO: "1979-05-17",
     gender: "Man",
-    joined: "1995"
+    joined: "1995",
+    bornPlace: "Ivetofta, Skåne (uppväxt i Sölvesborg)",
+    university: "Lunds universitet (statsvetenskap m.m., ej examen)",
+    married: "Ja",
+    family: "Ja (1 son)"
   },
 
   {
@@ -2228,7 +2454,11 @@ const RIKSDAG_LEADERS = [
     birth: "20 juni 1985",
     birthISO: "1985-06-20",
     gender: "Kvinna",
-    joined: "1990-talet"
+    joined: "1990-talet",
+    bornPlace: "Ängelholm",
+    university: "Stockholms universitet (juridik, ej examen)",
+    married: "Nej (sambo)",
+    family: "Ja (1 dotter)"
   },
 
   {
@@ -2240,7 +2470,11 @@ const RIKSDAG_LEADERS = [
     birth: "21 september 1972",
     birthISO: "1972-09-21",
     gender: "Kvinna",
-    joined: "Ej offentligt angivet"
+    joined: "Ej offentligt angivet",
+    bornPlace: "Sunne / Östersund",
+    university: "Handelshögskolan i Stockholm (civilekonom)",
+    married: "Ja",
+    family: "Ja (2 barn)"
   },
 
   {
@@ -2252,7 +2486,11 @@ const RIKSDAG_LEADERS = [
     birth: "11 februari 1987",
     birthISO: "1987-02-11",
     gender: "Kvinna",
-    joined: "2002"
+    joined: "2002",
+    bornPlace: "Uppsala",
+    university: "Uppsala universitet (freds- och konfliktkunskap)",
+    married: "Nej (skild)",
+    family: "Ja (2 barn)"
   },
 
   {
@@ -2264,7 +2502,11 @@ const RIKSDAG_LEADERS = [
     birth: "2 augusti 1980",
     birthISO: "1980-08-02",
     gender: "Kvinna",
-    joined: "1999"
+    joined: "1999",
+    bornPlace: "Uppsala (uppväxt i Luleå)",
+    university: "Umeå universitet (leg. psykolog)",
+    married: "Ja",
+    family: "Ja (3 barn)"
   },
 
   {
@@ -2276,7 +2518,11 @@ const RIKSDAG_LEADERS = [
     birth: "23 september 1994",
     birthISO: "1994-09-23",
     gender: "Kvinna",
-    joined: "2014"
+    joined: "2014",
+    bornPlace: "Hamburg, Tyskland",
+    university: "Göteborgs universitet (kandidat i offentlig förvaltning)",
+    married: "Nej",
+    family: "Nej"
   }
 
 ];
@@ -2293,7 +2539,11 @@ const OUTSIDE_LEADERS = [
     birth: "27 juni 1987",
     birthISO: "1987-06-27",
     gender: "Man",
-    joined: "2018"
+    joined: "2018",
+    bornPlace: "Göteborg",
+    university: "Ej offentligt angivet i detalj",
+    married: "Ej offentligt",
+    family: "Ej offentligt"
   },
 
   {
@@ -2305,7 +2555,11 @@ const OUTSIDE_LEADERS = [
     birth: "3 januari 1990",
     birthISO: "1990-01-03",
     gender: "Man",
-    joined: "2014"
+    joined: "2014",
+    bornPlace: "Örebro",
+    university: "Ej offentligt angivet i detalj",
+    married: "Ej offentligt",
+    family: "Ej offentligt"
   },
 
   {
@@ -2317,7 +2571,11 @@ const OUTSIDE_LEADERS = [
     birth: "Ej offentligt angivet",
     birthISO: null,
     gender: "Man",
-    joined: "Ej offentligt angivet"
+    joined: "Ej offentligt angivet",
+    bornPlace: "Ej offentligt angivet",
+    university: "Ej offentligt angivet",
+    married: "Ej offentligt",
+    family: "Ej offentligt"
   },
 
   {
@@ -2329,7 +2587,11 @@ const OUTSIDE_LEADERS = [
     birth: "1968",
     birthISO: "1968-01-01",
     gender: "Kvinna",
-    joined: "2025"
+    joined: "2025",
+    bornPlace: "1968 (födelseort ej offentligt specificerad)",
+    university: "Ej offentligt angivet i detalj",
+    married: "Ej offentligt",
+    family: "Ej offentligt"
   }
 
 ];
@@ -2424,6 +2686,15 @@ function showLeaderInfo(card, leader, info) {
     ".leader-joined"
   ).textContent =
     leader.joined;
+
+  const set = (sel, val) => {
+    const node = info.querySelector(sel);
+    if (node) node.textContent = val || "—";
+  };
+  set(".leader-born-place", leader.bornPlace);
+  set(".leader-university", leader.university);
+  set(".leader-married", leader.married);
+  set(".leader-family", leader.family);
 
   info.dataset.currentLeader =
     leader.code;
@@ -2559,46 +2830,43 @@ function renderLeaderGrid(
     <div class="leader-info-grid">
 
       <div class="leader-info-item">
-
-        <span class="leader-info-label">
-          Ålder
-        </span>
-
+        <span class="leader-info-label">Ålder</span>
         <span class="leader-info-value leader-age"></span>
-
       </div>
 
-
       <div class="leader-info-item">
-
-        <span class="leader-info-label">
-          Födelsedatum
-        </span>
-
+        <span class="leader-info-label">Födelsedatum</span>
         <span class="leader-info-value leader-birth"></span>
-
       </div>
 
+      <div class="leader-info-item">
+        <span class="leader-info-label">Födelseort</span>
+        <span class="leader-info-value leader-born-place"></span>
+      </div>
 
       <div class="leader-info-item">
-
-        <span class="leader-info-label">
-          Kön
-        </span>
-
+        <span class="leader-info-label">Kön</span>
         <span class="leader-info-value leader-gender"></span>
-
       </div>
 
+      <div class="leader-info-item">
+        <span class="leader-info-label">Universitet</span>
+        <span class="leader-info-value leader-university"></span>
+      </div>
 
       <div class="leader-info-item">
+        <span class="leader-info-label">Gift</span>
+        <span class="leader-info-value leader-married"></span>
+      </div>
 
-        <span class="leader-info-label">
-          Medlem sedan
-        </span>
+      <div class="leader-info-item">
+        <span class="leader-info-label">Familj / barn</span>
+        <span class="leader-info-value leader-family"></span>
+      </div>
 
+      <div class="leader-info-item">
+        <span class="leader-info-label">Medlem sedan</span>
         <span class="leader-info-value leader-joined"></span>
-
       </div>
 
     </div>
