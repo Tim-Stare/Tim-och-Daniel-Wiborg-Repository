@@ -890,6 +890,15 @@ li {
   height: 13px;
 }
 
+.party-proscons h2 .party-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+}
+
 .proscons-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1459,7 +1468,7 @@ const PAGES = {
     </p>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#E8112D"></span>Socialdemokraterna (S)</h2>
+      <h2><img class="party-logo" src="S.png" alt="S">Socialdemokraterna (S)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1473,7 +1482,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#52BDEC"></span>Moderaterna (M)</h2>
+      <h2><img class="party-logo" src="M.webp" alt="M">Moderaterna (M)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1487,7 +1496,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#DDDD00"></span>Sverigedemokraterna (SD)</h2>
+      <h2><img class="party-logo" src="SD.png" alt="SD">Sverigedemokraterna (SD)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1501,7 +1510,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#AF1E2D"></span>Vänsterpartiet (V)</h2>
+      <h2><img class="party-logo" src="V.webp" alt="V">Vänsterpartiet (V)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1515,7 +1524,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#009933"></span>Centerpartiet (C)</h2>
+      <h2><img class="party-logo" src="C.webp" alt="C">Centerpartiet (C)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1529,7 +1538,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#000077"></span>Kristdemokraterna (KD)</h2>
+      <h2><img class="party-logo" src="KD.webp" alt="KD">Kristdemokraterna (KD)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1543,7 +1552,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#5FA82E"></span>Miljöpartiet (MP)</h2>
+      <h2><img class="party-logo" src="MP.png" alt="MP">Miljöpartiet (MP)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1557,7 +1566,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#006AB3"></span>Liberalerna (L)</h2>
+      <h2><img class="party-logo" src="L.png" alt="L">Liberalerna (L)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1573,7 +1582,7 @@ const PAGES = {
     <h2 style="margin-top:44px;">Utanför Riksdag</h2>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#00165a"></span>Alternativ för Sverige (AfS)</h2>
+      <h2><img class="party-logo" src="AfS.png" alt="AfS">Alternativ för Sverige (AfS)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1587,7 +1596,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#8B0000"></span>Örebropartiet (ÖP)</h2>
+      <h2><img class="party-logo" src="OP.png" alt="ÖP">Örebropartiet (ÖP)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1601,7 +1610,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#6B3FA0"></span>Kristna Värdepartiet</h2>
+      <h2><img class="party-logo" src="KVP.webp" alt="KVP">Kristna Värdepartiet</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1615,7 +1624,7 @@ const PAGES = {
     </div>
 
     <div class="party-proscons">
-      <h2><span class="swatch" style="background:#2E7D6B"></span>Ambition Sverige</h2>
+      <h2><img class="party-logo" src="AS.png" alt="AS">Ambition Sverige</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
           <h4>Fördelar</h4>
@@ -1797,7 +1806,7 @@ const PAGES = {
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="M.png" alt="M">
+                <img class="party-logo" src="M.webp" alt="M">
                 Moderaterna (M)
               </div>
             </td>
@@ -1841,7 +1850,7 @@ const PAGES = {
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="V.png" alt="V">
+                <img class="party-logo" src="V.webp" alt="V">
                 Vänsterpartiet (V)
               </div>
             </td>
@@ -1863,7 +1872,7 @@ const PAGES = {
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="C.png" alt="C">
+                <img class="party-logo" src="C.webp" alt="C">
                 Centerpartiet (C)
               </div>
             </td>
@@ -1885,7 +1894,7 @@ const PAGES = {
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="KD.png" alt="KD">
+                <img class="party-logo" src="KD.webp" alt="KD">
                 Kristdemokraterna (KD)
               </div>
             </td>
