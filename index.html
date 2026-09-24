@@ -1031,6 +1031,7 @@ footer {
 ========================================================= */
 
 @media (max-width: 720px) {
+
   .topbar-inner {
     padding: 16px 20px;
   }
@@ -1045,12 +1046,17 @@ footer {
     right: 0;
   }
 
+  .mega-dropdown ul {
+    flex-direction: column;
+  }
+
   .leader-info-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 560px) {
+
   .bloc-summary {
     grid-template-columns: 1fr;
   }
@@ -1068,7 +1074,16 @@ footer {
     max-width: 100px;
   }
 
+  .riksdagen-brand-text strong {
+    font-size: 17px;
+  }
+
+  .corner-stack {
+    gap: 12px;
+  }
+
   .search-form {
+    min-width: 0;
     width: 140px;
   }
 }
@@ -1081,9 +1096,13 @@ footer {
 }
 </style>
 </head>
+
 <body>
 
-<!-- TOP BAR -->
+<!-- =======================================================
+     TOP BAR
+======================================================= -->
+
 <div class="topbar">
 
   <div class="topbar-inner">
@@ -1106,9 +1125,11 @@ footer {
     </div>
 
     <!-- RIGHT SIDE -->
+
     <div class="corner-stack">
 
       <!-- SEARCH -->
+
       <div class="search-area">
 
         <form class="search-form" role="search" id="searchForm">
@@ -1117,8 +1138,8 @@ footer {
             type="search"
             name="q"
             id="searchInput"
-            placeholder="Sök..."
-            aria-label="Sök"
+            placeholder="Sökfält"
+            aria-label="Sökfält"
             autocomplete="off"
             role="combobox"
             aria-expanded="false"
@@ -1139,8 +1160,23 @@ footer {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <circle cx="7.2" cy="7.2" r="5.7" stroke="currentColor" stroke-width="1.6"/>
-              <line x1="11.4" y1="11.6" x2="15.5" y2="15.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              <circle
+                cx="7.2"
+                cy="7.2"
+                r="5.7"
+                stroke="currentColor"
+                stroke-width="1.6"
+              />
+
+              <line
+                x1="11.4"
+                y1="11.6"
+                x2="15.5"
+                y2="15.6"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
             </svg>
 
           </button>
@@ -1156,7 +1192,9 @@ footer {
       </div>
 
       <!-- NAVIGATION -->
+
       <div class="nav-area">
+
         <button
           class="nav-trigger"
           id="navTrigger"
@@ -1165,13 +1203,26 @@ footer {
           aria-controls="navDropdown"
         >
 
-          <span>Utforsk</span>
+          <span>Utforska</span>
 
-          <svg width="11" height="7" viewBox="0 0 11 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            width="11"
+            height="7"
+            viewBox="0 0 11 7"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 1L5.5 5.5L10 1"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
 
         </button>
+
       </div>
 
     </div>
@@ -1179,6 +1230,7 @@ footer {
   </div>
 
   <!-- MEGA DROPDOWN -->
+
   <div
     class="mega-dropdown"
     id="navDropdown"
@@ -1186,31 +1238,48 @@ footer {
   >
 
     <div class="mega-dropdown-inner">
+
       <ul id="navList"></ul>
+
     </div>
 
   </div>
 
 </div>
 
-<!-- MAIN -->
+
+<!-- =======================================================
+     MAIN
+======================================================= -->
+
 <main>
 
   <div id="pageContent"></div>
 
 </main>
 
-<!-- FOOTER -->
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
 <footer>
+
   <div class="footer-inner">
-    <p>© 2026 Tim Stare &amp; Daniel Wiborg • Sverige Gymnasium</p>
+
+    <p>
+      © 2026 Tim Stare &amp; Daniel Wiborg — Tyresö Gymnasium
+    </p>
+
   </div>
+
 </footer>
 
 <div class="live-clock" id="liveClock" aria-live="polite">
   <div class="clock-time" id="clockTime">--:--:--</div>
-  <div class="clock-date" id="clockDate">-- -- ----</div>
+  <div class="clock-date" id="clockDate">—</div>
 </div>
+
 
 <script>
 
@@ -1224,7 +1293,7 @@ const NAV = {
 
   partier: "Partier",
 
-  fordelar: "Fördela[r] och nackdelar med partierna",
+  fordelar: "Fördelar och Nackdelar med Partierna",
 
   historia: "Historia",
 
@@ -1232,7 +1301,7 @@ const NAV = {
 
   riksdagslinjen: "4 Procentsspärren",
 
-  utanfors: "Utanför Riksdagen (4 Partier)"
+  utanfor: "Utanför Riksdag (4 Partier)"
 
 };
 
@@ -1243,22 +1312,29 @@ const NAV_ORDER = [
   "historia",
   "mandat",
   "riksdagslinjen",
-  "utanfors"
+  "utanfor"
 ];
+
 
 /* =========================================================
    PAGE CONTENT
 ========================================================= */
 
 const PAGES = {
+
+  /* -------------------------------------------------------
+     HOME
+  ------------------------------------------------------- */
+
   hem: `
+
     <p class="warning">
-      Varning: den här sidan tar upp kritisk mot både ideologiska
-      och värderingsmässiga frågor. Ingen sida framställer som felfri.
+      Varning: den här sidan tar upp kritik mot både Tidöpartierna
+      och Vänsterblocket. Ingen sida framställs som felfri.
     </p>
 
     <p class="intro">
-      En webbplats som fokuserar här Sverige styrs av:
+      En webbplats som förklarar hur Sverige styrs:
       riksdagens 349 mandat, hur en regering bildas och hur
       partierna grupperar sig i block.
     </p>
@@ -1269,76 +1345,138 @@ const PAGES = {
     </p>
 
     <h2>Om projektet</h2>
+
     <p>
-      Sidan ger en balanserad översikt av svenska politik med fokus
-      på riksdag och regering, blocken, och hur partierna i valet 2026
-      förhåller sig till varandra.
+      Sidan ger en balanserad översikt av svensk politik med
+      fokus på fyra ämnen: hur riksdag och regering fungerar,
+      blocken, deras för- och nackdelar, och de fyra största
+      partierna utanför riksdagen.
     </p>
 
     <h2>Exempel på innehåll</h2>
+
     <p>
-      Nackdelar som lyfts fram, för och emot politiska angrepp, och de olika
-      block som finns.
+      Nackdelar som lyfts fram, för en ärlig bild:
     </p>
 
     <ul>
+
       <li>
-        Vänsterpartiet historiska kopplingar till kommunism
-        och omdiskuterad utlandspolitik
+        Vänsterpartiets historiska kopplingar till kommunism
+        och omdiskuterade uttalanden
       </li>
+
       <li>
-        SD-ledarnas tidigare koppling till extremistiska rörelser
+        SD-ledarens tidigare koppling till en högerextrem rörelse
       </li>
+
     </ul>
 
     <p>
-      Partier utanför riksdagen som kan ta sig in i riksdagen.
+      Partier utanför riksdagen som kan ta sig in inom 4–8 år:
     </p>
 
     <ul>
+
       <li>Alternativ för Sverige (AfS)</li>
+
       <li>Örebropartiet (ÖP)</li>
+
       <li>Kristna Värdepartiet</li>
+
       <li>Ambition Sverige</li>
+
     </ul>
 
     <h2>Syfte</h2>
+
     <p>
-      Vi bygger denna webbplats för att ge en strukturerad sammanfattning av hur
-      svensk politik fungerar i praktiken.
+      Vi byggde sidan för att:
     </p>
 
+    <ul>
+
+      <li>
+        göra svensk politik enklare att förstå
+      </li>
+
+      <li>
+        visa både styrkor och svagheter hos blocken,
+        mer öppet än vad stora medier ofta gör
+      </li>
+
+      <li>
+        ge en bild av partier utanför riksdagen som kan
+        ta sig in framöver
+      </li>
+
+    </ul>
+
   `,
+
+
+  /* -------------------------------------------------------
+     PARTIER
+  ------------------------------------------------------- */
 
   partier: `
-    <p class="page-eyebrow">Utförska</p>
-    <h1 class="page-title">Partier</h1>
-    <p>
-      Här kommer en genomgång av svenska riksdagspartier och de två blocken:
-      Vänsterblocket och Högerblocket. Klicka på en partiledare för att se mer information.
+
+    <p class="page-eyebrow">
+      Utforska
     </p>
-    <h2>Partiledarna</h2>
-    <div class="leader-grid" id="leaderGridPartier"></div>
+
+    <h1 class="page-title">
+      Partier
+    </h1>
+
+    <p>
+      Här kommer en genomgång av riksdagspartierna och de två
+      blocken: Tidöpartierna och Vänsterblocket.
+      Klicka på en partiledare för att se mer information.
+    </p>
+
+    <h2>
+      Partiledarna
+    </h2>
+
+    <div
+      class="leader-grid"
+      id="leaderGridPartier"
+    ></div>
+
   `,
 
+
+  /* -------------------------------------------------------
+     FÖRDELAR OCH NACKDELAR
+  ------------------------------------------------------- */
+
   fordelar: `
-    <p class="page-eyebrow">Utförska</p>
-    <h1 class="page-title">Fördeler och nackdelar med partierna</h1>
+
+    <p class="page-eyebrow">
+      Utforska
+    </p>
+
+    <h1 class="page-title">
+      Fördelar och Nackdelar med Partierna
+    </h1>
+
     <p>
-      En kort sammanfattning av vad som ofta sägs vara styrkor respektive svagheter i
-      de olika partiernas politik. Detta är en förenkling, inte en fullständig analys.
+      En kort sammanställning av vad som ofta lyfts fram som
+      styrkor och svagheter hos vart och ett av de åtta
+      riksdagspartierna. Innehållet fylls i här efter hand.
     </p>
 
     <div class="party-proscons">
       <h2><img class="party-logo" src="S.png" alt="S">Socialdemokraterna (S)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1347,12 +1485,12 @@ const PAGES = {
       <h2><img class="party-logo" src="M.webp" alt="M">Moderaterna (M)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1361,12 +1499,12 @@ const PAGES = {
       <h2><img class="party-logo" src="SD.png" alt="SD">Sverigedemokraterna (SD)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1375,12 +1513,12 @@ const PAGES = {
       <h2><img class="party-logo" src="V.webp" alt="V">Vänsterpartiet (V)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1389,12 +1527,12 @@ const PAGES = {
       <h2><img class="party-logo" src="C.webp" alt="C">Centerpartiet (C)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1403,12 +1541,12 @@ const PAGES = {
       <h2><img class="party-logo" src="KD.webp" alt="KD">Kristdemokraterna (KD)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1417,12 +1555,12 @@ const PAGES = {
       <h2><img class="party-logo" src="MP.png" alt="MP">Miljöpartiet (MP)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1431,28 +1569,28 @@ const PAGES = {
       <h2><img class="party-logo" src="L.png" alt="L">Liberalerna (L)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
 
-    <h2 style="margin-top:44px;">Utanför riksdagen</h2>
+    <h2 style="margin-top:44px;">Utanför Riksdag</h2>
 
     <div class="party-proscons">
       <h2><img class="party-logo" src="AfS.png" alt="AfS">Alternativ för Sverige (AfS)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1461,12 +1599,12 @@ const PAGES = {
       <h2><img class="party-logo" src="OP.png" alt="ÖP">Örebropartiet (ÖP)</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1475,12 +1613,12 @@ const PAGES = {
       <h2><img class="party-logo" src="KVP.webp" alt="KVP">Kristna Värdepartiet</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
@@ -1489,210 +1627,562 @@ const PAGES = {
       <h2><img class="party-logo" src="AS.webp" alt="AS">Ambition Sverige</h2>
       <div class="proscons-grid">
         <div class="proscons-col pros">
-          <h4>Fördeler</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <h4>Fördelar</h4>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
         <div class="proscons-col cons">
           <h4>Nackdelar</h4>
-          <p>Innehåller fylls i här efter hand.</p>
+          <p>Innehållet fylls i här efter hand.</p>
         </div>
       </div>
     </div>
+
   `,
+
+
+  /* -------------------------------------------------------
+     HISTORY
+  ------------------------------------------------------- */
 
   historia: `
-    <p class="page-eyebrow">Utförska</p>
-    <h1 class="page-title">Historia</h1>
-    <p>
-      En kort genomgång av hur Sveriges partisystem och valtraditioner har utvecklats över tid.
-      Från den första riksdagen till dagens parlamentariska system har den svenska demokratin
-      förändrats genom reformer, kriser och ideologiska strider.
+
+    <p class="page-eyebrow">
+      Utforska
     </p>
-    <h2>Studs</h2>
+
+    <h1 class="page-title">
+      Historia
+    </h1>
+
     <p>
-      Sveriges riksdag har genomgått flera stora reformer. Från 1800-talet till modern tid har
-      utvecklingen av rösträtt, parlamentarism och dagens blockpolitik format landet.
+      En kort genomgång av riksdagens nästan 600 år långa
+      historia — från medeltida möten till dagens system
+      med 349 mandat.
     </p>
+
+    <h2>
+      Ståndsriksdagen (1435–1866)
+    </h2>
+
+    <p>
+      Riksdagens rötter går tillbaka till mötet i Arboga 1435,
+      som brukar räknas som Sveriges första riksdag. Vid Gustav
+      Vasas riksmöten i Västerås 1527 och 1544 fick riksdagen
+      sin klassiska form med fyra stånd: adel, präster, borgare
+      och bönder. Varje stånd röstade för sig, och det var bara
+      en minoritet av befolkningen som hade rösträtt.
+    </p>
+
+    <h2>
+      Tvåkammarriksdagen (1866–1970)
+    </h2>
+
+    <p>
+      1809 fick Sverige en ny regeringsform som delade makten
+      mellan kung och riksdag. 1866 avskaffades ståndsriksdagen
+      helt och ersattes med en tvåkammarriksdag — en första och
+      en andra kammare. Rösträtten var fortfarande begränsad,
+      ofta kopplad till inkomst och kön.
+    </p>
+
+    <h2>
+      Demokratins genombrott (1918–1921)
+    </h2>
+
+    <p>
+      1918 infördes allmän och lika rösträtt för män, och 1921
+      även för kvinnor. Valet 1921 var det första där både
+      kvinnor och män röstade på lika villkor, och räknas som
+      startpunkten för Sverige som en fullvärdig demokrati.
+    </p>
+
+    <h2>
+      Enkammarriksdagen (1971–idag)
+    </h2>
+
+    <p>
+      1971 avskaffades tvåkammarsystemet och ersattes med
+      dagens enkammarriksdag, till en början med 350 mandat.
+      Valet 1973 slutade exakt lika, 175 mot 175, vilket ledde
+      till att flera beslut fick avgöras genom lottning —
+      kallat "lotteririksdagen". För att undvika att det skulle
+      hända igen minskades antalet mandat till 349 från och
+      med 1976.
+    </p>
+
   `,
 
+
+  /* -------------------------------------------------------
+     MANDATE
+  ------------------------------------------------------- */
+
   mandat: `
-    <p class="page-eyebrow">Utförska</p>
-    <h1 class="page-title">Mandat</h1>
-    <p>
-      Riksdagen har 349 mandat totalt. Efter valet 2026 var det 4 procentsspärren för partier.
-      Det gör att partier utan stöd riskerar att halka ut ur parlamentet om de inte når spärren.
+
+    <p class="page-eyebrow">
+      Utforska
     </p>
 
-    <p class="mandate-year">2026</p>
-    <p class="mandate-note">Resultat efter valet 13 september 2026.</p>
+    <h1 class="page-title">
+      Mandat
+    </h1>
+
+    <p>
+      Riksdagen har 349 mandat totalt. Efter valet grupperar
+      sig partierna i två block: Vänsterblocket (Oppositionen)
+      och Tidöpartierna. Varje prick nedan är ett mandat,
+      färgat efter parti.
+    </p>
+
+    <p class="mandate-year">
+      2026
+    </p>
+
+    <p class="mandate-note">
+      Resultat efter valet 13 september 2026, samtliga
+      6 626 valdistrikt räknade.
+    </p>
 
     <div class="numbers-png-wrap">
-      <img class="numbers-png" src="Numbers.png" alt="Mandatfördelning 2026" />
-      <p class="numbers-png-fallback">Numbers.png saknas i den här versionen.</p>
+
+      <img
+        src="Numbers.png"
+        alt="Mandatfördelning 2026"
+        class="numbers-png"
+        onerror="
+          this.closest('.numbers-png-wrap')
+          .classList.add('missing')
+        "
+      >
+
+      <p class="numbers-png-fallback">
+        Numbers.png saknas ännu — ladda upp bilden så lägger
+        jag in den här.
+      </p>
+
     </div>
 
-    <h2>Partierna</h2>
+    <h2>
+      Partierna
+    </h2>
+
     <div class="table-scroll">
+
       <table class="party-table">
+
         <thead>
           <tr>
             <th>Parti</th>
             <th>Ledare</th>
-            <th>Röster</th>
+            <th>Röster &amp; andel</th>
             <th>Mandat</th>
           </tr>
         </thead>
+
         <tbody>
+
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="S.png" alt="S" />
+                <img class="party-logo" src="S.png" alt="S">
                 Socialdemokraterna (S)
               </div>
             </td>
             <td>Magdalena Andersson</td>
-            <td class="num">1 886 535</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:28.5%;background:#E8112D"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>1 886 535 röster</span>
+                  <strong>28,5 %</strong>
+                </div>
+              </div>
+            </td>
             <td class="seats">99</td>
           </tr>
+
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="M.webp" alt="M" />
+                <img class="party-logo" src="M.webp" alt="M">
                 Moderaterna (M)
               </div>
             </td>
             <td>Ulf Kristersson</td>
-            <td class="num">1 336 802</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:20.2%;background:#52BDEC"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>1 336 802 röster</span>
+                  <strong>20,2 %</strong>
+                </div>
+              </div>
+            </td>
             <td class="seats">70</td>
           </tr>
+
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="SD.png" alt="SD" />
+                <img class="party-logo" src="SD.png" alt="SD">
                 Sverigedemokraterna (SD)
               </div>
             </td>
             <td>Jimmie Åkesson</td>
-            <td class="num">1 176 834</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:17.8%;background:#DDDD00"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>1 176 834 röster</span>
+                  <strong>17,8 %</strong>
+                </div>
+              </div>
+            </td>
             <td class="seats">62</td>
           </tr>
+
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="V.webp" alt="V" />
+                <img class="party-logo" src="V.webp" alt="V">
                 Vänsterpartiet (V)
               </div>
             </td>
             <td>Nooshi Dadgostar</td>
-            <td class="num">565 599</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:8.5%;background:#AF1E2D"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>565 599 röster</span>
+                  <strong>8,5 %</strong>
+                </div>
+              </div>
+            </td>
             <td class="seats">30</td>
           </tr>
+
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="C.webp" alt="C" />
+                <img class="party-logo" src="C.webp" alt="C">
                 Centerpartiet (C)
               </div>
             </td>
             <td>Elisabeth Thand Ringqvist</td>
-            <td class="num">477 541</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:7.2%;background:#009933"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>474 541 röster</span>
+                  <strong>7,2 %</strong>
+                </div>
+              </div>
+            </td>
             <td class="seats">25</td>
           </tr>
+
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="KD.webp" alt="KD" />
+                <img class="party-logo" src="KD.webp" alt="KD">
                 Kristdemokraterna (KD)
               </div>
             </td>
             <td>Ebba Busch</td>
-            <td class="num">415 867</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:6.3%;background:#000077"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>415 867 röster</span>
+                  <strong>6,3 %</strong>
+                </div>
+              </div>
+            </td>
             <td class="seats">22</td>
           </tr>
+
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="MP.png" alt="MP" />
+                <img class="party-logo" src="MP.png" alt="MP">
                 Miljöpartiet (MP)
               </div>
             </td>
             <td>Amanda Lind</td>
-            <td class="num">413 091</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:6.2%;background:#83CF39"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>413 091 röster</span>
+                  <strong>6,2 %</strong>
+                </div>
+              </div>
+            </td>
             <td class="seats">22</td>
           </tr>
+
           <tr>
             <td>
               <div class="party-cell">
-                <img class="party-logo" src="L.png" alt="L" />
+                <img class="party-logo" src="L.png" alt="L">
                 Liberalerna (L)
               </div>
             </td>
             <td>Simona Mohamsson</td>
-            <td class="num">359 850</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:5.4%;background:#006AB3"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>359 850 röster</span>
+                  <strong>5,4 %</strong>
+                </div>
+              </div>
+            </td>
             <td class="seats">19</td>
           </tr>
+
         </tbody>
+
       </table>
+
     </div>
 
-    <h2>Blocken</h2>
+
+    <h2>
+      Blocken
+    </h2>
+
     <div class="bloc-summary">
-      <div class="bloc-card">
-        <h3>Vänsterblocket <span class="bloc-total">176 mandat</span></h3>
-        <ul class="party-chips">
-          <li><span class="swatch" style="background:#E8112D"></span>Socialdemokraterna (S)<span class="party-seats">99</span></li>
-          <li><span class="swatch" style="background:#AF1E2D"></span>Vänsterpartiet (V)<span class="party-seats">30</span></li>
-          <li><span class="swatch" style="background:#83CF39"></span>Miljöpartiet (MP)<span class="party-seats">22</span></li>
-          <li><span class="swatch" style="background:#009933"></span>Centerpartiet (C)<span class="party-seats">25</span></li>
-        </ul>
-      </div>
 
       <div class="bloc-card">
-        <h3>Högerblocket <span class="bloc-total">173 mandat</span></h3>
+
+        <h3>
+          Vänsterblocket
+          <span class="bloc-total">
+            176 mandat
+          </span>
+        </h3>
+
         <ul class="party-chips">
-          <li><span class="swatch" style="background:#52BDEC"></span>Moderaterna (M)<span class="party-seats">70</span></li>
-          <li><span class="swatch" style="background:#DDD0D0"></span>Sverigedemokraterna (SD)<span class="party-seats">62</span></li>
-          <li><span class="swatch" style="background:#000077"></span>Kristdemokraterna (KD)<span class="party-seats">22</span></li>
-          <li><span class="swatch" style="background:#006AB3"></span>Liberalerna (L)<span class="party-seats">19</span></li>
+
+          <li>
+            <span
+              class="swatch"
+              style="background:#E8112D"
+            ></span>
+            Socialdemokraterna (S)
+            <span class="party-seats">99</span>
+          </li>
+
+          <li>
+            <span
+              class="swatch"
+              style="background:#AF1E2D"
+            ></span>
+            Vänsterpartiet (V)
+            <span class="party-seats">30</span>
+          </li>
+
+          <li>
+            <span
+              class="swatch"
+              style="background:#83CF39"
+            ></span>
+            Miljöpartiet (MP)
+            <span class="party-seats">22</span>
+          </li>
+
+          <li>
+            <span
+              class="swatch"
+              style="background:#009933"
+            ></span>
+            Centerpartiet (C)
+            <span class="party-seats">25</span>
+          </li>
+
         </ul>
+
       </div>
+
+
+      <div class="bloc-card">
+
+        <h3>
+          Tidöpartierna
+          <span class="bloc-total">
+            173 mandat
+          </span>
+        </h3>
+
+        <ul class="party-chips">
+
+          <li>
+            <span
+              class="swatch"
+              style="background:#52BDEC"
+            ></span>
+            Moderaterna (M)
+            <span class="party-seats">70</span>
+          </li>
+
+          <li>
+            <span
+              class="swatch"
+              style="background:#DDDD00"
+            ></span>
+            Sverigedemokraterna (SD)
+            <span class="party-seats">62</span>
+          </li>
+
+          <li>
+            <span
+              class="swatch"
+              style="background:#000077"
+            ></span>
+            Kristdemokraterna (KD)
+            <span class="party-seats">22</span>
+          </li>
+
+          <li>
+            <span
+              class="swatch"
+              style="background:#006AB3"
+            ></span>
+            Liberalerna (L)
+            <span class="party-seats">19</span>
+          </li>
+
+        </ul>
+
+      </div>
+
     </div>
 
-    <p>Majoriteten i riksdagen kräver 175 mandat.</p>
+    <p>
+      Majoritet i riksdagen kräver 175 mandat.
+    </p>
+
   `,
+
+
+  /* -------------------------------------------------------
+     4 PERCENT
+  ------------------------------------------------------- */
 
   riksdagslinjen: `
-    <p class="page-eyebrow">Utförska</p>
-    <h1 class="page-title">4 Procentsspärren</h1>
-    <p>
-      Här kommer en genomgång av fyraprocentsspärren och hur den påverkar små partier och
-      ideologiska rörelser. Det finns ett tydligt system där partier måste samla stöd i valet
-      för att få vara representerade i riksdagen.
+
+    <p class="page-eyebrow">
+      Utforska
     </p>
+
+    <h1 class="page-title">
+      4 Procentsspärren
+    </h1>
+
     <p>
-      Innehåll fylls i här efter hand.
+      Här kommer en genomgång av fyraprocentsspärren — regeln
+      som säger att ett parti måste få minst 4 % av rösterna
+      i hela landet, eller minst 12 % i en enskild valkrets,
+      för att komma in i riksdagen.
     </p>
+
+    <p>
+      Innehållet fylls i här efter hand.
+    </p>
+
   `,
 
-  utanfors: `
-    <p class="page-eyebrow">Utförska</p>
-    <h1 class="page-title">Utanför Riksdagen (4 Partier)</h1>
-    <p>
-      Här kommer en genomgång av fyra partier som inte sitter i riksdagen men kan få stöd,
-      påverka debatten eller ta sig in i parlamentet i ett framtida val.
+
+  /* -------------------------------------------------------
+     OUTSIDE RIKSDAG
+  ------------------------------------------------------- */
+
+  utanfor: `
+
+    <p class="page-eyebrow">
+      Utforska
     </p>
+
+    <h1 class="page-title">
+      Utanför Riksdag (4 Partier)
+    </h1>
+
+    <p>
+      Här kommer en genomgång av de fyra partierna utanför
+      riksdagen. Klicka på en partiledare för att se mer
+      information.
+    </p>
+
     <ul>
-      <li>Alternativ för Sverige (AfS)</li>
-      <li>Örebropartiet (ÖP)</li>
-      <li>Kristna Värdepartiet</li>
-      <li>Ambition Sverige</li>
+
+      <li>
+        Alternativ för Sverige (AfS)
+      </li>
+
+      <li>
+        Örebropartiet (ÖP)
+      </li>
+
+      <li>
+        Kristna Värdepartiet
+      </li>
+
+      <li>
+        Ambition Sverige
+      </li>
+
     </ul>
-    <h2>Partiledarna</h2>
-    <div class="leader-grid" id="leaderGridUtanfor"></div>
+
+    <h2>
+      Partiledarna
+    </h2>
+
+    <div
+      class="leader-grid"
+      id="leaderGridUtanfor"
+    ></div>
+
   `
+
 };
 
-const RIKSDAGS_LEADERS = [
+
+/* =========================================================
+   CURRENT PAGE
+========================================================= */
+
+let currentPage = "hem";
+
+const pageContentEl =
+  document.getElementById("pageContent");
+
+const navListEl =
+  document.getElementById("navList");
+
+
+/* =========================================================
+   LEADER DATA
+========================================================= */
+
+const RIKSDAG_LEADERS = [
+
   {
     code: "S",
     name: "Magdalena Andersson",
@@ -1704,6 +2194,7 @@ const RIKSDAGS_LEADERS = [
     gender: "Kvinna",
     joined: "1992"
   },
+
   {
     code: "M",
     name: "Ulf Kristersson",
@@ -1715,6 +2206,7 @@ const RIKSDAGS_LEADERS = [
     gender: "Man",
     joined: "1980"
   },
+
   {
     code: "SD",
     name: "Jimmie Åkesson",
@@ -1726,6 +2218,7 @@ const RIKSDAGS_LEADERS = [
     gender: "Man",
     joined: "1995"
   },
+
   {
     code: "V",
     name: "Nooshi Dadgostar",
@@ -1737,6 +2230,7 @@ const RIKSDAGS_LEADERS = [
     gender: "Kvinna",
     joined: "1990-talet"
   },
+
   {
     code: "C",
     name: "Elisabeth Thand Ringqvist",
@@ -1748,6 +2242,7 @@ const RIKSDAGS_LEADERS = [
     gender: "Kvinna",
     joined: "Ej offentligt angivet"
   },
+
   {
     code: "KD",
     name: "Ebba Busch",
@@ -1759,6 +2254,7 @@ const RIKSDAGS_LEADERS = [
     gender: "Kvinna",
     joined: "2002"
   },
+
   {
     code: "MP",
     name: "Amanda Lind",
@@ -1770,6 +2266,7 @@ const RIKSDAGS_LEADERS = [
     gender: "Kvinna",
     joined: "1999"
   },
+
   {
     code: "L",
     name: "Simona Mohamsson",
@@ -1781,11 +2278,14 @@ const RIKSDAGS_LEADERS = [
     gender: "Kvinna",
     joined: "2014"
   }
+
 ];
 
-const UTANFOR_LEADERS = [
+
+const OUTSIDE_LEADERS = [
+
   {
-    code: "AfS",
+    code: "AFS",
     name: "Gustav Kasselstrand",
     party: "Alternativ för Sverige (AfS)",
     color: "#00165a",
@@ -1795,8 +2295,9 @@ const UTANFOR_LEADERS = [
     gender: "Man",
     joined: "2018"
   },
+
   {
-    code: "ÖP",
+    code: "OP",
     name: "Markus Allard",
     party: "Örebropartiet (ÖP)",
     color: "#8B0000",
@@ -1806,8 +2307,9 @@ const UTANFOR_LEADERS = [
     gender: "Man",
     joined: "2014"
   },
+
   {
-    code: "KVP",
+    code: "KV",
     name: "Mats Selander",
     party: "Kristna Värdepartiet",
     color: "#6B3FA0",
@@ -1817,9 +2319,10 @@ const UTANFOR_LEADERS = [
     gender: "Man",
     joined: "Ej offentligt angivet"
   },
+
   {
     code: "AS",
-    name: "Elsa Widing",
+    name: "Elsa Widding",
     party: "Ambition Sverige",
     color: "#2E7D6B",
     photo: "Elsa.jpg",
@@ -1828,42 +2331,53 @@ const UTANFOR_LEADERS = [
     gender: "Kvinna",
     joined: "2025"
   }
+
 ];
 
+
 /* =========================================================
-   AGE CALCULATION
+   AGE CALCULATOR
 ========================================================= */
 
 function calculateAge(birthISO) {
+
   if (!birthISO) {
     return "Ej angiven";
   }
 
-  const birth = new Date(birthISO + "T00:00:00");
+  const birth =
+    new Date(birthISO + "T00:00:00");
 
-  const today = new Date();
+  const today =
+    new Date();
 
-  let age = today.getFullYear() - birth.getFullYear();
+  let age =
+    today.getFullYear() -
+    birth.getFullYear();
 
-  const birthDayThisYear = new Date(
-    today.getFullYear(),
-    birth.getMonth(),
-    birth.getDate()
-  );
+  const birthdayThisYear =
+    new Date(
+      today.getFullYear(),
+      birth.getMonth(),
+      birth.getDate()
+    );
 
-  if (today < birthDayThisYear) {
-    age--; 
+  if (today < birthdayThisYear) {
+    age--;
   }
 
   return age + " år";
 }
+
 
 /* =========================================================
    LEADER INFORMATION
 ========================================================= */
 
 function showLeaderInfo(card, leader, info) {
-  const wasOpen = info.classList.contains("open");
+
+  const wasOpen =
+    info.classList.contains("open");
 
   document
     .querySelectorAll(".leader-card.selected")
@@ -1875,480 +2389,1193 @@ function showLeaderInfo(card, leader, info) {
     wasOpen &&
     info.dataset.currentLeader === leader.code
   ) {
+
     info.classList.remove("open");
+
     return;
   }
 
   card.classList.add("selected");
 
-  info.querySelector(".leader-info-name").textContent = leader.name;
-  info.querySelector(".leader-info-party").textContent = leader.party;
+  info.querySelector(
+    ".leader-info-name"
+  ).textContent = leader.name;
 
-  info.querySelector(".leader-age").textContent =
+  info.querySelector(
+    ".leader-info-party"
+  ).textContent = leader.party;
+
+  info.querySelector(
+    ".leader-age"
+  ).textContent =
     calculateAge(leader.birthISO);
 
-  info.querySelector(".leader-birth").textContent =
+  info.querySelector(
+    ".leader-birth"
+  ).textContent =
     leader.birth;
 
-  info.querySelector(".leader-gender").textContent =
+  info.querySelector(
+    ".leader-gender"
+  ).textContent =
     leader.gender;
 
-  info.querySelector(".leader-joined").textContent =
+  info.querySelector(
+    ".leader-joined"
+  ).textContent =
     leader.joined;
 
-  info.dataset.currentLeader = leader.code;
+  info.dataset.currentLeader =
+    leader.code;
 
   info.classList.add("open");
 }
+
 
 /* =========================================================
    LEADER GRID
 ========================================================= */
 
-function renderLeaderGrid(containerId, leaders) {
-  const el = document.getElementById(containerId);
+function renderLeaderGrid(
+  containerId,
+  leaders
+) {
+
+  const el =
+    document.getElementById(containerId);
 
   if (!el) {
     return;
   }
 
-  el.innerHTML = leaders.map((leader, index) => `
-    <div
-      class="leader-card"
-      tabindex="0"
-      role="button"
-      data-leader-container="${containerId}"
-      data-leader-index="${index}"
-      aria-label="Visa information om ${leader.name}"
-    >
+  el.innerHTML =
+    leaders.map((l, index) => `
 
-      <div class="leader-photo-wrap ${leader.photo ? '' : 'missing'}">
+      <div
+        class="leader-card"
+        tabindex="0"
+        role="button"
+        data-leader-container="${containerId}"
+        data-leader-index="${index}"
+        aria-label="Visa information om ${escapeHtml(l.name)}"
+      >
 
-        ${leader.photo ? `
+        <div class="leader-photo-wrap${l.photo ? "" : " missing"}">
+
+          ${l.photo ? `
           <img
             class="leader-photo-img"
-            src="${leader.photo}"
-            alt="${leader.name}"
+            src="${escapeHtml(l.photo)}"
+            alt="${escapeHtml(l.name)}"
             onerror="
               this.closest('.leader-photo-wrap')
-                .classList.add('missing')
+              .classList.add('missing')
             "
           >
-        ` : `
-          <img class="leader-photo-img" src="" alt="" style="display:none;">
-        `}
+          ` : `
+          <img class="leader-photo-img" src="" alt="" style="display:none">
+          `}
 
-        <div
-          class="leader-photo-fallback"
-          style="background:${leader.color}"
-        >
-          <svg
-            class="leader-silhouette"
-            viewBox="0 0 100 100"
-            aria-hidden="true"
+          <div
+            class="leader-photo-fallback"
+            style="background:${l.color}"
           >
-            <circle cx="50" cy="36" r="18"/>
-            <path d="M15 96c0-24.85 15.67-39 35-39s35 14.15 35 39"/>
-          </svg>
+
+            <svg
+              class="leader-silhouette"
+              viewBox="0 0 100 100"
+              aria-hidden="true"
+            >
+
+              <circle
+                cx="50"
+                cy="36"
+                r="18"
+              />
+
+              <path
+                d="M15 96c0-24.85 15.67-39 35-39s35 14.15 35 39"
+              />
+
+            </svg>
+
+          </div>
+
         </div>
+
+        <div class="leader-caption">
+
+          <span class="leader-name">
+            ${escapeHtml(l.name)}
+          </span>
+
+          <span class="leader-party">
+            ${escapeHtml(l.party)}
+          </span>
+
+        </div>
+
       </div>
 
-      <div class="leader-caption">
-        <span class="leader-name">${leader.name}</span>
-        <span class="leader-party">${leader.party}</span>
-      </div>
-    </div>
-  `).join('');
+    `).join("");
 
-  const info = document.createElement('div');
-  info.className = 'leader-info';
-  info.id = containerId + '-info';
+
+  /* -------------------------------------------------------
+     INFORMATION BOX
+  ------------------------------------------------------- */
+
+  const info =
+    document.createElement("div");
+
+  info.className =
+    "leader-info";
+
+  info.id =
+    containerId + "-info";
+
   info.innerHTML = `
+
     <div class="leader-info-header">
+
       <div>
+
         <div class="leader-info-name"></div>
+
         <div class="leader-info-party"></div>
+
       </div>
-      <button type="button" class="leader-info-close" aria-label="Stäng information">×</button>
+
+      <button
+        type="button"
+        class="leader-info-close"
+        aria-label="Stäng information"
+      >
+        ×
+      </button>
+
     </div>
+
 
     <div class="leader-info-grid">
+
       <div class="leader-info-item">
-        <span class="leader-info-label">Ålder</span>
+
+        <span class="leader-info-label">
+          Ålder
+        </span>
+
         <span class="leader-info-value leader-age"></span>
+
       </div>
+
+
       <div class="leader-info-item">
-        <span class="leader-info-label">Född</span>
+
+        <span class="leader-info-label">
+          Födelsedatum
+        </span>
+
         <span class="leader-info-value leader-birth"></span>
+
       </div>
+
+
       <div class="leader-info-item">
-        <span class="leader-info-label">Kön</span>
+
+        <span class="leader-info-label">
+          Kön
+        </span>
+
         <span class="leader-info-value leader-gender"></span>
+
       </div>
+
+
       <div class="leader-info-item">
-        <span class="leader-info-label">Medlem sedan</span>
+
+        <span class="leader-info-label">
+          Medlem sedan
+        </span>
+
         <span class="leader-info-value leader-joined"></span>
+
       </div>
+
     </div>
+
   `;
 
-  el.insertAdjacentElement('afterend', info);
+  el.insertAdjacentElement(
+    "afterend",
+    info
+  );
 
-  const cards = el.querySelectorAll('.leader-card');
+
+  /* -------------------------------------------------------
+     CARD EVENTS
+  ------------------------------------------------------- */
+
+  const cards =
+    el.querySelectorAll(".leader-card");
 
   cards.forEach((card) => {
-    const index = Number(card.dataset.leaderIndex);
-    const leader = leaders[index];
 
-    card.addEventListener('click', () => {
-      showLeaderInfo(card, leader, info);
-    });
+    const index =
+      Number(card.dataset.leaderIndex);
 
-    card.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        showLeaderInfo(card, leader, info);
+    const leader =
+      leaders[index];
+
+    card.addEventListener(
+      "click",
+      () => {
+        showLeaderInfo(
+          card,
+          leader,
+          info
+        );
       }
-    });
+    );
+
+
+    card.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+
+          event.preventDefault();
+
+          showLeaderInfo(
+            card,
+            leader,
+            info
+          );
+
+        }
+
+      }
+    );
+
   });
 
-  info.querySelector('.leader-info-close').addEventListener('click', () => {
-    info.classList.remove('open');
-    cards.forEach((card) => card.classList.remove('selected'));
-  });
+
+  /* -------------------------------------------------------
+     CLOSE BUTTON
+  ------------------------------------------------------- */
+
+  info
+    .querySelector(".leader-info-close")
+    .addEventListener(
+      "click",
+      () => {
+
+        info.classList.remove("open");
+
+        cards.forEach((card) => {
+          card.classList.remove("selected");
+        });
+
+      }
+    );
+
 }
+
 
 /* =========================================================
    NAVIGATION RENDERING
 ========================================================= */
 
 function renderNav() {
-  const navListEl = document.getElementById('navList');
-  navListEl.innerHTML = '';
+
+  navListEl.innerHTML = "";
 
   NAV_ORDER.forEach((key) => {
-    const li = document.createElement('li');
+
+    const li =
+      document.createElement("li");
+
+    li.setAttribute(
+      "role",
+      "none"
+    );
 
     if (key === currentPage) {
-      li.classList.add('active');
+      li.classList.add("active");
     }
 
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.textContent = NAV[key];
-    btn.addEventListener('click', () => {
-      goToPage(key);
-      closeNav();
-    });
+
+    const btn =
+      document.createElement("button");
+
+    btn.setAttribute(
+      "role",
+      "menuitem"
+    );
+
+    btn.type = "button";
+
+    btn.textContent =
+      NAV[key];
+
+    btn.addEventListener(
+      "click",
+      () => {
+
+        goToPage(key);
+
+        closeNav();
+
+      }
+    );
 
     li.appendChild(btn);
+
     navListEl.appendChild(li);
+
   });
+
 }
+
 
 /* =========================================================
    PAGE RENDERING
 ========================================================= */
 
 function renderPage() {
-  pageContentEl.innerHTML = PAGES[currentPage];
 
-  if (currentPage === 'partier') {
-    renderLeaderGrid('leaderGridPartier', RIKSDAGS_LEADERS);
+  pageContentEl.innerHTML =
+    PAGES[currentPage];
+
+
+  if (currentPage === "partier") {
+
+    renderLeaderGrid(
+      "leaderGridPartier",
+      RIKSDAG_LEADERS
+    );
+
   }
 
-  if (currentPage === 'utanfors') {
-    renderLeaderGrid('leaderGridUtanfor', UTANFOR_LEADERS);
+
+  if (currentPage === "utanfor") {
+
+    renderLeaderGrid(
+      "leaderGridUtanfor",
+      OUTSIDE_LEADERS
+    );
+
   }
+
 }
+
 
 /* =========================================================
    PAGE SWITCHING
 ========================================================= */
 
-let currentPage = 'hem';
-
-const pageContentEl = document.getElementById('pageContent');
-const navListEl = document.getElementById('navList');
-
 function goToPage(key) {
+
   if (key === currentPage) {
     return;
   }
 
-  pageContentEl.classList.add('swap-out');
-  window.setTimeout(() => {
-    currentPage = key;
-    renderPage();
-    renderNav();
-    pageContentEl.classList.remove('swap-out');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 200);
+  pageContentEl.classList.add(
+    "swap-out"
+  );
+
+  window.setTimeout(
+    () => {
+
+      currentPage = key;
+
+      renderPage();
+
+
+      Array
+        .from(navListEl.children)
+        .forEach((li, i) => {
+
+          li.classList.toggle(
+            "active",
+            NAV_ORDER[i] === currentPage
+          );
+
+        });
+
+
+      pageContentEl.classList.remove(
+        "swap-out"
+      );
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    },
+    200
+  );
+
 }
 
+
 /* =========================================================
-   HTML ESCAPE
+   HTML ESCAPING
 ========================================================= */
 
 function escapeHtml(str) {
+
   return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
 }
+
+
+/* =========================================================
+   INITIAL RENDER
+========================================================= */
+
+renderNav();
+
+renderPage();
+
 
 /* =========================================================
    SEARCH
 ========================================================= */
 
-const SEARCH_ITEMS = Object.keys(PAGES).map((key) => ({
-  key,
-  title: NAV[key] || key,
-  content: PAGES[key]
-}));
+const SEARCH_TITLES =
+  Object.assign(
+    { hem: "Hem" },
+    NAV
+  );
 
-const searchInputEl = document.getElementById('searchInput');
-const searchFormEl = document.getElementById('searchForm');
-const searchResultsEl = document.getElementById('searchResults');
-
-let currentResults = [];
-let highlightedIndex = -1;
-
-function closeSearch() {
-  searchResultsEl.classList.remove('open');
-  searchInputEl.setAttribute('aria-expanded', 'false');
-  highlightedIndex = -1;
-}
-
-function openSearch() {
-  searchResultsEl.classList.add('open');
-  searchInputEl.setAttribute('aria-expanded', 'true');
-}
 
 function stripHtml(html) {
+
   return html
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
+
+    .replace(/<[^>]*>/g, " ")
+
+    .replace(/&amp;/g, "&")
+
+    .replace(/\s+/g, " ")
+
     .trim();
+
 }
 
-function buildSnippet(content, query) {
-  const lower = content.toLowerCase();
-  const idx = lower.indexOf(query);
+
+const SEARCH_INDEX =
+  Object.keys(PAGES).map((key) => ({
+
+    key: key,
+
+    title:
+      SEARCH_TITLES[key] || key,
+
+    content:
+      stripHtml(PAGES[key])
+
+  }));
+
+
+function buildSnippet(
+  content,
+  query
+) {
+
+  const lower =
+    content.toLowerCase();
+
+  const idx =
+    lower.indexOf(query);
+
   if (idx === -1) {
-    const short = content.slice(0, 90);
-    return escapeHtml(short) + (content.length > 90 ? '…' : '');
+
+    const short =
+      content.slice(0, 90);
+
+    return (
+      escapeHtml(short) +
+      (
+        content.length > 90
+          ? "…"
+          : ""
+      )
+    );
+
   }
 
-  const start = Math.max(0, idx - 40);
-  const end = Math.min(content.length, idx + query.length + 40);
-  const snippet = content.slice(start, end);
 
-  const before = escapeHtml(snippet.slice(0, idx - start));
-  const match = escapeHtml(snippet.slice(idx - start, idx - start + query.length));
-  const after = escapeHtml(snippet.slice(idx - start + query.length));
+  const start =
+    Math.max(0, idx - 40);
 
-  return `${before}<mark>${match}</mark>${after}`;
+  const end =
+    Math.min(
+      content.length,
+      idx + query.length + 50
+    );
+
+  const snippet =
+    content.slice(start, end);
+
+  const relIdx =
+    idx - start;
+
+  const before =
+    escapeHtml(
+      snippet.slice(0, relIdx)
+    );
+
+  const match =
+    escapeHtml(
+      snippet.slice(
+        relIdx,
+        relIdx + query.length
+      )
+    );
+
+  const after =
+    escapeHtml(
+      snippet.slice(
+        relIdx + query.length
+      )
+    );
+
+  return (
+    (start > 0 ? "…" : "") +
+    before +
+    "<mark>" +
+    match +
+    "</mark>" +
+    after +
+    (end < content.length ? "…" : "")
+  );
+
 }
+
 
 function runSearch(rawQuery) {
-  const query = rawQuery.trim().toLowerCase();
+
+  const query =
+    rawQuery
+      .trim()
+      .toLowerCase();
+
   if (!query) {
-    searchResultsEl.innerHTML = '';
-    closeSearch();
-    return;
+    return [];
   }
 
-  const results = SEARCH_ITEMS
-    .filter((item) => {
-      const title = item.title.toLowerCase();
-      const body = stripHtml(item.content).toLowerCase();
-      return title.includes(query) || body.includes(query);
+  return SEARCH_INDEX
+
+    .filter((item) =>
+      item.title
+        .toLowerCase()
+        .includes(query)
+
+      ||
+
+      item.content
+        .toLowerCase()
+        .includes(query)
+    )
+
+    .sort((a, b) => {
+
+      const aTitleHit =
+        a.title
+          .toLowerCase()
+          .includes(query)
+          ? 0
+          : 1;
+
+      const bTitleHit =
+        b.title
+          .toLowerCase()
+          .includes(query)
+          ? 0
+          : 1;
+
+      return (
+        aTitleHit -
+        bTitleHit
+      );
+
     })
-    .slice(0, 8)
+
     .map((item) => ({
+
       key: item.key,
+
       title: item.title,
-      snippet: buildSnippet(stripHtml(item.content), query)
+
+      snippet:
+        buildSnippet(
+          item.content,
+          query
+        )
+
     }));
 
-  currentResults = results;
+}
+
+
+/* =========================================================
+   SEARCH ELEMENTS
+========================================================= */
+
+const searchInputEl =
+  document.getElementById(
+    "searchInput"
+  );
+
+const searchFormEl =
+  document.getElementById(
+    "searchForm"
+  );
+
+const searchResultsEl =
+  document.getElementById(
+    "searchResults"
+  );
+
+
+let currentResults = [];
+
+let highlightedIndex = -1;
+
+
+/* =========================================================
+   SEARCH OPEN / CLOSE
+========================================================= */
+
+function closeSearch() {
+
+  searchResultsEl.classList.remove(
+    "open"
+  );
+
+  searchInputEl.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
   highlightedIndex = -1;
 
-  if (results.length === 0) {
-    searchResultsEl.innerHTML = `<p class="no-results">Inga resultat för "${escapeHtml(rawQuery)}".</p>`;
-    openSearch();
-    return;
-  }
-
-  const ul = document.createElement('ul');
-
-  results.forEach((result) => {
-    const li = document.createElement('li');
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.innerHTML = `
-      <span class="result-title">${escapeHtml(result.title)}</span>
-      <span class="result-snippet">${result.snippet}</span>
-    `;
-    btn.addEventListener('click', () => {
-      selectResult(result.key);
-    });
-    li.appendChild(btn);
-    ul.appendChild(li);
-  });
-
-  searchResultsEl.innerHTML = '';
-  searchResultsEl.appendChild(ul);
-  openSearch();
 }
+
+
+function openSearch() {
+
+  searchResultsEl.classList.add(
+    "open"
+  );
+
+  searchInputEl.setAttribute(
+    "aria-expanded",
+    "true"
+  );
+
+}
+
+
+/* =========================================================
+   SELECT SEARCH RESULT
+========================================================= */
 
 function selectResult(key) {
+
   closeNav();
+
   goToPage(key);
+
   closeSearch();
+
 }
+
+
+/* =========================================================
+   SEARCH RESULTS
+========================================================= */
+
+function renderSearchResults(
+  results,
+  query
+) {
+
+  currentResults =
+    results;
+
+  highlightedIndex =
+    -1;
+
+
+  if (!query.trim()) {
+
+    searchResultsEl.innerHTML =
+      "";
+
+    closeSearch();
+
+    return;
+
+  }
+
+
+  if (results.length === 0) {
+
+    searchResultsEl.innerHTML = `
+
+      <p class="no-results">
+        Inga resultat för
+        "${escapeHtml(query)}"
+      </p>
+
+    `;
+
+    openSearch();
+
+    return;
+
+  }
+
+
+  const ul =
+    document.createElement("ul");
+
+
+  results.forEach((r) => {
+
+    const li =
+      document.createElement("li");
+
+    li.setAttribute(
+      "role",
+      "none"
+    );
+
+
+    const btn =
+      document.createElement("button");
+
+    btn.type =
+      "button";
+
+    btn.setAttribute(
+      "role",
+      "option"
+    );
+
+
+    btn.innerHTML = `
+
+      <span class="result-title">
+        ${escapeHtml(r.title)}
+      </span>
+
+      <span class="result-snippet">
+        ${r.snippet}
+      </span>
+
+    `;
+
+
+    btn.addEventListener(
+      "click",
+      () => {
+        selectResult(r.key);
+      }
+    );
+
+
+    li.appendChild(btn);
+
+    ul.appendChild(li);
+
+  });
+
+
+  searchResultsEl.innerHTML =
+    "";
+
+  searchResultsEl.appendChild(
+    ul
+  );
+
+  openSearch();
+
+}
+
+
+/* =========================================================
+   SEARCH HIGHLIGHT
+========================================================= */
 
 function updateHighlight() {
-  const buttons = searchResultsEl.querySelectorAll('li button');
-  buttons.forEach((btn, i) => {
-    btn.classList.toggle('is-highlighted', i === highlightedIndex);
-  });
+
+  const buttons =
+    searchResultsEl
+      .querySelectorAll(
+        "li button"
+      );
+
+
+  buttons.forEach(
+    (btn, i) => {
+
+      btn.classList.toggle(
+        "is-highlighted",
+        i === highlightedIndex
+      );
+
+
+      if (
+        i === highlightedIndex
+      ) {
+
+        btn.scrollIntoView({
+          block: "nearest"
+        });
+
+      }
+
+    }
+  );
+
 }
+
+
+/* =========================================================
+   SEARCH INPUT
+========================================================= */
 
 let searchDebounce;
-searchInputEl.addEventListener('input', () => {
-  window.clearTimeout(searchDebounce);
-  const value = searchInputEl.value;
 
-  searchDebounce = window.setTimeout(() => {
-    runSearch(value);
-  }, 120);
-});
+searchInputEl.addEventListener(
+  "input",
+  () => {
 
-searchFormEl.addEventListener('submit', (e) => {
-  e.preventDefault();
+    window.clearTimeout(
+      searchDebounce
+    );
 
-  if (highlightedIndex >= 0 && currentResults[highlightedIndex]) {
-    selectResult(currentResults[highlightedIndex].key);
-  } else if (currentResults.length > 0) {
-    selectResult(currentResults[0].key);
+    const value =
+      searchInputEl.value;
+
+
+    searchDebounce =
+      window.setTimeout(
+        () => {
+
+          renderSearchResults(
+            runSearch(value),
+            value
+          );
+
+        },
+        120
+      );
+
   }
-});
+);
 
-searchInputEl.addEventListener('keydown', (e) => {
-  if (!currentResults.length) {
-    return;
-  }
-
-  if (e.key === 'ArrowDown') {
-    e.preventDefault();
-    highlightedIndex = Math.min(highlightedIndex + 1, currentResults.length - 1);
-    updateHighlight();
-  } else if (e.key === 'ArrowUp') {
-    e.preventDefault();
-    highlightedIndex = Math.max(highlightedIndex - 1, -1);
-    updateHighlight();
-  } else if (e.key === 'Escape') {
-    closeSearch();
-  }
-});
-
-document.addEventListener('click', (e) => {
-  if (
-    !searchResultsEl.contains(e.target) &&
-    e.target !== searchInputEl &&
-    !searchFormEl.contains(e.target)
-  ) {
-    closeSearch();
-  }
-});
 
 /* =========================================================
-   NAV TOGGLE
+   SEARCH FOCUS
 ========================================================= */
 
-const navTrigger = document.getElementById('navTrigger');
-const navDropdown = document.getElementById('navDropdown');
+searchInputEl.addEventListener(
+  "focus",
+  () => {
+
+    if (
+      searchInputEl.value.trim() &&
+      currentResults.length
+    ) {
+
+      openSearch();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   SEARCH SUBMIT
+========================================================= */
+
+searchFormEl.addEventListener(
+  "submit",
+  (e) => {
+
+    e.preventDefault();
+
+
+    if (
+      highlightedIndex >= 0 &&
+      currentResults[
+        highlightedIndex
+      ]
+    ) {
+
+      selectResult(
+        currentResults[
+          highlightedIndex
+        ].key
+      );
+
+    }
+
+    else if (
+      currentResults.length > 0
+    ) {
+
+      selectResult(
+        currentResults[0].key
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   SEARCH KEYBOARD
+========================================================= */
+
+searchInputEl.addEventListener(
+  "keydown",
+  (e) => {
+
+    if (!currentResults.length) {
+      return;
+    }
+
+
+    if (e.key === "ArrowDown") {
+
+      e.preventDefault();
+
+      highlightedIndex =
+        Math.min(
+          highlightedIndex + 1,
+          currentResults.length - 1
+        );
+
+      updateHighlight();
+
+    }
+
+
+    else if (e.key === "ArrowUp") {
+
+      e.preventDefault();
+
+      highlightedIndex =
+        Math.max(
+          highlightedIndex - 1,
+          -1
+        );
+
+      updateHighlight();
+
+    }
+
+
+    else if (e.key === "Escape") {
+
+      closeSearch();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   CLOSE SEARCH WHEN CLICKING OUTSIDE
+========================================================= */
+
+document.addEventListener(
+  "click",
+  (e) => {
+
+    if (
+      !searchResultsEl.contains(
+        e.target
+      ) &&
+
+      e.target !==
+        searchInputEl &&
+
+      !searchFormEl.contains(
+        e.target
+      )
+    ) {
+
+      closeSearch();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   NAVIGATION DROPDOWN
+========================================================= */
+
+const navTrigger =
+  document.getElementById(
+    "navTrigger"
+  );
+
+const navDropdown =
+  document.getElementById(
+    "navDropdown"
+  );
+
 
 function closeNav() {
-  navDropdown.classList.remove('open');
-  navTrigger.setAttribute('aria-expanded', 'false');
+
+  navDropdown.classList.remove(
+    "open"
+  );
+
+  navTrigger.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
 }
+
 
 function toggleNav() {
-  const isOpen = navDropdown.classList.toggle('open');
-  navTrigger.setAttribute('aria-expanded', String(isOpen));
+
+  const isOpen =
+    navDropdown.classList.toggle(
+      "open"
+    );
+
+  navTrigger.setAttribute(
+    "aria-expanded",
+    String(isOpen)
+  );
+
 }
 
-navTrigger.addEventListener('click', (e) => {
-  e.stopPropagation();
-  toggleNav();
-});
 
-document.addEventListener('click', (e) => {
-  if (
-    !navDropdown.contains(e.target) &&
-    e.target !== navTrigger &&
-    !navTrigger.contains(e.target)
-  ) {
-    closeNav();
-  }
-});
+navTrigger.addEventListener(
+  "click",
+  (e) => {
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeNav();
-    closeSearch();
+    e.stopPropagation();
+
+    toggleNav();
+
   }
-});
+);
+
 
 /* =========================================================
-   LIVE CLOCK
+   CLOSE NAV OUTSIDE
 ========================================================= */
 
-const clockTimeEl = document.getElementById('clockTime');
-const clockDateEl = document.getElementById('clockDate');
+document.addEventListener(
+  "click",
+  (e) => {
 
-const SVEDAGAR = [
-  'söndag', 'måndag', 'tisdag', 'onsdag', 'torsdag', 'fredag', 'lördag'
+    if (
+      !navDropdown.contains(
+        e.target
+      ) &&
+
+      e.target !==
+        navTrigger &&
+
+      !navTrigger.contains(
+        e.target
+      )
+    ) {
+
+      closeNav();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  (e) => {
+
+    if (e.key === "Escape") {
+
+      closeNav();
+
+      closeSearch();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   LIVE CLOCK (bottom right)
+========================================================= */
+
+const clockTimeEl = document.getElementById("clockTime");
+const clockDateEl = document.getElementById("clockDate");
+
+const WEEKDAYS_SV = [
+  "söndag", "måndag", "tisdag", "onsdag",
+  "torsdag", "fredag", "lördag"
 ];
 
-const SVEMÅNADER = [
-  'januari', 'februari', 'mars', 'april', 'maj', 'juni',
-  'juli', 'augusti', 'september', 'oktober', 'november', 'december'
+const MONTHS_SV = [
+  "januari", "februari", "mars", "april", "maj", "juni",
+  "juli", "augusti", "september", "oktober", "november", "december"
 ];
 
-function pad2(num) {
-  return String(num).padStart(2, '0');
+function pad2(n) {
+  return String(n).padStart(2, "0");
 }
 
 function updateLiveClock() {
   const now = new Date();
 
   clockTimeEl.textContent =
-    pad2(now.getHours()) + ':' +
-    pad2(now.getMinutes()) + ':' +
+    pad2(now.getHours()) + ":" +
+    pad2(now.getMinutes()) + ":" +
     pad2(now.getSeconds());
 
   clockDateEl.textContent =
-    SVEDAGAR[now.getDay()] + ' ' +
-    now.getDate() + ' ' +
-    SVEMÅNADER[now.getMonth()] + ' ' +
+    WEEKDAYS_SV[now.getDay()] + " " +
+    now.getDate() + " " +
+    MONTHS_SV[now.getMonth()] + " " +
     now.getFullYear();
 }
 
 updateLiveClock();
 window.setInterval(updateLiveClock, 1000);
 
-renderNav();
-renderPage();
 </script>
 
 </body>
