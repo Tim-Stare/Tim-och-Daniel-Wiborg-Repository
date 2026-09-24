@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Riksdagen</title>
+<link rel="icon" href="Riksdags.png" type="image/png">
+<link rel="apple-touch-icon" href="Riksdags.png">
 <style>
 :root {
   --navy: #14213D;
@@ -497,29 +499,44 @@ li {
 }
 
 .party-table td {
-  padding: 11px 12px;
+  padding: 14px 12px;
   border-bottom: 1px solid var(--line);
-  white-space: nowrap;
+  vertical-align: middle;
 }
 
 .party-table td:first-child {
-  display: flex;
-  align-items: center;
-  gap: 9px;
   font-weight: 600;
   color: var(--navy-deep);
   white-space: normal;
+  min-width: 180px;
 }
 
-.party-table td:nth-child(3),
-.party-table td:nth-child(4) {
+.party-table .party-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.party-table .party-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+}
+
+.party-table td.num {
   text-align: right;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
-.party-table td:last-child {
+.party-table td.seats {
   font-weight: 600;
   color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 .party-table .swatch {
@@ -528,6 +545,75 @@ li {
   border-radius: 50%;
   flex-shrink: 0;
   display: inline-block;
+}
+
+.party-table .bar-cell {
+  min-width: 140px;
+  width: 28%;
+}
+
+.vote-bar-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vote-bar-track {
+  height: 10px;
+  background: var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.vote-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  min-width: 2px;
+}
+
+.vote-bar-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.vote-bar-meta strong {
+  color: var(--navy-deep);
+  font-weight: 600;
+}
+
+/* Live clock — bottom right */
+.live-clock {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 50;
+  background: var(--navy-deep);
+  color: #FFFFFF;
+  border: 1px solid rgba(185, 151, 77, 0.45);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  box-shadow: 0 8px 20px rgba(13, 23, 48, 0.22);
+  text-align: right;
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.live-clock .clock-time {
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.live-clock .clock-date {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  margin-top: 2px;
 }
 
 /* =========================================================
@@ -1180,6 +1266,11 @@ footer {
 
 </footer>
 
+<div class="live-clock" id="liveClock" aria-live="polite">
+  <div class="clock-time" id="clockTime">--:--:--</div>
+  <div class="clock-date" id="clockDate">—</div>
+</div>
+
 
 <script>
 
@@ -1671,199 +1762,190 @@ const PAGES = {
       <table class="party-table">
 
         <thead>
-
           <tr>
             <th>Parti</th>
             <th>Ledare</th>
-            <th>Röster 2026</th>
+            <th>Röster &amp; andel</th>
             <th>Mandat</th>
           </tr>
-
         </thead>
 
         <tbody>
 
           <tr>
             <td>
-              <span
-                class="swatch"
-                style="background:#E8112D"
-              ></span>
-              Socialdemokraterna (S)
+              <div class="party-cell">
+                <img class="party-logo" src="S.png" alt="S">
+                Socialdemokraterna (S)
+              </div>
             </td>
-
-            <td>
-              Magdalena Andersson
+            <td>Magdalena Andersson</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:28.5%;background:#E8112D"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>1 886 535 röster</span>
+                  <strong>28,5 %</strong>
+                </div>
+              </div>
             </td>
-
-            <td>
-              1 886 535
-            </td>
-
-            <td>
-              99
-            </td>
+            <td class="seats">99</td>
           </tr>
-
 
           <tr>
             <td>
-              <span
-                class="swatch"
-                style="background:#52BDEC"
-              ></span>
-              Moderaterna (M)
+              <div class="party-cell">
+                <img class="party-logo" src="M.png" alt="M">
+                Moderaterna (M)
+              </div>
             </td>
-
-            <td>
-              Ulf Kristersson
+            <td>Ulf Kristersson</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:20.2%;background:#52BDEC"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>1 336 802 röster</span>
+                  <strong>20,2 %</strong>
+                </div>
+              </div>
             </td>
-
-            <td>
-              1 336 802
-            </td>
-
-            <td>
-              70
-            </td>
+            <td class="seats">70</td>
           </tr>
-
 
           <tr>
             <td>
-              <span
-                class="swatch"
-                style="background:#DDDD00"
-              ></span>
-              Sverigedemokraterna (SD)
+              <div class="party-cell">
+                <img class="party-logo" src="SD.png" alt="SD">
+                Sverigedemokraterna (SD)
+              </div>
             </td>
-
-            <td>
-              Jimmie Åkesson
+            <td>Jimmie Åkesson</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:17.8%;background:#DDDD00"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>1 176 834 röster</span>
+                  <strong>17,8 %</strong>
+                </div>
+              </div>
             </td>
-
-            <td>
-              1 176 834
-            </td>
-
-            <td>
-              62
-            </td>
+            <td class="seats">62</td>
           </tr>
-
 
           <tr>
             <td>
-              <span
-                class="swatch"
-                style="background:#AF1E2D"
-              ></span>
-              Vänsterpartiet (V)
+              <div class="party-cell">
+                <img class="party-logo" src="V.png" alt="V">
+                Vänsterpartiet (V)
+              </div>
             </td>
-
-            <td>
-              Nooshi Dadgostar
+            <td>Nooshi Dadgostar</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:8.5%;background:#AF1E2D"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>565 599 röster</span>
+                  <strong>8,5 %</strong>
+                </div>
+              </div>
             </td>
-
-            <td>
-              565 599
-            </td>
-
-            <td>
-              30
-            </td>
+            <td class="seats">30</td>
           </tr>
-
 
           <tr>
             <td>
-              <span
-                class="swatch"
-                style="background:#009933"
-              ></span>
-              Centerpartiet (C)
+              <div class="party-cell">
+                <img class="party-logo" src="C.png" alt="C">
+                Centerpartiet (C)
+              </div>
             </td>
-
-            <td>
-              Elisabeth Thand Ringqvist
+            <td>Elisabeth Thand Ringqvist</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:7.2%;background:#009933"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>474 541 röster</span>
+                  <strong>7,2 %</strong>
+                </div>
+              </div>
             </td>
-
-            <td>
-              474 541
-            </td>
-
-            <td>
-              25
-            </td>
+            <td class="seats">25</td>
           </tr>
-
 
           <tr>
             <td>
-              <span
-                class="swatch"
-                style="background:#000077"
-              ></span>
-              Kristdemokraterna (KD)
+              <div class="party-cell">
+                <img class="party-logo" src="KD.png" alt="KD">
+                Kristdemokraterna (KD)
+              </div>
             </td>
-
-            <td>
-              Ebba Busch
+            <td>Ebba Busch</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:6.3%;background:#000077"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>415 867 röster</span>
+                  <strong>6,3 %</strong>
+                </div>
+              </div>
             </td>
-
-            <td>
-              415 867
-            </td>
-
-            <td>
-              22
-            </td>
+            <td class="seats">22</td>
           </tr>
-
 
           <tr>
             <td>
-              <span
-                class="swatch"
-                style="background:#83CF39"
-              ></span>
-              Miljöpartiet (MP)
+              <div class="party-cell">
+                <img class="party-logo" src="MP.png" alt="MP">
+                Miljöpartiet (MP)
+              </div>
             </td>
-
-            <td>
-              Amanda Lind
+            <td>Amanda Lind</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:6.2%;background:#83CF39"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>413 091 röster</span>
+                  <strong>6,2 %</strong>
+                </div>
+              </div>
             </td>
-
-            <td>
-              413 091
-            </td>
-
-            <td>
-              22
-            </td>
+            <td class="seats">22</td>
           </tr>
-
 
           <tr>
             <td>
-              <span
-                class="swatch"
-                style="background:#006AB3"
-              ></span>
-              Liberalerna (L)
+              <div class="party-cell">
+                <img class="party-logo" src="L.png" alt="L">
+                Liberalerna (L)
+              </div>
             </td>
-
-            <td>
-              Simona Mohamsson
+            <td>Simona Mohamsson</td>
+            <td class="bar-cell">
+              <div class="vote-bar-wrap">
+                <div class="vote-bar-track">
+                  <div class="vote-bar-fill" style="width:5.4%;background:#006AB3"></div>
+                </div>
+                <div class="vote-bar-meta">
+                  <span>359 850 röster</span>
+                  <strong>5,4 %</strong>
+                </div>
+              </div>
             </td>
-
-            <td>
-              359 850
-            </td>
-
-            <td>
-              19
-            </td>
+            <td class="seats">19</td>
           </tr>
 
         </tbody>
@@ -3444,6 +3526,46 @@ document.addEventListener(
 
   }
 );
+
+
+/* =========================================================
+   LIVE CLOCK (bottom right)
+========================================================= */
+
+const clockTimeEl = document.getElementById("clockTime");
+const clockDateEl = document.getElementById("clockDate");
+
+const WEEKDAYS_SV = [
+  "söndag", "måndag", "tisdag", "onsdag",
+  "torsdag", "fredag", "lördag"
+];
+
+const MONTHS_SV = [
+  "januari", "februari", "mars", "april", "maj", "juni",
+  "juli", "augusti", "september", "oktober", "november", "december"
+];
+
+function pad2(n) {
+  return String(n).padStart(2, "0");
+}
+
+function updateLiveClock() {
+  const now = new Date();
+
+  clockTimeEl.textContent =
+    pad2(now.getHours()) + ":" +
+    pad2(now.getMinutes()) + ":" +
+    pad2(now.getSeconds());
+
+  clockDateEl.textContent =
+    WEEKDAYS_SV[now.getDay()] + " " +
+    now.getDate() + " " +
+    MONTHS_SV[now.getMonth()] + " " +
+    now.getFullYear();
+}
+
+updateLiveClock();
+window.setInterval(updateLiveClock, 1000);
 
 </script>
 
