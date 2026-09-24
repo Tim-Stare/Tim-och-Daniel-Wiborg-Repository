@@ -902,7 +902,7 @@ li {
 .party-facts-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   margin-top: 8px;
 }
 
@@ -910,43 +910,111 @@ li {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: 10px;
-  padding: 16px 18px;
+  overflow: hidden;
 }
 
-.party-fact-head {
+.party-fact-toggle {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 8px;
+  width: 100%;
+  padding: 16px 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
 }
 
-.party-fact-head .party-logo {
-  width: 40px;
-  height: 40px;
+.party-fact-toggle:hover {
+  background: rgba(20, 33, 61, 0.03);
+}
+
+.party-fact-toggle .party-logo {
+  width: 44px;
+  height: 44px;
   object-fit: cover;
   border-radius: 6px;
   border: 1px solid var(--line);
   flex-shrink: 0;
 }
 
-.party-fact-head h2 {
+.party-fact-titles {
+  flex: 1;
+  min-width: 0;
+}
+
+.party-fact-titles h2 {
   margin: 0;
   font-size: 17px;
   color: var(--navy-deep);
 }
 
-.party-fact-meta {
+.party-fact-leader {
+  margin: 3px 0 0;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.party-fact-founded {
   margin: 2px 0 0;
   font-size: 13px;
   color: var(--ink-soft);
-  font-variant-numeric: tabular-nums;
 }
 
-.party-fact-card > p {
-  margin: 0;
+.party-fact-arrow {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
+  color: var(--navy);
+  transition: transform 0.2s ease, background 0.15s ease;
+}
+
+.party-fact-card.open .party-fact-arrow {
+  transform: rotate(180deg);
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+
+.party-fact-body {
+  display: none;
+  padding: 0 18px 18px 76px;
+  border-top: 1px solid var(--line);
+}
+
+.party-fact-card.open .party-fact-body {
+  display: block;
+}
+
+.party-fact-body p {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
   color: var(--ink);
-  line-height: 1.45;
+}
+
+.party-fact-body p:first-child {
+  margin-top: 14px;
+}
+
+.party-fact-body ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.party-fact-body li {
+  margin-bottom: 4px;
 }
 
 .proscons-grid {
@@ -2150,145 +2218,291 @@ const PAGES = {
     </h1>
 
     <p>
-      Korta fakta om partierna i storleksordning efter
-      valet 2026. Logotyperna laddas från dina
-      PNG-/WEBP-filer.
+      Klicka på pilen för att läsa mer om varje parti —
+      historia, ideologi och viktiga årtal. Ordnade efter
+      storlek i valet 2026.
     </p>
 
-    <div class="party-facts-list">
+    <div class="party-facts-list" id="partyFactsList">
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="S.png" alt="S">
-          <div>
+          <div class="party-fact-titles">
             <h2>Socialdemokraterna (S)</h2>
-            <p class="party-fact-meta">28,02 % · 1 895 989 röster · 99 mandat</p>
+            <p class="party-fact-leader">Ledare: Magdalena Andersson</p>
+            <p class="party-fact-founded">Grundat: 1889</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Socialdemokraterna är Sveriges äldsta och historiskt största politiska parti. Partiet bildades 1889 ur arbetarrörelsen och har format den svenska välfärdsstaten under stora delar av 1900-talet.</p>
+          <ul>
+            <li>Ideologi: socialdemokrati, reformism</li>
+            <li>Färg: röd</li>
+            <li>Har suttit i regeringsställning under merparten av perioden efter 1932</li>
+            <li>Viktiga namn i historien: Hjalmar Branting, Per Albin Hansson, Tage Erlander, Olof Palme, Ingvar Carlsson, Göran Persson, Stefan Löfven</li>
+            <li>Valresultat 2026: 28,02 % · 1 895 989 röster · 99 mandat</li>
+            <li>Ungdomsförbund: SSU (Sveriges socialdemokratiska ungdomsförbund)</li>
+          </ul>
+          <p>Partiet står för en stark offentlig sektor, arbetsrätt, jämlikhet och en aktiv arbetsmarknadspolitik. Magdalena Andersson blev partiledare 2021 och var Sveriges första kvinnliga statsminister 2021–2022.</p>
         </div>
-        <p>Sveriges största parti. Socialdemokratiskt, arbetarrörelsen. Ledare: Magdalena Andersson.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="M.webp" alt="M">
-          <div>
+          <div class="party-fact-titles">
             <h2>Moderaterna (M)</h2>
-            <p class="party-fact-meta">19,85 % · 1 343 448 röster · 70 mandat</p>
+            <p class="party-fact-leader">Ledare: Ulf Kristersson</p>
+            <p class="party-fact-founded">Grundat: 1904 (Allmänna valmansförbundet)</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Moderaterna har sina rötter i Allmänna valmansförbundet (1904), som senare blev Högerpartiet och 1969 Moderata samlingspartiet. Partiet är liberalkonservativt och betonar företagande, lägre skatter och lag och ordning.</p>
+          <ul>
+            <li>Ideologi: liberalkonservatism</li>
+            <li>Färg: blå</li>
+            <li>Viktiga ledare: Gösta Bohman, Carl Bildt, Fredrik Reinfeldt, Anna Kinberg Batra, Ulf Kristersson</li>
+            <li>Valresultat 2026: 19,85 % · 1 343 448 röster · 70 mandat</li>
+            <li>Ungdomsförbund: MUF (Moderata ungdomsförbundet)</li>
+            <li>Reinfeldt-regeringen 2006–2014 genomförde stora skattesänkningar och arbetslinjen</li>
+          </ul>
+          <p>Ulf Kristersson har varit partiledare sedan 2017 och statsminister sedan 2022. Partiet samarbetar ofta med övriga Tidöpartier.</p>
         </div>
-        <p>Liberalkonservativt parti. Ledare: Ulf Kristersson.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="SD.png" alt="SD">
-          <div>
+          <div class="party-fact-titles">
             <h2>Sverigedemokraterna (SD)</h2>
-            <p class="party-fact-meta">17,48 % · 1 183 248 röster · 62 mandat</p>
+            <p class="party-fact-leader">Ledare: Jimmie Åkesson</p>
+            <p class="party-fact-founded">Grundat: 1988</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Sverigedemokraterna bildades 1988 och har vuxit kraftigt sedan 2000-talet. Partiet beskriver sig som socialkonservativt med nationalistisk grundsyn och prioriterar invandringspolitik, lag och ordning samt svensk kultur.</p>
+          <ul>
+            <li>Ideologi: socialkonservatism, nationalism</li>
+            <li>Färg: gul / blå</li>
+            <li>Inkom i riksdagen 2010 med 5,7 %</li>
+            <li>Jimmie Åkesson partiledare sedan 2005</li>
+            <li>Valresultat 2026: 17,48 % · 1 183 248 röster · 62 mandat</li>
+            <li>Ungdomsförbund: Ungsvenskarna</li>
+          </ul>
+          <p>Partiet har under 2010- och 2020-talen gått från att vara isolerat till att bli en central aktör i svensk politik och stödparti till Tidöregeringen.</p>
         </div>
-        <p>Socialkonservativt parti med fokus på migration och lag och ordning. Ledare: Jimmie Åkesson.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="V.webp" alt="V">
-          <div>
+          <div class="party-fact-titles">
             <h2>Vänsterpartiet (V)</h2>
-            <p class="party-fact-meta">8,40 % · 568 781 röster · 30 mandat</p>
+            <p class="party-fact-leader">Ledare: Nooshi Dadgostar</p>
+            <p class="party-fact-founded">Grundat: 1917</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Vänsterpartiet har rötter i den socialdemokratiska splittringen 1917 (SSV). Partiet hette tidigare Sveriges kommunistiska parti och Vänsterpartiet kommunisterna (VPK) innan det 1990 blev Vänsterpartiet.</p>
+          <ul>
+            <li>Ideologi: socialism, feminism</li>
+            <li>Färg: röd</li>
+            <li>Fokuserar på välfärd, bostäder, arbetsrätt och jämlikhet</li>
+            <li>Ledare: Nooshi Dadgostar (sedan 2020)</li>
+            <li>Valresultat 2026: 8,40 % · 568 781 röster · 30 mandat</li>
+            <li>Ungdomsförbund: Ung Vänster</li>
+          </ul>
+          <p>Partiet har ofta stött socialdemokratiska regeringar utan att sitta i dem. Dadgostar har bland annat profilerat sig i bostads- och hyresfrågor.</p>
         </div>
-        <p>Socialistiskt parti till vänster. Ledare: Nooshi Dadgostar.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="C.webp" alt="C">
-          <div>
+          <div class="party-fact-titles">
             <h2>Centerpartiet (C)</h2>
-            <p class="party-fact-meta">7,03 % · 475 780 röster · 25 mandat</p>
+            <p class="party-fact-leader">Ledare: Elisabeth Thand Ringqvist</p>
+            <p class="party-fact-founded">Grundat: 1913 (Bondeförbundet)</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Centerpartiet började som Bondeförbundet 1913 och bytte namn till Centerpartiet 1957. Partiet har traditionellt representerat landsbygden men har också en liberal, företagsvänlig profil.</p>
+          <ul>
+            <li>Ideologi: socialliberalism, grön liberalism</li>
+            <li>Färg: grön</li>
+            <li>Viktiga ledare: Thorbjörn Fälldin, Maud Olofsson, Annie Lööf, Muharrem Demirok, Elisabeth Thand Ringqvist</li>
+            <li>Valresultat 2026: 7,03 % · 475 780 röster · 25 mandat</li>
+            <li>Ungdomsförbund: CUF (Centerpartiets ungdomsförbund)</li>
+          </ul>
+          <p>Partiet har suttit i både borgerliga och mittenregeringar. Elisabeth Thand Ringqvist valdes till partiledare 2025.</p>
         </div>
-        <p>Liberalt centerparti med rötter i landsbygden. Ledare: Elisabeth Thand Ringqvist.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="KD.webp" alt="KD">
-          <div>
+          <div class="party-fact-titles">
             <h2>Kristdemokraterna (KD)</h2>
-            <p class="party-fact-meta">6,17 % · 417 490 röster · 22 mandat</p>
+            <p class="party-fact-leader">Ledare: Ebba Busch</p>
+            <p class="party-fact-founded">Grundat: 1964</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Kristdemokraterna bildades 1964 som Kristen demokratisk samling. Partiet betonar familj, etik, äldreomsorg och vård samt en kristdemokratisk värdegrund.</p>
+          <ul>
+            <li>Ideologi: kristdemokrati</li>
+            <li>Färg: blå</li>
+            <li>Inkom i riksdagen 1991</li>
+            <li>Ledare: Ebba Busch (sedan 2015)</li>
+            <li>Valresultat 2026: 6,17 % · 417 490 röster · 22 mandat</li>
+            <li>Ungdomsförbund: KDU (Kristdemokratiska ungdomsförbundet)</li>
+          </ul>
+          <p>Ebba Busch har varit energi- och näringsminister i Tidöregeringen. Partiet samarbetar nära med Moderaterna, KD och L i Tidöavtalet.</p>
         </div>
-        <p>Kristdemokratiskt parti med fokus på familj, vård och äldreomsorg. Ledare: Ebba Busch.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="MP.png" alt="MP">
-          <div>
-            <h2>Miljöpartiet (MP)</h2>
-            <p class="party-fact-meta">6,12 % · 414 307 röster · 22 mandat</p>
+          <div class="party-fact-titles">
+            <h2>Miljöpartiet de gröna (MP)</h2>
+            <p class="party-fact-leader">Språkrör: Amanda Lind</p>
+            <p class="party-fact-founded">Grundat: 1981</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Miljöpartiet de gröna bildades 1981 ur miljörörelsen. Partiet har två språkrör (ett kvinnligt och ett manligt) i stället för en traditionell partiledare.</p>
+          <ul>
+            <li>Ideologi: grön ideologi, ekologi, feminism</li>
+            <li>Färg: grön</li>
+            <li>Inkom i riksdagen 1988</li>
+            <li>Regeringsparti 2014–2021 tillsammans med Socialdemokraterna</li>
+            <li>Valresultat 2026: 6,12 % · 414 307 röster · 22 mandat</li>
+            <li>Ungdomsförbund: Grön Ungdom</li>
+          </ul>
+          <p>Amanda Lind är ett av partiets språkrör och har tidigare varit kultur- och demokratiminister.</p>
         </div>
-        <p>Grönt parti med miljö och klimat i centrum. Språkrör: Amanda Lind.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="L.png" alt="L">
-          <div>
+          <div class="party-fact-titles">
             <h2>Liberalerna (L)</h2>
-            <p class="party-fact-meta">5,34 % · 361 187 röster · 19 mandat</p>
+            <p class="party-fact-leader">Ledare: Simona Mohamsson</p>
+            <p class="party-fact-founded">Grundat: 1934 (Folkpartiet; rötter äldre)</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Liberalerna heter sedan 2015 så; dessförinnan Folkpartiet liberalerna (FP). Partiet har liberala rötter långt tillbaka och betonar utbildning, individens frihet och integration.</p>
+          <ul>
+            <li>Ideologi: liberalism</li>
+            <li>Färg: blå</li>
+            <li>Viktiga ledare: Bertil Ohlin, Ola Ullsten, Bengt Westerberg, Lars Leijonborg, Jan Björklund, Nyamko Sabuni, Johan Pehrson, Simona Mohamsson</li>
+            <li>Valresultat 2026: 5,34 % · 361 187 röster · 19 mandat</li>
+            <li>Ungdomsförbund: LUF (Liberala ungdomsförbundet)</li>
+          </ul>
+          <p>Simona Mohamsson blev partiledare 2025 och har bland annat ansvarat för utbildnings- och integrationsfrågor.</p>
         </div>
-        <p>Liberalt parti med fokus på skola, integration och individens frihet. Ledare: Simona Mohamsson.</p>
       </article>
 
       <h2 style="margin-top:36px;">Utanför riksdagen</h2>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="AfS.png" alt="AfS">
-          <div>
+          <div class="party-fact-titles">
             <h2>Alternativ för Sverige (AfS)</h2>
-            <p class="party-fact-meta">Utanför riksdagen</p>
+            <p class="party-fact-leader">Ledare: Gustav Kasselstrand</p>
+            <p class="party-fact-founded">Grundat: 2018</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Alternativ för Sverige bildades 2018 av tidigare medlemmar i Sverigedemokraterna, bland annat från det då upplösta ungdomsförbundet. Partiet står till höger om SD i migrations- och nationalitetsfrågor.</p>
+          <ul>
+            <li>Ideologi: nationalism, högerpopulism</li>
+            <li>Färg: mörkblå</li>
+            <li>Ledare: Gustav Kasselstrand</li>
+            <li>Har inte nått 4-procentsspärren till riksdagen</li>
+          </ul>
+          <p>Partiet ställer upp i riksdagsval och kommunalval men saknar riksdagsmandat.</p>
         </div>
-        <p>Nationalistiskt parti. Ledare: Gustav Kasselstrand.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="OP.png" alt="ÖP">
-          <div>
+          <div class="party-fact-titles">
             <h2>Örebropartiet (ÖP)</h2>
-            <p class="party-fact-meta">Utanför riksdagen</p>
+            <p class="party-fact-leader">Ledare: Markus Allard</p>
+            <p class="party-fact-founded">Grundat: 2014</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Örebropartiet är ett lokalt och regionalt inriktat parti med bas i Örebro län. Det grundades 2014 och leds av Markus Allard.</p>
+          <ul>
+            <li>Ideologi: lokalism, anti-etablissemang</li>
+            <li>Färg: mörkröd</li>
+            <li>Fokus på kommunala frågor, transparens och kritik mot etablerade partier</li>
+            <li>Har haft framgångar i kommunvalet i Örebro men saknar riksdagsmandat</li>
+          </ul>
+          <p>Partiet har profilerat sig som ett alternativ till de traditionella riksdagspartierna på lokal nivå.</p>
         </div>
-        <p>Lokalt parti med rötter i Örebro. Ledare: Markus Allard.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="KVP.webp" alt="KVP">
-          <div>
+          <div class="party-fact-titles">
             <h2>Kristna Värdepartiet (KVP)</h2>
-            <p class="party-fact-meta">Utanför riksdagen</p>
+            <p class="party-fact-leader">Ledare: Mats Selander</p>
+            <p class="party-fact-founded">Grundat: 2014</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Kristna Värdepartiet bildades 2014 som ett kristet, värdekonservativt alternativ. Partiet betonar kristen etik, familjepolitik och livsfrågor.</p>
+          <ul>
+            <li>Ideologi: kristen värdekonservatism</li>
+            <li>Färg: lila</li>
+            <li>Ledare: Mats Selander</li>
+            <li>Har inte nått riksdagen; ställer upp i val med fokus på värdefrågor</li>
+          </ul>
+          <p>Partiet riktar sig till väljare som vill se en tydligare kristen röst i svensk politik.</p>
         </div>
-        <p>Kristet värdekonservativt parti. Ledare: Mats Selander.</p>
       </article>
 
       <article class="party-fact-card">
-        <div class="party-fact-head">
+        <button type="button" class="party-fact-toggle" aria-expanded="false">
           <img class="party-logo" src="AS.webp" alt="AS">
-          <div>
+          <div class="party-fact-titles">
             <h2>Ambition Sverige (AS)</h2>
-            <p class="party-fact-meta">Utanför riksdagen</p>
+            <p class="party-fact-leader">Ledare: Elsa Widding</p>
+            <p class="party-fact-founded">Grundat: 2025</p>
           </div>
+          <span class="party-fact-arrow" aria-hidden="true">▼</span>
+        </button>
+        <div class="party-fact-body">
+          <p>Ambition Sverige är ett nybildat parti (2025) under ledning av Elsa Widding, tidigare riksdagsledamot. Partiet profilerar sig kring frihet, kritik av klimatpolitik och individens ansvar.</p>
+          <ul>
+            <li>Ideologi: liberal-konservativ / frihetlig</li>
+            <li>Färg: grön-turkos</li>
+            <li>Ledare: Elsa Widding</li>
+            <li>Ännu utanför riksdagen</li>
+          </ul>
+          <p>Partiet är ett av de nyare alternativen utanför riksdagen och bygger på Widdings profil från tidigare mandatperiod.</p>
         </div>
-        <p>Nytt parti. Ledare: Elsa Widding.</p>
       </article>
 
     </div>
@@ -3038,6 +3252,23 @@ function renderPage() {
 
   }
 
+  if (currentPage === "fakta") {
+    initPartyFactsAccordion();
+  }
+
+}
+
+function initPartyFactsAccordion() {
+  const list = document.getElementById("partyFactsList");
+  if (!list) return;
+
+  list.querySelectorAll(".party-fact-toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = btn.closest(".party-fact-card");
+      const open = card.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
 }
 
 
