@@ -809,6 +809,65 @@ li {
 }
 
 /* =========================================================
+   KREDITS
+========================================================= */
+
+.credits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0 28px;
+}
+
+.credit-card {
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--gold);
+  padding: 20px 22px;
+}
+
+.credit-card h3 {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--navy-deep);
+  margin: 0 0 4px;
+}
+
+.credit-card .credit-role {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin: 0 0 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.credit-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.credit-card li {
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+
+.credit-card li:last-child {
+  margin-bottom: 0;
+}
+
+.credit-card li strong {
+  color: var(--navy-deep);
+}
+
+@media (max-width: 640px) {
+  .credits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
    FÖRDELAR / NACKDELAR
 ========================================================= */
 
@@ -1236,7 +1295,9 @@ const NAV = {
 
   riksdagslinjen: "4 Procentsspärren",
 
-  utanfor: "Utanför Riksdag (4 Partier)"
+  utanfor: "Utanför Riksdag (4 Partier)",
+
+  kredits: "Kredits"
 
 };
 
@@ -1247,7 +1308,8 @@ const NAV_ORDER = [
   "historia",
   "mandat",
   "riksdagslinjen",
-  "utanfor"
+  "utanfor",
+  "kredits"
 ];
 
 
@@ -2223,6 +2285,115 @@ const PAGES = {
       class="leader-grid"
       id="leaderGridUtanfor"
     ></div>
+
+  `,
+
+
+  /* -------------------------------------------------------
+     KREDITS
+  ------------------------------------------------------- */
+
+  kredits: `
+
+    <p class="page-eyebrow">
+      Utforska
+    </p>
+
+    <h1 class="page-title">
+      Kredits
+    </h1>
+
+    <p>
+      Webbplatsen är skapad av Tim Stare och Daniel Wiborg
+      (EE25c), Tyresö Gymnasium. Här är en mer detaljerad
+      genomgång av vem som har gjort vad.
+    </p>
+
+    <div class="credits-grid">
+
+      <div class="credit-card">
+
+        <h3>Tim Stare</h3>
+        <p class="credit-role">Programmering, bilder och historik</p>
+
+        <ul>
+
+          <li>
+            <strong>Programmering:</strong> Byggde hela
+            webbplatsens kod, det vill säga struktur,
+            styling och interaktivitet. Utvecklade bland
+            annat den utfällbara Utforska-menyn, sökfunktionen
+            med livesökresultat, samt de klickbara
+            partiledarkorten som visar mer information när
+            man klickar eller trycker på dem.
+          </li>
+
+          <li>
+            <strong>Bildinsamling:</strong> Letade reda på och
+            lade in bilder för flera av partierna utanför
+            riksdagen, bland annat Alternativ för Sverige
+            (AfS) och Örebropartiet (ÖP), samt en bild för
+            Sverigedemokraterna (SD), samtliga i PNG-format.
+          </li>
+
+          <li>
+            <strong>Historia:</strong> Skrev innehållet om
+            Sverigedemokraternas och Vänsterpartiets
+            bakgrund och historia, bland annat deras ursprung
+            och ideologiska rötter, som presenteras under
+            sidan Fördelar och Nackdelar med Partierna.
+          </li>
+
+          <li>
+            <strong>Partiledarbilder:</strong> Ansvarade för
+            att samla in bilder till partiledarkorten på
+            sidorna Partier och Utanför Riksdag.
+          </li>
+
+        </ul>
+
+      </div>
+
+
+      <div class="credit-card">
+
+        <h3>Daniel Wiborg</h3>
+        <p class="credit-role">Innehåll, mandat och historia</p>
+
+        <ul>
+
+          <li>
+            <strong>Fördelar och Nackdelar:</strong> Skrev och
+            sammanställde allt innehåll till sidan Fördelar
+            och Nackdelar med Partierna, för samtliga åtta
+            riksdagspartier samt de fyra partierna utanför
+            riksdagen.
+          </li>
+
+          <li>
+            <strong>Mandat:</strong> Byggde innehållet till
+            sidan Mandat, inklusive sammanställningen av
+            valresultatet 2026, tabellen över partiledare och
+            röster, samt uppdelningen av partierna i block.
+          </li>
+
+          <li>
+            <strong>Historia (50 %):</strong> Skrev hälften av
+            innehållet till sidan Historia, om riksdagens
+            utveckling genom århundradena, från ståndsriksdagen
+            fram till dagens enkammarriksdag.
+          </li>
+
+          <li>
+            <strong>Bilder:</strong> Ansvarade för resterande
+            partiledarbilder som inte täcktes av Tim.
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
 
   `
 
