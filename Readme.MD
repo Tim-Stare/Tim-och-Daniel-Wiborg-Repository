@@ -26,8 +26,8 @@ Webbplatsen ger en tydlig och balanserad översikt över det svenska politiska s
 **Partier utanför riksdagen som kan komma in i Riksdag/Regeringen:**
 - Alternativ för Sverige - AFS
 - Örebropartiet - ÖP
-- Medborgerlig Samling 
-- Partiet Nyans
+- Ambition Sverige - AS
+- Kristna Värdepartiet KvP
 
 ---
 
